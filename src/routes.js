@@ -15,7 +15,7 @@ const ProductList = React.lazy(() => import("./views/components/ProductList"));
 const routes = [
   {
     path: "/admin",
-    name: "Accounts",
+    name: "Account",
     parIcon: <TeamOutlined />,
     children: [
       {
@@ -34,7 +34,7 @@ const routes = [
   },
   {
     path: "/admin",
-    name: "Products",
+    name: "Product",
     parIcon: <FolderOutlined />,
     children: [
       {

@@ -17,7 +17,7 @@ class App extends Component {
       <div>
         <Router>
           <Switch>
-              <PrivateRouter exact path="/admin">
+              <PrivateRouter path="/admin">
                 <DefaultLayoutAdmin routes={routes}></DefaultLayoutAdmin>
               </PrivateRouter>
               <Route exact path="/admin/login">
