@@ -1,13 +1,13 @@
-import { LOGIN, ADD_ADMIN } from "../constants/ActionsType";
+import { LOGIN, ADD_ADMIN, ADD_PRODUCT } from "../constants/ActionsType";
 
 const initialStateUser = {
   isLoggedIn: false,
   name: "",
   admins: [],
+  products: [],
 };
 
 function userReducer(state = initialStateUser, action = { payload: {} }) {
-
   switch (action.type) {
     case LOGIN:
       return {
@@ -19,7 +19,13 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     case ADD_ADMIN:
       return {
         ...state,
-        admins: [...state.admins, action.newAdmin]
+        admins: [...state.admins, action.newAdmin],
+      };
+
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, action.newProduct],
       };
 
     default:

@@ -8,6 +8,9 @@ import {
   Select,
   Tag,
 } from "antd";
+import { connect } from "react-redux";
+import { addProduct } from "../../actions/userActions";
+import { withRouter } from "react-router";
 
 const { Option } = Select;
 
@@ -29,7 +32,18 @@ const validateMessages = {
 
 class AddProduct extends Component {
   onFinish = (values) => {
-    console.log(values);
+    const { products } = this.props;
+    const newValues = {
+      ...values.product,
+      status: values.product.status.split(),
+    };
+    const newProduct = {
+      key: products.length + 1,
+      avatar: "https://via.placeholder.com/70",
+      ...newValues,
+    };
+    this.props.addProduct(newProduct);
+    this.props.history.push("/admin/product/product-list");
   };
 
   render() {
@@ -98,4 +112,10 @@ class AddProduct extends Component {
   }
 }
 
-export default AddProduct;
+function mapStateToProps(state) {
+  return {
+    products: state.user.products,
+  };
+}
+
+export default withRouter(connect(mapStateToProps, { addProduct })(AddProduct));

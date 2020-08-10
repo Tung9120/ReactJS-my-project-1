@@ -46,33 +46,6 @@ const columns = [
   },
 ];
 
-// const data = [
-//   {
-//     key: "1",
-//     avatar: "https://via.placeholder.com/70",
-//     name: "John Brown",
-//     email: "admin@gmail.com",
-//     phone: "0123456789",
-//     tags: ["nice", "developer"],
-//   },
-//   {
-//     key: "2",
-//     avatar: "https://via.placeholder.com/70",
-//     name: "Jim Green",
-//     email: "admin@gmail.com",
-//     phone: "0123456789",
-//     tags: ["loser"],
-//   },
-//   {
-//     key: "3",
-//     avatar: "https://via.placeholder.com/70",
-//     name: "Joe Black",
-//     email: "admin@gmail.com",
-//     phone: "0123456789",
-//     tags: ["cool", "teacher"],
-//   },
-// ];
-
 class AdminList extends Component {
   render() {
     return (

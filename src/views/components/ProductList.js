@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table, Tag, Space, Typography, Button, Tooltip } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { connect } from "react-redux";
 
 const columns = [
   {
@@ -33,7 +34,12 @@ const columns = [
     render: (status) => (
       <>
         {status.map((status) => {
-          let color = "bestseller" ? "geekblue" : "green";
+          let color;
+
+          if (status === "bestseller") {
+            color = "geekblue";
+          }
+
           if (status === "out of stock") {
             color = "volcano";
           }
@@ -71,33 +77,6 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: "1",
-    avatar: "https://via.placeholder.com/70",
-    name: "T-shirt",
-    price: 6,
-    description: "New York No. 1 Lake Park",
-    status: ["new"],
-  },
-  {
-    key: "2",
-    avatar: "https://via.placeholder.com/70",
-    name: "Jean",
-    price: 15,
-    description: "London No. 1 Lake Park",
-    status: ["out of stock"],
-  },
-  {
-    key: "3",
-    avatar: "https://via.placeholder.com/70",
-    name: "shirt",
-    price: 7,
-    description: "Sidney No. 1 Lake Park",
-    status: ["bestseller"],
-  },
-];
-
 class ProductList extends Component {
   render() {
     return (
@@ -105,10 +84,16 @@ class ProductList extends Component {
         <Typography.Title level={4} align="center">
           Product List
         </Typography.Title>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={this.props.products} />
       </>
     );
   }
 }
 
-export default ProductList;
+function mapStateToProps(state) {
+  return {
+    products: state.user.products,
+  };
+}
+
+export default connect(mapStateToProps)(ProductList);

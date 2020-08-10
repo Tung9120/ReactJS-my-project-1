@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { addAdmin } from "../../actions/userActions";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 const layout = {
   labelCol: { span: 4 },
@@ -20,11 +21,15 @@ const validateMessages = {
 };
 
 class AddProduct extends Component {
-  
   onFinish = (values) => {
-    const {admins} = this.props;
-    const newAdmin = {key: admins.length,avatar: "https://via.placeholder.com/70", ...values.admin };
+    const { admins } = this.props;
+    const newAdmin = {
+      key: admins.length + 1,
+      avatar: "https://via.placeholder.com/70",
+      ...values.admin,
+    };
     this.props.addAdmin(newAdmin);
+    this.props.history.push("/admin/account/admin-list");
   };
 
   render() {
@@ -71,10 +76,10 @@ class AddProduct extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return{
-    admins: state.user.admins
-  }
+function mapStateToProps(state) {
+  return {
+    admins: state.user.admins,
+  };
 }
 
-export default connect(mapStateToProps, { addAdmin })(AddProduct);
+export default withRouter(connect(mapStateToProps, { addAdmin })(AddProduct));
