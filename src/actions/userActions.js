@@ -1,5 +1,5 @@
 import apis from "../apis";
-import { LOGIN } from "../constants/ActionsType";
+import { LOGIN, ADD_ADMIN } from "../constants/ActionsType";
 import jwtDecode from 'jwt-decode';
 
 export const login = (data) => (dispatch) => {
@@ -12,3 +12,7 @@ export const login = (data) => (dispatch) => {
     return res;
   });
 };
+
+export const addAdmin = (data) => (dispatch) => {
+  dispatch({type: ADD_ADMIN, newAdmin: data})
+}

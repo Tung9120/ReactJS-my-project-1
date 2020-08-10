@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
+  Link,
 } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import DefaultLayoutAdmin from "./layouts/DefaultLayoutAdmin";
@@ -24,7 +24,9 @@ class App extends Component {
                 <LoginPage />
               </Route>
               <Route path="/">
-                <Redirect to="/admin"></Redirect>
+                <div>Home</div>
+                <Link to="/login">Login</Link>
+                <Link to="/admin">Admin</Link>
               </Route>
           </Switch>
         </Router>

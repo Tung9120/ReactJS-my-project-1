@@ -4,6 +4,12 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const columns = [
   {
+    title: "Avatar",
+    dataIndex: "avatar",
+    key: "avatar",
+    render: (avatar) => <img src={avatar} />,
+  },
+  {
     title: "Name",
     dataIndex: "name",
     key: "name",
@@ -68,6 +74,7 @@ const columns = [
 const data = [
   {
     key: "1",
+    avatar: "https://via.placeholder.com/70",
     name: "T-shirt",
     price: 6,
     description: "New York No. 1 Lake Park",
@@ -75,6 +82,7 @@ const data = [
   },
   {
     key: "2",
+    avatar: "https://via.placeholder.com/70",
     name: "Jean",
     price: 15,
     description: "London No. 1 Lake Park",
@@ -82,6 +90,7 @@ const data = [
   },
   {
     key: "3",
+    avatar: "https://via.placeholder.com/70",
     name: "shirt",
     price: 7,
     description: "Sidney No. 1 Lake Park",

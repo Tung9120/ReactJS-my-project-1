@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Typography } from "antd";
+import { addAdmin } from "../../actions/userActions";
+import { connect } from "react-redux";
 
 const layout = {
   labelCol: { span: 4 },
@@ -18,8 +20,11 @@ const validateMessages = {
 };
 
 class AddProduct extends Component {
+  
   onFinish = (values) => {
-    console.log(values);
+    const {admins} = this.props;
+    const newAdmin = {key: admins.length,avatar: "https://via.placeholder.com/70", ...values.admin };
+    this.props.addAdmin(newAdmin);
   };
 
   render() {
@@ -35,21 +40,21 @@ class AddProduct extends Component {
           validateMessages={validateMessages}
         >
           <Form.Item
-            name={["user", "name"]}
+            name={["admin", "name"]}
             label="Name"
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            name={["user", "email"]}
+            name={["admin", "email"]}
             label="Email"
             rules={[{ type: "email", required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            name={["user", "phonenumber"]}
+            name={["admin", "phonenumber"]}
             label="Phone"
             rules={[{ required: true }]}
           >
@@ -66,4 +71,10 @@ class AddProduct extends Component {
   }
 }
 
-export default AddProduct;
+function mapStateToProps(state){
+  return{
+    admins: state.user.admins
+  }
+}
+
+export default connect(mapStateToProps, { addAdmin })(AddProduct);
