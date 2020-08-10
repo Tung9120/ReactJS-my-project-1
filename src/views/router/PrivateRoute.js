@@ -8,7 +8,7 @@ function PrivateRoute({ children, isLoggedIn, ...rest }) {
       <Route
         {...rest}
         render={({ location }) => {
-          return isLoggedIn ? children : <Redirect to="/login" />;
+          return isLoggedIn ? children : <Redirect to="/" />;
         }}
       ></Route>
     </div>

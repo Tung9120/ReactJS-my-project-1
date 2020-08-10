@@ -17,15 +17,15 @@ class App extends Component {
       <div>
         <Router>
           <Switch>
-              <PrivateRouter path="/admin">
+              <PrivateRouter exact path="/admin">
                 <DefaultLayoutAdmin routes={routes}></DefaultLayoutAdmin>
               </PrivateRouter>
-              <Route exact path="/login">
+              <Route exact path="/admin/login">
                 <LoginPage />
               </Route>
               <Route path="/">
                 <div>Home</div>
-                <Link to="/login">Login</Link>
+                <Link to="/admin/login">Login</Link>
                 <Link to="/admin">Admin</Link>
               </Route>
           </Switch>
