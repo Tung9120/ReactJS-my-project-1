@@ -6,6 +6,7 @@ import {
   SketchOutlined,
 } from "@ant-design/icons";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import PhoroCarousel from '../components/PhotoCarousel'
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -70,6 +71,7 @@ class DefaultLayoutUser extends Component {
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
             {/* <div className="site-layout-content">Content</div> */}
+            <PhoroCarousel />
             <Switch>
               <Route path="/products">
 
