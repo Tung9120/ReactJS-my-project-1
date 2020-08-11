@@ -40,7 +40,7 @@ const columns = [
             color = "geekblue";
           }
 
-          if (status === "out of stock") {
+          if (status === "out-of-stock") {
             color = "volcano";
           }
 
@@ -79,12 +79,13 @@ const columns = [
 
 class ProductList extends Component {
   render() {
+    const { products } = this.props;
     return (
       <>
         <Typography.Title level={4} align="center">
           Product List
         </Typography.Title>
-        <Table columns={columns} dataSource={this.props.products} />
+        <Table columns={columns} dataSource={products} />
       </>
     );
   }

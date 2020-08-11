@@ -23,8 +23,8 @@ const columns = [
   },
   {
     title: "Phone number",
-    dataIndex: "phone",
-    key: "phone",
+    dataIndex: "phonenumber",
+    key: "phonenumber",
   },
   {
     title: "Action",
@@ -48,12 +48,13 @@ const columns = [
 
 class AdminList extends Component {
   render() {
+    const { admins } = this.props;
     return (
       <>
         <Typography.Title level={4} align="center">
           Admin List
         </Typography.Title>
-        <Table columns={columns} dataSource={this.props.admins} />
+        <Table columns={columns} dataSource={admins} />
       </>
     );
   }
