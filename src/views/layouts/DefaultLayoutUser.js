@@ -6,7 +6,8 @@ import {
   SketchOutlined,
 } from "@ant-design/icons";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import PhoroCarousel from '../components/PhotoCarousel'
+import PhoroCarousel from "../components/PhotoCarousel";
+import CardOnTop from "../components/CardOnTop";
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -26,13 +27,13 @@ class DefaultLayoutUser extends Component {
     return (
       <Router>
         <Layout className="layout">
-          <Header style={{ padding: "0 5vw", backgroundColor: "#004dda" }}>
+          <Header style={{ padding: "0 5vw", backgroundColor: "#fff" }}>
             <Menu
               onClick={this.handleClick}
               selectedKeys={[current]}
               mode="horizontal"
-              theme="dark"
-              style={{ backgroundColor: "#004dda" }}
+              theme="light"
+              style={{ backgroundColor: "#fff" }}
             >
               <Menu.Item key="logo" icon={<HomeOutlined />}>
                 <Link to="/">Shoe Store</Link>
@@ -54,13 +55,13 @@ class DefaultLayoutUser extends Component {
             </Menu>
           </Header>
           <>
-            <Row style={{marginTop: "1vh"}}>
+            <Row style={{ marginTop: "3vh" }}>
               <Col span={6} offset={16}>
-              <Search
-                placeholder="Search over 100 products"
-                onSearch={(value) => console.log(value)}
-                enterButton
-              />
+                <Search
+                  placeholder="Search over 100 products"
+                  onSearch={(value) => console.log(value)}
+                  enterButton
+                />
               </Col>
             </Row>
           </>
@@ -72,14 +73,10 @@ class DefaultLayoutUser extends Component {
             </Breadcrumb>
             {/* <div className="site-layout-content">Content</div> */}
             <PhoroCarousel />
+            <CardOnTop />
             <Switch>
-              <Route path="/products">
-
-              </Route>
-              <Route path="/cart">
-
-              </Route>
-              
+              <Route path="/products"></Route>
+              <Route path="/cart"></Route>
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
