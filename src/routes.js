@@ -52,8 +52,8 @@ const routes = [
     ],
   },
   {
-    path: "/admin",
-    name: "Admin",
+    path: "/",
+    name: "Home",
     parIcon: <UserAddOutlined />,
     component: <div>Home</div>,
   },
