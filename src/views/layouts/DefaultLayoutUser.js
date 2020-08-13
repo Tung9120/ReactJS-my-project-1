@@ -39,18 +39,18 @@ class DefaultLayoutUser extends Component {
                 <Link to="/">Shoe Store</Link>
               </Menu.Item>
               <Menu.Item
-                key="products"
-                icon={<SketchOutlined />}
-                style={{ float: "right" }}
-              >
-                <Link to="/products">Products</Link>
-              </Menu.Item>
-              <Menu.Item
                 key="alipay"
                 icon={<ShoppingCartOutlined />}
                 style={{ float: "right" }}
               >
                 <Link to="/cart">Cart</Link>
+              </Menu.Item>
+              <Menu.Item
+                key="products"
+                icon={<SketchOutlined />}
+                style={{ float: "right" }}
+              >
+                <Link to="/products">Products</Link>
               </Menu.Item>
             </Menu>
           </Header>
@@ -80,7 +80,7 @@ class DefaultLayoutUser extends Component {
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
-            Ant Design ©2018 Created by Ant UED
+            Tung ©2020 Created by Me
           </Footer>
         </Layout>
       </Router>

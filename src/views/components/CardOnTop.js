@@ -10,30 +10,12 @@ const contentStyle = {
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
+  padding: 0
 };
 
 class CardOnTop extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      showBtn: false
-    }
-  }
-
-  onMouseSeenTer = () =>{
-    this.setState({
-      showBtn: true
-    })
-  }
-
-  onMouseLeave = () => {
-    this.setState({
-      showBtn: false
-    })
-  }
 
   render() {
-    const {showBtn} = this.state;
     return (
       <>
         <Row gutter={16}>
