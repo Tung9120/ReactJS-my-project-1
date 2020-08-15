@@ -9,7 +9,7 @@ class TopSelling extends Component {
       <>
         <div style={{ margin: "2rem 0" }}>
           <Title level={2} align="center">
-            Top Selling
+            Top New
           </Title>
           <Title level={3} align="center">
             Cum doctus civibus efficiantur in imperdiet deterruisset
@@ -28,7 +28,8 @@ class TopSelling extends Component {
               >
                 Product 1
               </p>
-              <Title level={4}
+              <Title
+                level={4}
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
@@ -38,7 +39,14 @@ class TopSelling extends Component {
               >
                 $10
               </Title>
-              <Button type="primary" style={{margin: '0 auto', textAlign: 'center', display: 'inherit'}}>
+              <Button
+                type="primary"
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                  display: "inherit",
+                }}
+              >
                 Add to Cart
               </Button>
             </Card>
@@ -55,7 +63,8 @@ class TopSelling extends Component {
               >
                 Product 1
               </p>
-              <Title level={4}
+              <Title
+                level={4}
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
@@ -65,7 +74,14 @@ class TopSelling extends Component {
               >
                 $10
               </Title>
-              <Button type="primary" style={{margin: '0 auto', textAlign: 'center', display: 'inherit'}}>
+              <Button
+                type="primary"
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                  display: "inherit",
+                }}
+              >
                 Add to Cart
               </Button>
             </Card>
@@ -82,7 +98,8 @@ class TopSelling extends Component {
               >
                 Product 1
               </p>
-              <Title level={4}
+              <Title
+                level={4}
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
@@ -92,7 +109,14 @@ class TopSelling extends Component {
               >
                 $10
               </Title>
-              <Button type="primary" style={{margin: '0 auto', textAlign: 'center', display: 'inherit'}}>
+              <Button
+                type="primary"
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                  display: "inherit",
+                }}
+              >
                 Add to Cart
               </Button>
             </Card>
@@ -109,7 +133,8 @@ class TopSelling extends Component {
               >
                 Product 1
               </p>
-              <Title level={4}
+              <Title
+                level={4}
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
@@ -119,7 +144,14 @@ class TopSelling extends Component {
               >
                 $10
               </Title>
-              <Button type="primary" style={{margin: '0 auto', textAlign: 'center', display: 'inherit'}}>
+              <Button
+                type="primary"
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                  display: "inherit",
+                }}
+              >
                 Add to Cart
               </Button>
             </Card>

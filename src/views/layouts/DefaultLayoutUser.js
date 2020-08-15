@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PhoroCarousel from "../components/PhotoCarousel";
 import CardOnTop from "../components/CardOnTop";
 import TopSelling from "../components/TopSelling";
+import TopNew from "../components/TopNew";
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -76,6 +77,7 @@ class DefaultLayoutUser extends Component {
             <PhoroCarousel />
             <CardOnTop />
             <TopSelling />
+            <TopNew />
             <Switch>
               <Route path="/products"></Route>
               <Route path="/cart"></Route>
