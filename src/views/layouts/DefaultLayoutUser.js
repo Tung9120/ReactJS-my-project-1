@@ -79,10 +79,12 @@ class DefaultLayoutUser extends Component {
             <TopSelling />
             <TopNew />
             <Switch>
-              <Route path="/products/top-selling"></Route>
-              <Route path="/products/new"></Route>
-              <Route path="/products"></Route>
-              <Route path="/cart"></Route>
+              <Route path="/products/top-selling">
+                <div>Top Selling</div>
+              </Route>
+              <Route path="/products/new">New</Route>
+              <Route path="/products">All Products</Route>
+              <Route path="/cart">Cart</Route>
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
