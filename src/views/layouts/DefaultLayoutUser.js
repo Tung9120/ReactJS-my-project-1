@@ -79,6 +79,8 @@ class DefaultLayoutUser extends Component {
             <TopSelling />
             <TopNew />
             <Switch>
+              <Route path="/products/top-selling"></Route>
+              <Route path="/products/new"></Route>
               <Route path="/products"></Route>
               <Route path="/cart"></Route>
             </Switch>
