@@ -74,17 +74,21 @@ class DefaultLayoutUser extends Component {
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
             {/* <div className="site-layout-content">Content</div> */}
-            <PhoroCarousel />
-            <CardOnTop />
-            <TopSelling />
-            <TopNew />
+
             <Switch>
               <Route path="/products/top-selling">
                 <div>Top Selling</div>
               </Route>
               <Route path="/products/new">New</Route>
+              <Route path="/products/top-selling">Top Selling</Route>
               <Route path="/products">All Products</Route>
               <Route path="/cart">Cart</Route>
+              <Route path="/">
+                <PhoroCarousel />
+                <CardOnTop />
+                <TopSelling />
+                <TopNew />
+              </Route>
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
