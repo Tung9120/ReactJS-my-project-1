@@ -25,9 +25,15 @@ class CardOnTop extends Component {
             <Card>
               <div style={contentStyle}>
                 <Meta
-                  title={<Title level={4} className="text-white">Man 's Collection</Title>}
+                  title={
+                    <Title level={4} className="text-white">
+                      Man 's Collection
+                    </Title>
+                  }
                 />
-                <Button type="primary" className="mt-1">Shop Now</Button>
+                <Button type="primary" className="mt-1">
+                  Shop Now
+                </Button>
               </div>
             </Card>
           </Col>
@@ -35,9 +41,15 @@ class CardOnTop extends Component {
             <Card>
               <div style={contentStyle}>
                 <Meta
-                  title={<Title level={4} className="text-white">Woman 's Collection</Title>}
+                  title={
+                    <Title level={4} className="text-white">
+                      Woman 's Collection
+                    </Title>
+                  }
                 />
-                <Button type="primary" className="mt-1">Shop Now</Button>
+                <Button type="primary" className="mt-1">
+                  Shop Now
+                </Button>
               </div>
             </Card>
           </Col>
@@ -45,9 +57,15 @@ class CardOnTop extends Component {
             <Card>
               <div style={contentStyle}>
                 <Meta
-                  title={<Title level={4} className="text-white">Kid 's Collection</Title>}
+                  title={
+                    <Title level={4} className="text-white">
+                      Kid 's Collection
+                    </Title>
+                  }
                 />
-                <Button type="primary" className="mt-1">Shop Now</Button>
+                <Button type="primary" className="mt-1">
+                  Shop Now
+                </Button>
               </div>
             </Card>
           </Col>

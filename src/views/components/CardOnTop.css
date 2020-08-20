@@ -1,14 +1,9 @@
-@media (max-width: 576px){
-  .col{
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
+@media (max-width: 576px) {
   .CardOnTop {
     display: block !important;
   }
 }
 
-.CardOnTop .ant-card-body{
+.CardOnTop .ant-card-body {
   padding: 0px !important;
 }

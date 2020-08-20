@@ -1,0 +1,9 @@
+@media (max-width: 576px) {
+  .TopSelling {
+    display: block !important;
+  }
+}
+
+.TopSelling .ant-card-body {
+  padding: 0px !important;
+}
