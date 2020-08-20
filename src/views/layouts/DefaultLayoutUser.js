@@ -32,7 +32,6 @@ class DefaultLayoutUser extends Component {
     return (
       <Router>
         <Layout className="layout">
-        <div className="logo" />
           <Header>
             <Menu
               onClick={this.handleClick}
@@ -60,12 +59,12 @@ class DefaultLayoutUser extends Component {
                   placeholder="Search over 100 products"
                   onSearch={(value) => console.log(value)}
                   enterButton
-                  style={{verticalAlign: 'middle'}}
+                  style={{ verticalAlign: "middle" }}
                 />
               </Menu.Item>
             </Menu>
           </Header>
-          <Content style={{ padding: "0 50px" }}>
+          <Content style={{ padding: "0 50px" }} className="content">
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>List</Breadcrumb.Item>

@@ -1,0 +1,30 @@
+.text-center{
+  text-align: center;
+  color: #fff;
+  margin: 1rem 0px;
+}
+
+.ant-card-body{
+  padding: 0px;
+}
+
+h4.ant-typography{
+  color: #fff;
+}
+
+.btn-center{
+  margin: 1rem auto 0px;
+  display: block;
+}
+
+@media (max-width: 576px){
+  .col{
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+
+  .ant-row{
+    display: block;
+  }
+}
