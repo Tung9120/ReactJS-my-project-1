@@ -1,0 +1,9 @@
+@media (max-width: 576px) {
+  .TopNew {
+    display: block !important;
+  }
+}
+
+.TopNew .ant-card-body {
+  padding: 0px !important;
+}

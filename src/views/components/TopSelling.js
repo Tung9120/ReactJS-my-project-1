@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Typography, Row, Col, Card, Button } from "antd";
-import "./TopSelling.css";
 import "../style/custom.css";
+import "./TopSelling.css";
 
 const { Title } = Typography;
 

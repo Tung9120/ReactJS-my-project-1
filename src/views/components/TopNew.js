@@ -1,157 +1,107 @@
 import React, { Component } from "react";
 import { Typography, Row, Col, Card, Button } from "antd";
+import "../style/custom.css";
+import "./TopNew.css";
 
 const { Title } = Typography;
 
-class TopSelling extends Component {
+class TopNew extends Component {
   render() {
     return (
       <>
-        <div style={{ margin: "2rem 0" }}>
-          <Title level={2} align="center">
+        <div className="my-2">
+          <Title level={3} align="center">
             Top New
           </Title>
-          <Title level={3} align="center">
+          <Title level={4} align="center">
             Cum doctus civibus efficiantur in imperdiet deterruisset
           </Title>
         </div>
-        <Row gutter={16} justify="center">
-          <Col span={5}>
-            <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
-              <p
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginTop: "1rem",
-                }}
-              >
-                Product 1
-              </p>
+        <Row gutter={16} justify="center" className="TopNew">
+          <Col span={5} className="col mb-1">
+            <Card hoverable>
+              <img
+                src="https://via.placeholder.com/240/250"
+                alt="?"
+                className="w-100"
+              />
+              <p className="text-center bold mt-1">Product 1</p>
               <Title
                 level={4}
+                className="text-center bold mt-1"
                 style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginTop: "1rem",
                   color: "#524dda",
                 }}
               >
                 $10
               </Title>
-              <Button
-                type="primary"
-                style={{
-                  margin: "0 auto",
-                  textAlign: "center",
-                  display: "inherit",
-                }}
-              >
+              <Button className="d-block mx-auto mb-1" type="primary">
                 Add to Cart
               </Button>
             </Card>
           </Col>
-          <Col span={5}>
-            <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
-              <p
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginTop: "1rem",
-                }}
-              >
-                Product 1
-              </p>
+          <Col span={5} className="col mb-1">
+            <Card hoverable>
+              <img
+                src="https://via.placeholder.com/240/250"
+                alt="?"
+                className="w-100"
+              />
+              <p className="text-center bold mt-1">Product 1</p>
               <Title
                 level={4}
+                className="text-center bold mt-1"
                 style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginTop: "1rem",
                   color: "#524dda",
                 }}
               >
                 $10
               </Title>
-              <Button
-                type="primary"
-                style={{
-                  margin: "0 auto",
-                  textAlign: "center",
-                  display: "inherit",
-                }}
-              >
+              <Button className="d-block mx-auto mb-1" type="primary">
                 Add to Cart
               </Button>
             </Card>
           </Col>
-          <Col span={5}>
-            <Card> 
-              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
-              <p
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginTop: "1rem",
-                }}
-              >
-                Product 1
-              </p>
+          <Col span={5} className="col mb-1">
+            <Card hoverable>
+              <img
+                src="https://via.placeholder.com/240/250"
+                alt="?"
+                className="w-100"
+              />
+              <p className="text-center bold mt-1">Product 1</p>
               <Title
                 level={4}
+                className="text-center bold mt-1"
                 style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginTop: "1rem",
                   color: "#524dda",
                 }}
               >
                 $10
               </Title>
-              <Button
-                type="primary"
-                style={{
-                  margin: "0 auto",
-                  textAlign: "center",
-                  display: "inherit",
-                }}
-              >
+              <Button className="d-block mx-auto mb-1" type="primary">
                 Add to Cart
               </Button>
             </Card>
           </Col>
-          <Col span={5}>
-            <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
-              <p
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginTop: "1rem",
-                }}
-              >
-                Product 1
-              </p>
+          <Col span={5} className="col mb-1">
+            <Card hoverable>
+              <img
+                src="https://via.placeholder.com/240/250"
+                alt="?"
+                className="w-100"
+              />
+              <p className="text-center bold mt-1">Product 1</p>
               <Title
                 level={4}
+                className="text-center bold mt-1"
                 style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginTop: "1rem",
                   color: "#524dda",
                 }}
               >
                 $10
               </Title>
-              <Button
-                type="primary"
-                style={{
-                  margin: "0 auto",
-                  textAlign: "center",
-                  display: "inherit",
-                }}
-              >
+              <Button className="d-block mx-auto mb-1" type="primary">
                 Add to Cart
               </Button>
             </Card>
@@ -162,4 +112,4 @@ class TopSelling extends Component {
   }
 }
 
-export default TopSelling;
+export default TopNew;
