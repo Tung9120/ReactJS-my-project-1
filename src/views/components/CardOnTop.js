@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Card, Row, Col, Typography, Button } from "antd";
-import "../style/custom.css";
 import "./CardOnTop.css";
 
 const { Meta } = Card;

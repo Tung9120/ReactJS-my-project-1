@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
+import "./style/custom.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import DefaultLayoutAdmin from "./layouts/DefaultLayoutAdmin";

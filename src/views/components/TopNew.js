@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Typography, Row, Col, Card, Button } from "antd";
-import "../style/custom.css";
 import "./TopNew.css";
 
 const { Title } = Typography;

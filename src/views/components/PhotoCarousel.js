@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Carousel, Typography, Button } from "antd";
-import "../style/custom.css";
 
 const { Title } = Typography;
 
