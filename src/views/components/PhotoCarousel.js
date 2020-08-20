@@ -3,26 +3,13 @@ import { Carousel, Typography, Button } from "antd";
 
 const { Title } = Typography;
 
-// const contentStyle = {
-//   height: '320px',
-//   color: '#fff',
-//   lineHeight: '160px',
-//   textAlign: 'center',
-//   background: '#364d79',
-// };
-
 const contentStyle = {
-  // padding: "0 1rem",
-  height: 400,
+  padding: '1rem',
+  height: '320px',
   color: "#fff",
   textAlign: "center",
-  lineHeight: '160px',
   backgroundImage: `url('http://lorempixel.com/output/abstract-q-c-1470-330-9.jpg')`,
   backgroundSize: 'cover',
-  // display: "flex",
-  // flexDirection: "column",
-  // justifyContent: "flex-start",
-  // alignItems: "center",
 };
 
 class PhotoCarousel extends Component {
@@ -33,22 +20,22 @@ class PhotoCarousel extends Component {
           <div>
             <div style={contentStyle}>
               <Title
-                level={2}
+                level={3}
                 style={{
                   color: "#fff",
                   textTransform: "uppercase",
-                  // margin: "2rem 0",
+                  
                 }}
               >
                 Attack Air Max 720 Sage Low
               </Title>
               <Title level={4} style={{ color: "#fff", 
-              // margin: "1rem 0" 
+              
               }}>
                 Limited Items Available at this Price
               </Title>
-              <Button type="primary" size="large" 
-              // style={{ margin: "1rem 0" }}
+              <Button type="primary"  
+              
               >
                 Shop Now
               </Button>
@@ -57,22 +44,22 @@ class PhotoCarousel extends Component {
           <div>
             <div style={contentStyle}>
               <Title
-                level={2}
+                level={3}
                 style={{
                   color: "#fff",
                   textTransform: "uppercase",
-                  // margin: "2rem 0",
+                  
                 }}
               >
                 Attack Air Vapormax Flyknit 3
               </Title>
               <Title level={4} style={{ color: "#fff", 
-              // margin: "1rem 0"
+              
               }}>
                 Limited Items Available at this Price
               </Title>
-              <Button type="primary" size="large" 
-              // style={{ margin: "1rem 0" }}
+              <Button type="primary"  
+              
               >
                 Shop Now
               </Button>
@@ -81,24 +68,24 @@ class PhotoCarousel extends Component {
           <div>
             <div style={contentStyle}>
               <Title
-                level={2}
+                level={3}
                 style={{
                   color: "#fff",
                   textTransform: "uppercase",
-                  // margin: "2rem 0",
+                  
                 }}
               >
                 Attack Air Monarch Iv Se
               </Title>
               <Title level={4} 
               style={{ color: "#fff", 
-              // margin: "1rem 0" 
+              
               }}
               >
                 Limited Items Available at this Price
               </Title>
-              <Button type="primary" size="large" 
-              // style={{ margin: "1rem 0" }}
+              <Button type="primary"  
+              
               >
                 Shop Now
               </Button>
