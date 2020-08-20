@@ -1,24 +1,28 @@
 import React, { Component } from "react";
 import { Typography, Row, Col, Card, Button } from "antd";
+import "./TopSelling.css";
+import '../style/custom.css'
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 class TopSelling extends Component {
   render() {
     return (
       <>
         <div style={{ margin: "2rem 0" }}>
-          <Title level={2} align="center">
+          <Title level={4} align="center">
             Top Selling
           </Title>
-          <Title level={3} align="center">
-            Cum doctus civibus efficiantur in imperdiet deterruisset
-          </Title>
+          <Text className="text-center">Cum doctus civibus efficiantur in imperdiet deterruisset</Text>
         </div>
         <Row gutter={16} justify="center">
           <Col span={5}>
             <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
+              <img
+                src="https://via.placeholder.com/240/250"
+                alt="?"
+                width="100%"
+              />
               <p
                 style={{
                   textAlign: "center",
@@ -28,7 +32,8 @@ class TopSelling extends Component {
               >
                 Product 1
               </p>
-              <Title level={4}
+              <Title
+                level={4}
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
@@ -38,14 +43,25 @@ class TopSelling extends Component {
               >
                 $10
               </Title>
-              <Button type="primary" style={{margin: '0 auto', textAlign: 'center', display: 'inherit'}}>
+              <Button
+                type="primary"
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                  display: "inherit",
+                }}
+              >
                 Add to Cart
               </Button>
             </Card>
           </Col>
           <Col span={5}>
             <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
+              <img
+                src="https://via.placeholder.com/240/250"
+                alt="?"
+                width="100%"
+              />
               <p
                 style={{
                   textAlign: "center",
@@ -55,7 +71,8 @@ class TopSelling extends Component {
               >
                 Product 1
               </p>
-              <Title level={4}
+              <Title
+                level={4}
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
@@ -65,14 +82,25 @@ class TopSelling extends Component {
               >
                 $10
               </Title>
-              <Button type="primary" style={{margin: '0 auto', textAlign: 'center', display: 'inherit'}}>
+              <Button
+                type="primary"
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                  display: "inherit",
+                }}
+              >
                 Add to Cart
               </Button>
             </Card>
           </Col>
           <Col span={5}>
             <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
+              <img
+                src="https://via.placeholder.com/240/250"
+                alt="?"
+                width="100%"
+              />
               <p
                 style={{
                   textAlign: "center",
@@ -82,7 +110,8 @@ class TopSelling extends Component {
               >
                 Product 1
               </p>
-              <Title level={4}
+              <Title
+                level={4}
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
@@ -92,14 +121,25 @@ class TopSelling extends Component {
               >
                 $10
               </Title>
-              <Button type="primary" style={{margin: '0 auto', textAlign: 'center', display: 'inherit'}}>
+              <Button
+                type="primary"
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                  display: "inherit",
+                }}
+              >
                 Add to Cart
               </Button>
             </Card>
           </Col>
           <Col span={5}>
             <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
+              <img
+                src="https://via.placeholder.com/240/250"
+                alt="?"
+                width="100%"
+              />
               <p
                 style={{
                   textAlign: "center",
@@ -109,7 +149,8 @@ class TopSelling extends Component {
               >
                 Product 1
               </p>
-              <Title level={4}
+              <Title
+                level={4}
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
@@ -119,7 +160,14 @@ class TopSelling extends Component {
               >
                 $10
               </Title>
-              <Button type="primary" style={{margin: '0 auto', textAlign: 'center', display: 'inherit'}}>
+              <Button
+                type="primary"
+                style={{
+                  margin: "0 auto",
+                  textAlign: "center",
+                  display: "inherit",
+                }}
+              >
                 Add to Cart
               </Button>
             </Card>

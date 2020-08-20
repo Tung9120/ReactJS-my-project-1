@@ -1,0 +1,40 @@
+.text-white{
+  color: #fff !important;
+}
+
+.text-center{
+  text-align: center !important;
+}
+
+.d-block{
+  display: block !important;
+}
+
+.p-0{
+  padding: 0px !important;
+}
+
+.mt-1{
+  margin-top: 1rem !important;
+}
+
+.mb-1{
+  margin-bottom: 1rem !important;
+}
+
+.my-1{
+  margin: 1rem 0px !important;
+}
+
+@media (max-width: 576px){
+  .w-xs-100{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 576px){
+  .d-xs-block{
+    display: block !important;
+  }
+}
