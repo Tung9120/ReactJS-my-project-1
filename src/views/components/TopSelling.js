@@ -18,7 +18,7 @@ class TopSelling extends Component {
         <Row gutter={16} justify="center">
           <Col span={5}>
             <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" />
+              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
               <p
                 style={{
                   textAlign: "center",
@@ -45,7 +45,7 @@ class TopSelling extends Component {
           </Col>
           <Col span={5}>
             <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" />
+              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
               <p
                 style={{
                   textAlign: "center",
@@ -72,7 +72,7 @@ class TopSelling extends Component {
           </Col>
           <Col span={5}>
             <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" />
+              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
               <p
                 style={{
                   textAlign: "center",
@@ -99,7 +99,7 @@ class TopSelling extends Component {
           </Col>
           <Col span={5}>
             <Card>
-              <img src="https://via.placeholder.com/240/250" alt="?" />
+              <img src="https://via.placeholder.com/240/250" alt="?" width="100%" />
               <p
                 style={{
                   textAlign: "center",

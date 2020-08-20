@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Layout, Menu, Breadcrumb, Input, Row, Col } from "antd";
+import { Layout, Menu, Breadcrumb, Input } from "antd";
 import {
   HomeOutlined,
   ShoppingCartOutlined,
   SketchOutlined,
+  SettingFilled,
 } from "@ant-design/icons";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PhoroCarousel from "../components/PhotoCarousel";
@@ -11,12 +12,14 @@ import CardOnTop from "../components/CardOnTop";
 import TopSelling from "../components/TopSelling";
 import TopNew from "../components/TopNew";
 
+import "./DefautLayoutUser.css";
+
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
 
 class DefaultLayoutUser extends Component {
   state = {
-    current: "mail",
+    current: "home",
   };
 
   handleClick = (e) => {
@@ -29,67 +32,91 @@ class DefaultLayoutUser extends Component {
     return (
       <Router>
         <Layout className="layout">
-          <Header style={{ padding: "0 5vw", backgroundColor: "#fff" }}>
+        <div className="logo" />
+          <Header>
             <Menu
               onClick={this.handleClick}
               selectedKeys={[current]}
               mode="horizontal"
-              theme="light"
-              style={{ backgroundColor: "#fff" }}
+              theme="dark"
             >
-              <Menu.Item key="logo" icon={<HomeOutlined />}>
+              <Menu.Item
+                key="logo"
+                icon={<SettingFilled twoToneColor="#52c41a" spin />}
+              >
                 <Link to="/">Shoe Store</Link>
               </Menu.Item>
-              <Menu.Item
-                key="alipay"
-                icon={<ShoppingCartOutlined />}
-                style={{ float: "right" }}
-              >
-                <Link to="/cart">Cart</Link>
+              <Menu.Item key="home" icon={<HomeOutlined />}>
+                <Link to="/">Home</Link>
               </Menu.Item>
-              <Menu.Item
-                key="products"
-                icon={<SketchOutlined />}
-                style={{ float: "right" }}
-              >
+              <Menu.Item key="products" icon={<SketchOutlined />}>
                 <Link to="/products">Products</Link>
               </Menu.Item>
-            </Menu>
-          </Header>
-          <>
-            <Row style={{ marginTop: "3vh" }}>
-              <Col span={6} offset={16}>
+              <Menu.Item key="alipay" icon={<ShoppingCartOutlined />}>
+                <Link to="/cart">Cart</Link>
+              </Menu.Item>
+              <Menu.Item>
                 <Search
                   placeholder="Search over 100 products"
                   onSearch={(value) => console.log(value)}
                   enterButton
+                  style={{verticalAlign: 'middle'}}
                 />
-              </Col>
-            </Row>
-          </>
+              </Menu.Item>
+            </Menu>
+          </Header>
           <Content style={{ padding: "0 50px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
-            {/* <div className="site-layout-content">Content</div> */}
-
-            <Switch>
-              <Route path="/products/top-selling">
-                <div>Top Selling</div>
-              </Route>
-              <Route path="/products/new">New</Route>
-              <Route path="/products/top-selling">Top Selling</Route>
-              <Route path="/products">All Products</Route>
-              <Route path="/cart">Cart</Route>
-              <Route path="/">
-                <PhoroCarousel />
-                <CardOnTop />
-                <TopSelling />
-                <TopNew />
-              </Route>
-            </Switch>
+            <div className="site-layout-content">
+              <Switch>
+                <Route path="/products/top-selling">
+                  <div>Top Selling</div>
+                </Route>
+                <Route path="/products/new">
+                  <Breadcrumb style={{ margin: "16px 0" }}>
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item>Products</Breadcrumb.Item>
+                    <Breadcrumb.Item>New</Breadcrumb.Item>
+                  </Breadcrumb>
+                  New
+                </Route>
+                <Route path="/products/top-selling">
+                  <Breadcrumb style={{ margin: "16px 0" }}>
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item>Product</Breadcrumb.Item>
+                    <Breadcrumb.Item>Top Selling</Breadcrumb.Item>
+                  </Breadcrumb>
+                  Top Selling
+                </Route>
+                <Route path="/products">
+                  <Breadcrumb style={{ margin: "16px 0" }}>
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item>Products</Breadcrumb.Item>
+                  </Breadcrumb>
+                  All Products
+                </Route>
+                <Route path="/cart">
+                  <Breadcrumb style={{ margin: "16px 0" }}>
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item>Cart</Breadcrumb.Item>
+                  </Breadcrumb>
+                  Cart
+                </Route>
+                <Route path="/">
+                  <Breadcrumb style={{ margin: "16px 0" }}>
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                  </Breadcrumb>
+                  <PhoroCarousel />
+                  <CardOnTop />
+                  <TopSelling />
+                  <TopNew />
+                </Route>
+              </Switch>
+            </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
             Tung ©2020 Created by Me
