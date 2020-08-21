@@ -6,6 +6,7 @@ import {
   FolderOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
+import { Redirect } from "react-router";
 
 const AddAdmin = React.lazy(() => import("./views/components/AddAdmin"));
 const AdminList = React.lazy(() => import("./views/components/AdminList"));
@@ -55,7 +56,7 @@ const routes = [
     path: "/",
     name: "Home",
     parIcon: <UserAddOutlined />,
-    component: <div>Home</div>,
+    component: <Redirect to="/" />,
   },
 ];
 
