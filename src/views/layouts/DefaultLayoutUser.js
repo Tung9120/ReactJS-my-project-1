@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout, Menu, Breadcrumb, Input } from "antd";
+import { Layout, Menu, Breadcrumb } from "antd";
 import {
   HomeOutlined,
   ShoppingCartOutlined,
@@ -15,7 +15,6 @@ import TopNew from "../components/TopNew";
 import "./DefautLayoutUser.css";
 
 const { Header, Content, Footer } = Layout;
-const { Search } = Input;
 
 class DefaultLayoutUser extends Component {
   state = {
@@ -34,10 +33,12 @@ class DefaultLayoutUser extends Component {
         <Layout className="layout">
           <Header>
             <Menu
+              style={{ position: 'fixed', zIndex: 100, width: '100%' }}
               onClick={this.handleClick}
               selectedKeys={[current]}
               mode="horizontal"
               theme="dark"
+              defaultSelectedKeys={['home']}
             >
               <Menu.Item
                 key="logo"
@@ -53,14 +54,6 @@ class DefaultLayoutUser extends Component {
               </Menu.Item>
               <Menu.Item key="alipay" icon={<ShoppingCartOutlined />}>
                 <Link to="/cart">Cart</Link>
-              </Menu.Item>
-              <Menu.Item>
-                <Search
-                  placeholder="Search over 100 products"
-                  onSearch={(value) => console.log(value)}
-                  enterButton
-                  style={{ verticalAlign: "middle" }}
-                />
               </Menu.Item>
             </Menu>
           </Header>

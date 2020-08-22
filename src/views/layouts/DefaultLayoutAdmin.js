@@ -24,6 +24,8 @@ class DefaultLayoutAdmin extends Component {
       <>
         <Layout style={{ minHeight: "100vh" }}>
           <Sider
+            breakpoint="lg"
+            collapsedWidth="0"
             collapsible
             collapsed={this.state.collapsed}
             onCollapse={this.onCollapse}
@@ -39,6 +41,7 @@ class DefaultLayoutAdmin extends Component {
                   >
                     {route.children.map((child, i) => (
                       <Menu.Item key={child.name + i}>
+                        {child.childIcon}
                         <Link to={child.path}>{child.name}</Link>
                       </Menu.Item>
                     ))}
@@ -64,19 +67,19 @@ class DefaultLayoutAdmin extends Component {
               </Breadcrumb>
               <Switch>
                 <Suspense fallback={<Spin />}>
-                {routes.map((route, index) =>
-                  route.children ? (
-                    route.children.map((child, i) => (
-                      <Route exact path={child.path} key={i}>
-                        {child.component}
+                  {routes.map((route, index) =>
+                    route.children ? (
+                      route.children.map((child, i) => (
+                        <Route exact path={child.path} key={i}>
+                          {child.component}
+                        </Route>
+                      ))
+                    ) : (
+                      <Route exact path={route.path} key={index}>
+                        {route.component}
                       </Route>
-                    ))
-                  ) : (
-                    <Route exact path={route.path} key={index}>
-                      {route.component}
-                    </Route>
-                  )
-                )}
+                    )
+                  )}
                 </Suspense>
               </Switch>
             </Content>
