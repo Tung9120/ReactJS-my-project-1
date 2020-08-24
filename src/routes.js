@@ -17,6 +17,7 @@ const AddAdmin = React.lazy(() => import("./views/components/AddAdmin"));
 const AdminList = React.lazy(() => import("./views/components/AdminList"));
 const AddProduct = React.lazy(() => import("./views/components/AddProduct"));
 const ProductList = React.lazy(() => import("./views/components/ProductList"));
+const CarouselMng = React.lazy(() => import("./views/components/CarouselMng"));
 
 const routes = [
   {
@@ -71,7 +72,7 @@ const routes = [
       {
         name: "Carousel",
         path: "/admin/home-page/carousel",
-        component: <div>Carousel</div>,
+        component: <CarouselMng />,
         childIcon: <SlidersOutlined />,
       },
       {
