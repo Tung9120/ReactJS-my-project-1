@@ -25,7 +25,7 @@ class AddProduct extends Component {
     const { admins } = this.props;
     const newAdmin = {
       key: admins.length + 1,
-      avatar: "https://via.placeholder.com/70",
+      avatar: "https://via.placeholder.com/64",
       ...values.admin,
     };
     this.props.addAdmin(newAdmin);

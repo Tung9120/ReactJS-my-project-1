@@ -5,6 +5,8 @@ const initialStateUser = {
   name: "",
   admins: [],
   products: [],
+  newProducts: [],
+  carousel: [],
 };
 
 function userReducer(state = initialStateUser, action = { payload: {} }) {

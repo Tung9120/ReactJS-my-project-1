@@ -39,7 +39,7 @@ class AddProduct extends Component {
     };
     const newProduct = {
       key: products.length + 1,
-      avatar: "https://via.placeholder.com/70",
+      avatar: "https://via.placeholder.com/64",
       ...newValues,
     };
     this.props.addProduct(newProduct);

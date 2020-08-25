@@ -54,7 +54,7 @@ class AdminList extends Component {
         <Typography.Title level={4} align="center">
           Admin List
         </Typography.Title>
-        <Table columns={columns} dataSource={admins} />
+        <Table pagination={{defaultPageSize: 4}} columns={columns} dataSource={admins} />
       </>
     );
   }

@@ -85,7 +85,7 @@ class ProductList extends Component {
         <Typography.Title level={4} align="center">
           Product List
         </Typography.Title>
-        <Table columns={columns} dataSource={products} />
+        <Table pagination={{defaultPageSize: 4}} columns={columns} dataSource={products} />
       </>
     );
   }
