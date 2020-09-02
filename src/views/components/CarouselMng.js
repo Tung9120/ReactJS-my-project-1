@@ -83,6 +83,7 @@ class CarouselMng extends Component {
         </Title>
         <Title level={4}>Product list</Title>
         <Table
+          pagination={{defaultPageSize: 3}}
           rowSelection={rowSelection}
           columns={columns}
           dataSource={data}
