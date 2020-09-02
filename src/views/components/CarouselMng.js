@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Table, Typography } from "antd";
+import { connect } from 'react-redux'
 
 const { Title } = Typography;
 
@@ -76,6 +77,7 @@ class CarouselMng extends Component {
         },
       ],
     };
+    console.log(this.props.products)
     return (
       <>
         <Title level={3} style={{ textAlign: "center" }}>
@@ -93,4 +95,10 @@ class CarouselMng extends Component {
   }
 }
 
-export default CarouselMng;
+function mapStateToProps(state){
+  return {
+    products: state.user.products
+  }
+}
+
+export default connect(mapStateToProps)(CarouselMng);
