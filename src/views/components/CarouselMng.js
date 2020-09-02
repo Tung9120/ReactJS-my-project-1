@@ -1,38 +1,73 @@
 import React, { Component } from "react";
-import { Table, Typography } from "antd";
-import { connect } from 'react-redux'
+import { Table, Tag, Typography } from "antd";
+import { connect } from "react-redux";
 
 const { Title } = Typography;
 
 const columns = [
   {
+    title: "Avatar",
+    dataIndex: "avatar",
+    key: "avatar",
+    render: (avatar) => <img src={avatar} />,
+  },
+  {
     title: "Name",
     dataIndex: "name",
+    key: "name",
+    render: (text) => <a>{text}</a>,
   },
   {
-    title: "Age",
-    dataIndex: "age",
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+    render: (price) => `$${price}`,
   },
   {
-    title: "Address",
-    dataIndex: "address",
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
+  },
+  {
+    title: "Status",
+    key: "status",
+    dataIndex: "status",
+    render: (status) => (
+      <>
+        {status.map((status) => {
+          let color;
+
+          if (status === "bestseller") {
+            color = "geekblue";
+          }
+
+          if (status === "out-of-stock") {
+            color = "volcano";
+          }
+
+          if (status === "new") {
+            color = "green";
+          }
+
+          return (
+            <Tag color={color} key={status}>
+              {status.toUpperCase()}
+            </Tag>
+          );
+        })}
+      </>
+    ),
   },
 ];
 
-const data = [];
-for (let i = 0; i < 40; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
-
 class CarouselMng extends Component {
-  state = {
-    selectedRowKeys: [], // Check here to configure the default column
-  };
+
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedRowKeys: this.props.carousel
+    }
+  }
 
   onSelectChange = (selectedRowKeys) => {
     console.log("selectedRowKeys changed: ", selectedRowKeys);
@@ -41,6 +76,7 @@ class CarouselMng extends Component {
 
   render() {
     const { selectedRowKeys } = this.state;
+    const {products} = this.props;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -77,7 +113,7 @@ class CarouselMng extends Component {
         },
       ],
     };
-    console.log(this.props.products)
+    console.log(this.props.products);
     return (
       <>
         <Title level={3} style={{ textAlign: "center" }}>
@@ -85,20 +121,21 @@ class CarouselMng extends Component {
         </Title>
         <Title level={4}>Product list</Title>
         <Table
-          pagination={{defaultPageSize: 3}}
+          pagination={{ defaultPageSize: 3 }}
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={data}
+          dataSource={products}
         />
       </>
     );
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
-    products: state.user.products
-  }
+    products: state.user.products,
+    carousel: state.user.carousel,
+  };
 }
 
 export default connect(mapStateToProps)(CarouselMng);
