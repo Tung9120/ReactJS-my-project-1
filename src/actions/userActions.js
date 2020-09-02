@@ -1,5 +1,10 @@
 import apis from "../apis";
-import { LOGIN, ADD_ADMIN, ADD_PRODUCT } from "../constants/ActionsType";
+import {
+  LOGIN,
+  ADD_ADMIN,
+  ADD_PRODUCT,
+  ADD_CAROUSEL,
+} from "../constants/ActionsType";
 import jwtDecode from "jwt-decode";
 
 export const login = (data) => (dispatch) => {
@@ -19,4 +24,9 @@ export const addAdmin = (data) => (dispatch) => {
 
 export const addProduct = (data) => (dispatch) => {
   dispatch({ type: ADD_PRODUCT, newProduct: data });
+};
+
+export const addCarousel = (data) => (dispatch) => {
+  dispatch({ type: ADD_CAROUSEL, newProduct: data });
+  console.log('add carousel data', data);
 };

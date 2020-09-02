@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table, Tag, Typography } from "antd";
 import { connect } from "react-redux";
+import { addCarousel } from "../../actions/userActions";
 
 const { Title } = Typography;
 
@@ -71,6 +72,8 @@ class CarouselMng extends Component {
 
   onSelectChange = (selectedRowKeys) => {
     console.log("selectedRowKeys changed: ", selectedRowKeys);
+    console.log('carousel', this.props.carousel);
+    this.props.addCarousel(selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
 
@@ -113,7 +116,7 @@ class CarouselMng extends Component {
         },
       ],
     };
-    console.log(this.props.products);
+    console.log('products', this.props.products);
     return (
       <>
         <Title level={3} style={{ textAlign: "center" }}>
@@ -138,4 +141,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CarouselMng);
+function mapDispathToProps(){
+  return {
+    addCarousel
+  }
+}
+
+export default connect(mapStateToProps, {addCarousel})(CarouselMng);

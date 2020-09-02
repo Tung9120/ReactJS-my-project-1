@@ -1,4 +1,9 @@
-import { LOGIN, ADD_ADMIN, ADD_PRODUCT } from "../constants/ActionsType";
+import {
+  LOGIN,
+  ADD_ADMIN,
+  ADD_PRODUCT,
+  ADD_CAROUSEL,
+} from "../constants/ActionsType";
 
 const initialStateUser = {
   isLoggedIn: false,
@@ -28,6 +33,12 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       return {
         ...state,
         products: [...state.products, action.newProduct],
+      };
+
+    case ADD_CAROUSEL:
+      return {
+        ...state,
+        carousel: [...state.carousel, ...action.newProduct],
       };
 
     default:
