@@ -3,6 +3,8 @@ import { Table, Tag, Typography, Spin } from "antd";
 import { connect } from "react-redux";
 import { addCarousel } from "../../actions/userActions";
 
+const CarouselPreview = React.lazy(() => import("./CarouselPreview"));
+
 const { Title } = Typography;
 
 const columns = [
@@ -97,6 +99,7 @@ class CarouselMng extends Component {
           <Title level={3} style={{ textAlign: "center" }}>
             Manage Carousel
           </Title>
+          <CarouselPreview />
           <Title level={4}>Product list</Title>
           <Table
             pagination={{ defaultPageSize: 3 }}
