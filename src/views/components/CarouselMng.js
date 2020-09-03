@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { Table, Tag, Typography, Spin, Modal, Button } from "antd";
+import { Table, Tag, Typography, Spin, Modal, Button, Space } from "antd";
 import { connect } from "react-redux";
 import { addCarousel } from "../../actions/userActions";
 
@@ -118,7 +118,12 @@ class CarouselMng extends Component {
           <Title level={3} style={{ textAlign: "center" }}>
             Manage Carousel
           </Title>
-          <Button className="my-1" type="primary" onClick={this.showModal} disabled={carousel.length < 3}>
+          <Button
+            className="my-1"
+            type="primary"
+            onClick={this.showModal}
+            disabled={carousel.length < 3}
+          >
             Preview
           </Button>
           <Modal
@@ -130,9 +135,14 @@ class CarouselMng extends Component {
             <CarouselPreview />
           </Modal>
           <br />
-            {carousel.length === 3 ? "" : <>
-            <Text mark>Warning: The carousel does not contain items</Text><br /><br />
-            <Text mark>Note: The carousel contains up to 3 items</Text></>}
+          {carousel.length === 3 ? (
+            ""
+          ) : (
+            <Space direction="vertical">
+              <Text mark>Warning: The carousel does not contain items</Text>
+              <Text mark>Note: The carousel contains up to 3 items</Text>
+            </Space>
+          )}
           <Title level={4}>Product list</Title>
           <Table
             pagination={{ defaultPageSize: 3 }}
