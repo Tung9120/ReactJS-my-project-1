@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Carousel } from "antd";
+import { connect } from "react-redux";
 
 const contentStyle = {
   height: "160px",
@@ -29,4 +30,10 @@ class CarouselPreview extends Component {
   }
 }
 
-export default CarouselPreview;
+function mapStateTopProps(state){
+  return{
+    carousel: state.user.carousel
+  }
+}
+
+export default connect(mapStateTopProps)(CarouselPreview);
