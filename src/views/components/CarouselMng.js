@@ -5,7 +5,7 @@ import { addCarousel } from "../../actions/userActions";
 
 const CarouselPreview = React.lazy(() => import("./CarouselPreview"));
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const columns = [
   {
@@ -127,10 +127,12 @@ class CarouselMng extends Component {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+            <CarouselPreview />
           </Modal>
+          <br />
+            {carousel.length === 3 ? "" : <>
+            <Text mark>Warning: The carousel does not contain items</Text><br /><br />
+            <Text mark>Note: The carousel contains up to 3 items</Text></>}
           <Title level={4}>Product list</Title>
           <Table
             pagination={{ defaultPageSize: 3 }}
