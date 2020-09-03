@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { Table, Tag, Typography, Spin } from "antd";
+import { Table, Tag, Typography, Spin, Modal, Button } from "antd";
 import { connect } from "react-redux";
 import { addCarousel } from "../../actions/userActions";
 
@@ -68,8 +68,27 @@ class CarouselMng extends Component {
     super(props);
     this.state = {
       selectedRowKeys: this.props.carousel,
+      visible: false,
     };
   }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = (e) => {
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = (e) => {
+    this.setState({
+      visible: false,
+    });
+  };
 
   onSelectChange = (selectedRowKeys) => {
     if (selectedRowKeys.length > 3) {
@@ -88,7 +107,7 @@ class CarouselMng extends Component {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { products } = this.props;
+    const { products, carousel } = this.props;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -99,7 +118,19 @@ class CarouselMng extends Component {
           <Title level={3} style={{ textAlign: "center" }}>
             Manage Carousel
           </Title>
-          <CarouselPreview />
+          <Button className="my-1" type="primary" onClick={this.showModal} disabled={carousel.length < 3}>
+            Preview
+          </Button>
+          <Modal
+            title="Basic Modal"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal>
           <Title level={4}>Product list</Title>
           <Table
             pagination={{ defaultPageSize: 3 }}
