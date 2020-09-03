@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Table, Tag, Typography } from "antd";
+import React, { Component, Suspense } from "react";
+import { Table, Tag, Typography, Spin } from "antd";
 import { connect } from "react-redux";
 import { addCarousel } from "../../actions/userActions";
 
@@ -93,16 +93,18 @@ class CarouselMng extends Component {
     };
     return (
       <>
-        <Title level={3} style={{ textAlign: "center" }}>
-          Manage Carousel
-        </Title>
-        <Title level={4}>Product list</Title>
-        <Table
-          pagination={{ defaultPageSize: 3 }}
-          rowSelection={rowSelection}
-          columns={columns}
-          dataSource={products}
-        />
+        <Suspense fallback={<Spin />}>
+          <Title level={3} style={{ textAlign: "center" }}>
+            Manage Carousel
+          </Title>
+          <Title level={4}>Product list</Title>
+          <Table
+            pagination={{ defaultPageSize: 3 }}
+            rowSelection={rowSelection}
+            columns={columns}
+            dataSource={products}
+          />
+        </Suspense>
       </>
     );
   }
