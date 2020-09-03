@@ -27,6 +27,5 @@ export const addProduct = (data) => (dispatch) => {
 };
 
 export const addCarousel = (data) => (dispatch) => {
-  dispatch({ type: ADD_CAROUSEL, newProduct: data });
-  console.log('add carousel data', data);
+  dispatch({ type: ADD_CAROUSEL, newElement: data });
 };

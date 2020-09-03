@@ -62,61 +62,35 @@ const columns = [
 ];
 
 class CarouselMng extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      selectedRowKeys: this.props.carousel
-    }
+      selectedRowKeys: this.props.carousel,
+    };
   }
 
   onSelectChange = (selectedRowKeys) => {
-    console.log("selectedRowKeys changed: ", selectedRowKeys);
-    console.log('carousel', this.props.carousel);
+    if (selectedRowKeys.length > 3) {
+      selectedRowKeys = [
+        selectedRowKeys[selectedRowKeys.length - 3],
+        selectedRowKeys[selectedRowKeys.length - 2],
+        selectedRowKeys[selectedRowKeys.length - 1],
+      ];
+      this.props.addCarousel(selectedRowKeys);
+      this.setState({ selectedRowKeys });
+      return;
+    }
     this.props.addCarousel(selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
 
   render() {
     const { selectedRowKeys } = this.state;
-    const {products} = this.props;
+    const { products } = this.props;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
-      selections: [
-        Table.SELECTION_ALL,
-        Table.SELECTION_INVERT,
-        {
-          key: "odd",
-          text: "Select Odd Row",
-          onSelect: (changableRowKeys) => {
-            let newSelectedRowKeys = [];
-            newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-              if (index % 2 !== 0) {
-                return false;
-              }
-              return true;
-            });
-            this.setState({ selectedRowKeys: newSelectedRowKeys });
-          },
-        },
-        {
-          key: "even",
-          text: "Select Even Row",
-          onSelect: (changableRowKeys) => {
-            let newSelectedRowKeys = [];
-            newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-              if (index % 2 !== 0) {
-                return true;
-              }
-              return false;
-            });
-            this.setState({ selectedRowKeys: newSelectedRowKeys });
-          },
-        },
-      ],
     };
-    console.log('products', this.props.products);
     return (
       <>
         <Title level={3} style={{ textAlign: "center" }}>
@@ -141,10 +115,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispathToProps(){
-  return {
-    addCarousel
-  }
-}
-
-export default connect(mapStateToProps, {addCarousel})(CarouselMng);
+export default connect(mapStateToProps, { addCarousel })(CarouselMng);

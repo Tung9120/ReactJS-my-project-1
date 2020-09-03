@@ -38,7 +38,7 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     case ADD_CAROUSEL:
       return {
         ...state,
-        carousel: [...state.carousel, ...action.newProduct],
+        carousel: [...action.newElement],
       };
 
     default:
