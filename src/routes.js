@@ -18,6 +18,7 @@ const AdminList = React.lazy(() => import("./views/components/AdminList"));
 const AddProduct = React.lazy(() => import("./views/components/AddProduct"));
 const ProductList = React.lazy(() => import("./views/components/ProductList"));
 const CarouselMng = React.lazy(() => import("./views/components/CarouselMng"));
+const CardsTopMng = React.lazy(() => import('./views/components/CardsTopMng.js'));
 
 const routes = [
   {
@@ -78,7 +79,7 @@ const routes = [
       {
         name: "3 Top Cards",
         path: "/admin/home-page/3-top-cards",
-        component: <div>3 Top Cards</div>,
+        component: <CardsTopMng />,
         childIcon: <CreditCardOutlined />,
       },
       {
