@@ -127,7 +127,7 @@ class CarouselMng extends Component {
             Preview
           </Button>
           <Modal
-            title="Basic Modal"
+            title="Carousel preview"
             visible={this.state.visible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
@@ -139,7 +139,7 @@ class CarouselMng extends Component {
             ""
           ) : (
             <Space direction="vertical">
-              <Text mark>Warning: The carousel does not contain items</Text>
+              <Text mark>Warning: The carousel not enough items</Text>
               <Text mark>Note: The carousel contains up to 3 items</Text>
             </Space>
           )}
