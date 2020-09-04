@@ -1,79 +1,65 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Space, Typography } from "antd";
+import { Form, Input, InputNumber, Button, Typography } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
-const {Title} = Typography;
+const { Title } = Typography;
+
+const layout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 16 },
+};
+
+const validateMessages = {
+  required: "${label} is required!",
+  types: {
+    email: "${label} is not validate email!",
+    number: "${label} is not a validate number!",
+  },
+  number: {
+    range: "${label} must be between ${min} and ${max}",
+  },
+};
 
 class CardsTopMng extends Component {
   onFinish = (values) => {
-    console.log("Received values of form:", values);
+    console.log(values);
+    const cards = Object.values(values.cards);
+    console.log(cards);
   };
+
   render() {
     return (
       <>
         <Title level={3}>Manage cards on top</Title>
         <Form
-          name="dynamic_form_nest_item"
+          {...layout}
+          name="nest-messages"
           onFinish={this.onFinish}
-          autoComplete="off"
+          validateMessages={validateMessages}
         >
-          <Form.List name="cards">
-            {(fields, { add, remove }) => {
-              return (
-                <div>
-                  {fields.map((field) => (
-                    <Space
-                      key={field.key}
-                      style={{ display: "flex", marginBottom: 8 }}
-                      align="start"
-                    >
-                      <Form.Item
-                        {...field}
-                        name={[field.name, "cardName"]}
-                        fieldKey={[field.fieldKey, "cardName"]}
-                        rules={[
-                          { required: true, message: "Missing card name" },
-                        ]}
-                      >
-                        <Input placeholder="Card Name" />
-                      </Form.Item>
-                      <Form.Item
-                        {...field}
-                        name={[field.name, "slug"]}
-                        fieldKey={[field.fieldKey, "slug"]}
-                        rules={[
-                          { required: true, message: "Missing slug" },
-                        ]}
-                      >
-                        <Input placeholder="Slug. Ex: /card" />
-                      </Form.Item>
-
-                      <MinusCircleOutlined
-                        onClick={() => {
-                          remove(field.name);
-                        }}
-                      />
-                    </Space>
-                  ))}
-
-                  <Form.Item>
-                    <Button
-                      type="dashed"
-                      onClick={() => {
-                        add();
-                      }}
-                      block
-                    >
-                      <PlusOutlined /> Add field
-                    </Button>
-                  </Form.Item>
-                </div>
-              );
-            }}
-          </Form.List>
-
-          <Form.Item>
+          <Form.Item
+            name={["cards", "card1"]}
+            label="Name card 1"
+            rules={[{ required: true }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name={["cards", "card2"]}
+            label="Name card 2"
+            rules={[{ required: true }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name={["cards", "card3"]}
+            label="Name card 3"
+            rules={[{ required: true }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
