@@ -3,6 +3,7 @@ import {
   ADD_ADMIN,
   ADD_PRODUCT,
   ADD_CAROUSEL,
+  ADD_TOP_CARDS,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -12,6 +13,7 @@ const initialStateUser = {
   products: [],
   newProducts: [],
   carousel: [],
+  topCards: [],
 };
 
 function userReducer(state = initialStateUser, action = { payload: {} }) {
@@ -40,6 +42,12 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
         ...state,
         carousel: [...action.newElement],
       };
+
+    case ADD_TOP_CARDS:
+      return {
+        ...state,
+        topCards: [...action.newCard],
+      }
 
     default:
       return state;

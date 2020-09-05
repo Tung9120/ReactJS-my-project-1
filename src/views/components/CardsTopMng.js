@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { connect } from "react-redux";
+import { addTopCards } from "../../actions/userActions";
 
 const { Title } = Typography;
 
@@ -11,40 +12,17 @@ const layout = {
 
 const validateMessages = {
   required: "${label} is required!",
-  types: {
-    email: "${label} is not validate email!",
-    number: "${label} is not a validate number!",
-  },
-  number: {
-    range: "${label} must be between ${min} and ${max}",
-  },
 };
 
 class CardsTopMng extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input1: "",
-      input2: "",
-      input3: "",
-    };
-  }
-
-  // onFieldsChange = (changedFields, allFields) => {
-  //   console.log(changedFields, allFields);
-  // }
-
-  onValuesChange = (changedValues, allValues) => {
-    console.log(changedValues, allValues);
-  };
 
   onFinish = (values) => {
-    console.log(values);
     const cards = Object.values(values.cards);
-    console.log(cards);
+    this.props.addTopCards(cards);
   };
 
   render() {
+    const { topCards } = this.props;
     return (
       <>
         <Title level={3}>Manage cards on top</Title>
@@ -58,25 +36,25 @@ class CardsTopMng extends Component {
             name={["cards", "card1"]}
             label="Name card 1"
             rules={[{ required: true }]}
-            initialValue="a"
+            initialValue={topCards[0] ? topCards[0] : ""}
           >
-            <Input defaultValue="a" value="d" />
+            <Input />
           </Form.Item>
           <Form.Item
             name={["cards", "card2"]}
             label="Name card 2"
             rules={[{ required: true }]}
-            initialValue="b"
+            initialValue={topCards[1] ? topCards[1] : ""}
           >
-            <Input defaultValue="b" />
+            <Input />
           </Form.Item>
           <Form.Item
             name={["cards", "card3"]}
             label="Name card 3"
             rules={[{ required: true }]}
-            initialValue="c"
+            initialValue={topCards[2] ? topCards[2] : ""}
           >
-            <Input defaultValue="c" />
+            <Input />
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
             <Button type="primary" htmlType="submit">
@@ -89,4 +67,10 @@ class CardsTopMng extends Component {
   }
 }
 
-export default connect()(CardsTopMng);
+function mapStateToProps(state) {
+  return {
+    topCards: state.user.topCards,
+  };
+}
+
+export default connect(mapStateToProps, { addTopCards })(CardsTopMng);
