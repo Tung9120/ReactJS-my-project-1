@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, InputNumber, Button, Typography } from "antd";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Typography } from "antd";
 import { connect } from "react-redux";
 
 const { Title } = Typography;
@@ -22,6 +21,23 @@ const validateMessages = {
 };
 
 class CardsTopMng extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input1: "",
+      input2: "",
+      input3: "",
+    };
+  }
+
+  // onFieldsChange = (changedFields, allFields) => {
+  //   console.log(changedFields, allFields);
+  // }
+
+  onValuesChange = (changedValues, allValues) => {
+    console.log(changedValues, allValues);
+  };
+
   onFinish = (values) => {
     console.log(values);
     const cards = Object.values(values.cards);
@@ -42,22 +58,25 @@ class CardsTopMng extends Component {
             name={["cards", "card1"]}
             label="Name card 1"
             rules={[{ required: true }]}
+            initialValue="a"
           >
-            <Input />
+            <Input defaultValue="a" value="d" />
           </Form.Item>
           <Form.Item
             name={["cards", "card2"]}
             label="Name card 2"
             rules={[{ required: true }]}
+            initialValue="b"
           >
-            <Input />
+            <Input defaultValue="b" />
           </Form.Item>
           <Form.Item
             name={["cards", "card3"]}
             label="Name card 3"
             rules={[{ required: true }]}
+            initialValue="c"
           >
-            <Input />
+            <Input defaultValue="c" />
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
             <Button type="primary" htmlType="submit">
