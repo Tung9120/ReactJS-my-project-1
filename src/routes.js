@@ -19,6 +19,7 @@ const AddProduct = React.lazy(() => import("./views/components/AddProduct"));
 const ProductList = React.lazy(() => import("./views/components/ProductList"));
 const CarouselMng = React.lazy(() => import("./views/components/CarouselMng"));
 const CardsTopMng = React.lazy(() => import('./views/components/CardsTopMng.js'));
+const TopSellingMng = React.lazy(() => import("./views/components/TopSellingMng"));
 
 const routes = [
   {
@@ -85,7 +86,7 @@ const routes = [
       {
         name: "Top Selling",
         path: "/admin/home-page/top-selling",
-        component: <div>Top selling</div>,
+        component: <TopSellingMng />,
         childIcon: <DollarCircleOutlined />,
       },
       {

@@ -63,7 +63,7 @@ const columns = [
   },
 ];
 
-class CarouselMng extends Component {
+class TopSellingMng extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -116,7 +116,7 @@ class CarouselMng extends Component {
       <>
         <Suspense fallback={<Spin />}>
           <Title level={3} style={{ textAlign: "center" }}>
-            Manage Carousel
+            Manage TopSelling
           </Title>
           <Button
             className="my-1"
@@ -124,7 +124,7 @@ class CarouselMng extends Component {
             onClick={this.showModal}
             disabled={carousel.length < 3}
           >
-            Carousel Preview
+            TopSelling Preview
           </Button>
           <Modal
             title="Carousel preview"
@@ -140,8 +140,8 @@ class CarouselMng extends Component {
           ""
         ) : (
           <Space direction="vertical">
-            <Text mark>Warning: The carousel not enough items</Text>
-            <Text mark>Note: The carousel contains up to 3 items</Text>
+            <Text mark>Warning: The topselling not enough items</Text>
+            <Text mark>Note: The carousel contains up to 4 items</Text>
           </Space>
         )}
         <Title level={4}>Product list</Title>
@@ -163,4 +163,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addCarousel })(CarouselMng);
+export default connect(mapStateToProps, { addCarousel })(TopSellingMng);
