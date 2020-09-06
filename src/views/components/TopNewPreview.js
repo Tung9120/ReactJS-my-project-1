@@ -5,16 +5,16 @@ import "./TopSelling.css";
 
 const { Title } = Typography;
 
-class TopSellingPreview extends React.Component {
+class TopNew extends React.Component {
   render() {
-    const { topSelling, products } = this.props;
+    const { topNew, products } = this.props;
 
-    let productsInTopSelling = [];
+    let productsInTopNew = [];
 
     for (let i = 0; i < products.length; i++) {
-      for (let j = 0; j < topSelling.length; j++) {
-        if (products[i].key === topSelling[j]) {
-          productsInTopSelling.push(products[i]);
+      for (let j = 0; j < topNew.length; j++) {
+        if (products[i].key === topNew[j]) {
+          productsInTopNew.push(products[i]);
         }
       }
     }
@@ -23,17 +23,17 @@ class TopSellingPreview extends React.Component {
       <>
         <div className="my-2">
           <Title level={3} align="center">
-            Top Selling
+            Top New
           </Title>
           <Title level={4} align="center">
             Cum doctus civibus efficiantur in imperdiet deterruisset
           </Title>
         </div>
-        {productsInTopSelling.length !== 4 ? (
+        {productsInTopNew.length !== 4 ? (
           <Empty />
         ) : (
           <Row justify="center" className="TopSelling">
-            {productsInTopSelling.map((product, index) => (
+            {productsInTopNew.map((product, index) => (
               <Col span={6} className="col mb-1" key={index}>
                 <Card hoverable>
                   <img
@@ -67,8 +67,8 @@ class TopSellingPreview extends React.Component {
 function mapStateToProps(state) {
   return {
     products: state.user.products,
-    topSelling: state.user.topSelling,
+    topNew: state.user.topNew,
   };
 }
 
-export default connect(mapStateToProps)(TopSellingPreview);
+export default connect(mapStateToProps)(TopNew);
