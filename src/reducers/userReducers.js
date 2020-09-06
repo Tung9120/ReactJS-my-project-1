@@ -4,6 +4,7 @@ import {
   ADD_PRODUCT,
   ADD_CAROUSEL,
   ADD_TOP_CARDS,
+  ADD_TOP_SELLING,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -49,6 +50,12 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       return {
         ...state,
         topCards: [...action.newCard],
+      }
+
+    case ADD_TOP_SELLING: 
+      return {
+        ...state,
+        topSelling: [...action.newTopSelling]
       }
 
     default:

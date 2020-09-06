@@ -1,9 +1,9 @@
 import React, { Component, Suspense } from "react";
 import { Table, Tag, Typography, Spin, Modal, Button, Space } from "antd";
 import { connect } from "react-redux";
-import { addCarousel } from "../../actions/userActions";
+import { addTopSelling } from "../../actions/userActions";
 
-const CarouselPreview = React.lazy(() => import("./CarouselPreview"));
+const TopSellingPreview = React.lazy(() => import("./TopSellingPreview.js"));
 
 const { Title, Text } = Typography;
 
@@ -67,7 +67,7 @@ class TopSellingMng extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRowKeys: this.props.carousel,
+      selectedRowKeys: this.props.topSelling,
       visible: false,
     };
   }
@@ -91,23 +91,24 @@ class TopSellingMng extends Component {
   };
 
   onSelectChange = (selectedRowKeys) => {
-    if (selectedRowKeys.length > 3) {
+    if (selectedRowKeys.length > 4) {
       selectedRowKeys = [
+        selectedRowKeys[selectedRowKeys.length - 4],
         selectedRowKeys[selectedRowKeys.length - 3],
         selectedRowKeys[selectedRowKeys.length - 2],
         selectedRowKeys[selectedRowKeys.length - 1],
       ];
-      this.props.addCarousel(selectedRowKeys);
+      this.props.addTopSelling(selectedRowKeys);
       this.setState({ selectedRowKeys });
       return;
     }
-    this.props.addCarousel(selectedRowKeys);
+    this.props.addTopSelling(selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { products, carousel } = this.props;
+    const { products, topSelling } = this.props;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -116,15 +117,15 @@ class TopSellingMng extends Component {
       <>
         <Suspense fallback={<Spin />}>
           <Title level={3} style={{ textAlign: "center" }}>
-            Manage TopSelling
+            Manage Top Selling
           </Title>
           <Button
             className="my-1"
             type="primary"
             onClick={this.showModal}
-            disabled={carousel.length < 3}
+            disabled={topSelling.length < 4}
           >
-            TopSelling Preview
+            Top Selling Preview
           </Button>
           <Modal
             title="Carousel preview"
@@ -132,21 +133,21 @@ class TopSellingMng extends Component {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
-            <CarouselPreview />
+            <TopSellingPreview />
           </Modal>
         </Suspense>
         <br />
-        {carousel.length === 3 ? (
+        {topSelling.length === 4 ? (
           ""
         ) : (
           <Space direction="vertical">
-            <Text mark>Warning: The topselling not enough items</Text>
-            <Text mark>Note: The carousel contains up to 4 items</Text>
+            <Text mark>Warning: The top selling not enough items</Text>
+            <Text mark>Note: The top selling contains up to 4 items</Text>
           </Space>
         )}
         <Title level={4}>Product list</Title>
         <Table
-          pagination={{ defaultPageSize: 3 }}
+          pagination={{ defaultPageSize: 4 }}
           rowSelection={rowSelection}
           columns={columns}
           dataSource={products}
@@ -159,8 +160,8 @@ class TopSellingMng extends Component {
 function mapStateToProps(state) {
   return {
     products: state.user.products,
-    carousel: state.user.carousel,
+    topSelling: state.user.topSelling,
   };
 }
 
-export default connect(mapStateToProps, { addCarousel })(TopSellingMng);
+export default connect(mapStateToProps, { addTopSelling })(TopSellingMng);

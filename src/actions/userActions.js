@@ -5,6 +5,7 @@ import {
   ADD_PRODUCT,
   ADD_CAROUSEL,
   ADD_TOP_CARDS,
+  ADD_TOP_SELLING
 } from "../constants/ActionsType";
 import jwtDecode from "jwt-decode";
 
@@ -34,3 +35,7 @@ export const addCarousel = (data) => (dispatch) => {
 export const addTopCards = (data) => (dispatch) => {
   dispatch({ type: ADD_TOP_CARDS, newCard: data });
 };
+
+export const addTopSelling = (data) => (dispatch) => {
+  dispatch({type: ADD_TOP_SELLING, newTopSelling: data});
+}
