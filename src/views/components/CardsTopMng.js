@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { Form, Input, Button, Typography } from "antd";
+import React, { Component, Suspense } from "react";
+import { Form, Input, Button, Typography, Spin } from "antd";
 import { connect } from "react-redux";
 import { addTopCards } from "../../actions/userActions";
 
+const TopCardsPreview = React.lazy(() => import("./TopCardsPreview"));
 const { Title } = Typography;
 
 const layout = {
@@ -15,7 +16,6 @@ const validateMessages = {
 };
 
 class CardsTopMng extends Component {
-
   onFinish = (values) => {
     const cards = Object.values(values.cards);
     this.props.addTopCards(cards);
@@ -26,6 +26,9 @@ class CardsTopMng extends Component {
     return (
       <>
         <Title level={3}>Manage cards on top</Title>
+        <Suspense fallback={<Spin />}>
+          <TopCardsPreview />
+        </Suspense>
         <Form
           {...layout}
           name="nest-messages"

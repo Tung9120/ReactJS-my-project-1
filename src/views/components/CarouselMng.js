@@ -134,6 +134,7 @@ class CarouselMng extends Component {
           >
             <CarouselPreview />
           </Modal>
+          </Suspense>
           <br />
           {carousel.length === 3 ? (
             ""
@@ -150,7 +151,7 @@ class CarouselMng extends Component {
             columns={columns}
             dataSource={products}
           />
-        </Suspense>
+       
       </>
     );
   }
