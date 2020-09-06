@@ -14,6 +14,8 @@ const initialStateUser = {
   newProducts: [],
   carousel: [],
   topCards: [],
+  topSelling: [],
+  topNew: []
 };
 
 function userReducer(state = initialStateUser, action = { payload: {} }) {

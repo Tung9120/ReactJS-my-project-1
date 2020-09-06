@@ -1,9 +1,8 @@
 import React from "react";
-import { Modal, Button, Empty, Row, Col, Card, Typography } from "antd";
+import { Modal, Button, Empty, Row, Col, Card } from "antd";
 import { connect } from "react-redux";
 import "./CardOnTop.css";
 
-const { Title } = Typography;
 const { Meta } = Card;
 
 const contentStyle = {
@@ -65,9 +64,9 @@ class TopCardsPreview extends React.Component {
                     <div style={contentStyle}>
                       <Meta
                         title={
-                          <Title level={4} className="text-white">
+                          <h4 className="text-white">
                             {card}
-                          </Title>
+                          </h4>
                         }
                       />
                       <Button type="primary" className="mt-1">

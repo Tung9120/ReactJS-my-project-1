@@ -96,7 +96,7 @@ class AddProduct extends Component {
 
           <Form.Item
             name={["product", "description"]}
-            rules={[{ required: true }]}
+            // rules={[{ required: true }]}
             label="Description"
           >
             <Input.TextArea />
