@@ -69,8 +69,9 @@ class AddProduct extends Component {
             name={["product", "price"]}
             label="Price($)"
             rules={[{ type: "number", min: 0, max: 9999, required: true }]}
+            min="1"
           >
-            <InputNumber />
+            <InputNumber min="1" />
           </Form.Item>
           <Form.Item
             name={["product", "status"]}

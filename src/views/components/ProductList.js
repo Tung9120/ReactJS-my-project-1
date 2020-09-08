@@ -1,7 +1,9 @@
-import React, { Component } from "react";
-import { Table, Tag, Space, Typography, Button, Tooltip } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import React, { Component, Suspense } from "react";
+import { Table, Tag, Space, Typography, Button, Tooltip, Spin } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
+
+const FormEditProduct = React.lazy(() => import("./FormEditProduct"));
 
 const columns = [
   {
@@ -61,18 +63,16 @@ const columns = [
     title: "Action",
     key: "action",
     render: (text, record) => (
-      <Space size="middle">
-        <Tooltip title="Edit">
-          <Button type="primary">
-            <EditOutlined />
-          </Button>
-        </Tooltip>
-        <Tooltip title="Delete">
-          <Button type="danger">
-            <DeleteOutlined />
-          </Button>
-        </Tooltip>
-      </Space>
+      <Suspense fallback={<Spin />}>
+        <Space size="middle">
+          <FormEditProduct product={record} />
+          <Tooltip title="Delete">
+            <Button type="danger">
+              <DeleteOutlined />
+            </Button>
+          </Tooltip>
+        </Space>
+      </Suspense>
     ),
   },
 ];
@@ -85,7 +85,11 @@ class ProductList extends Component {
         <Typography.Title level={4} align="center">
           Product List
         </Typography.Title>
-        <Table pagination={{defaultPageSize: 4}} columns={columns} dataSource={products} />
+        <Table
+          pagination={{ defaultPageSize: 4 }}
+          columns={columns}
+          dataSource={products}
+        />
       </>
     );
   }
