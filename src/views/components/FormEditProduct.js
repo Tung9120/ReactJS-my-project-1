@@ -33,6 +33,7 @@ const validateMessages = {
 
 class FormEditProduct extends Component {
   state = { visible: false };
+  formRef = React.createRef();
 
   showModal = () => {
     this.setState({
@@ -40,18 +41,24 @@ class FormEditProduct extends Component {
     });
   };
 
+  onReset = () => {
+    this.formRef.current.resetFields();
+  };
+
   onFinish = (values) => {
-    const { products } = this.props;
-    const newValues = {
-      ...values.product,
-      status: values.product.status.split(),
-    };
-    const newProduct = {
-      key: products.length,
-      avatar: "https://via.placeholder.com/64",
-      ...newValues,
-    };
-    this.props.addProduct(newProduct);
+    console.log('values',values)
+    const { products, product } = this.props;
+    console.log('product', product);
+    // const newValues = {
+    //   ...values.product,
+    //   status: values.product.status.split(),
+    // };
+    // const newProduct = {
+    //   key: products.length,
+    //   avatar: "https://via.placeholder.com/64",
+    //   ...newValues,
+    // };
+    // this.props.addProduct(newProduct);
   };
 
   handleOk = (e) => {
@@ -64,14 +71,13 @@ class FormEditProduct extends Component {
     this.setState({
       visible: false,
     });
+    this.onReset();
   };
 
   render() {
     const { product } = this.props;
-    console.log(product);
     return (
       <>
-        {" "}
         <Tooltip title="Edit">
           <Button type="primary" onClick={this.showModal}>
             <EditOutlined />
@@ -91,6 +97,7 @@ class FormEditProduct extends Component {
             name="nest-messages"
             onFinish={this.onFinish}
             validateMessages={validateMessages}
+            ref={this.formRef} 
           >
             <Form.Item
               name={["product", "name"]}
