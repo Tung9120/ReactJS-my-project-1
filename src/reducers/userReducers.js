@@ -6,7 +6,7 @@ import {
   ADD_TOP_CARDS,
   ADD_TOP_SELLING,
   ADD_TOP_NEW,
-  UPATE_PRODUCT
+  UPATE_PRODUCT,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -18,7 +18,7 @@ const initialStateUser = {
   carousel: [],
   topCards: [],
   topSelling: [],
-  topNew: []
+  topNew: [],
 };
 
 function userReducer(state = initialStateUser, action = { payload: {} }) {
@@ -52,28 +52,32 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       return {
         ...state,
         topCards: [...action.newCard],
-      }
+      };
 
-    case ADD_TOP_SELLING: 
+    case ADD_TOP_SELLING:
       return {
         ...state,
-        topSelling: [...action.newTopSelling]
-      }
+        topSelling: [...action.newTopSelling],
+      };
 
     case ADD_TOP_NEW: {
       return {
         ...state,
-        topNew: [...action.topNewProducts]
-      }
+        topNew: [...action.topNewProducts],
+      };
     }
 
     case UPATE_PRODUCT: {
       const { productUpdated } = action;
       const index = productUpdated.key;
-      console.log(index)
       return {
         ...state,
-      }
+        products: [
+          ...state.products.slice(0, index),
+          productUpdated,
+          ...state.products.slice(index + 1),
+        ],
+      };
     }
 
     default:

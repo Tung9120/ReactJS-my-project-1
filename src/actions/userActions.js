@@ -7,7 +7,7 @@ import {
   ADD_TOP_CARDS,
   ADD_TOP_SELLING,
   ADD_TOP_NEW,
-  UPATE_PRODUCT
+  UPATE_PRODUCT,
 } from "../constants/ActionsType";
 import jwtDecode from "jwt-decode";
 
@@ -39,14 +39,13 @@ export const addTopCards = (data) => (dispatch) => {
 };
 
 export const addTopSelling = (data) => (dispatch) => {
-  dispatch({type: ADD_TOP_SELLING, newTopSelling: data});
-}
+  dispatch({ type: ADD_TOP_SELLING, newTopSelling: data });
+};
 
 export const addTopNew = (data) => (dispatch) => {
-  dispatch({type: ADD_TOP_NEW, topNewProducts: data});
-}
+  dispatch({ type: ADD_TOP_NEW, topNewProducts: data });
+};
 
 export const updateProduct = (data) => (dispatch) => {
-  dispatch({type: UPATE_PRODUCT, productUpdated: data});
-  console.log('data',data);
-}
+  dispatch({ type: UPATE_PRODUCT, productUpdated: data });
+};

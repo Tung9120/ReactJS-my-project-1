@@ -47,24 +47,20 @@ class FormEditProduct extends Component {
   };
 
   onFinish = (values) => {
-    console.log("values", values);
-    const { products, product } = this.props;
-    console.log("product", product);
-    
+    const { product } = this.props;
+
     const newValues = {
       ...values.product,
-      status: !Array.isArray(values.product.status) ? values.product.status.split() : values.product.status
+      status: !Array.isArray(values.product.status)
+        ? values.product.status.split()
+        : values.product.status,
     };
-
-    console.log('newValues',newValues)
 
     const productUpdated = {
       key: product.key,
       avatar: "https://via.placeholder.com/64",
       ...newValues,
     };
-
-    console.log('productUpdated',productUpdated)
 
     this.props.updateProduct(productUpdated);
     this.setState({
@@ -170,10 +166,4 @@ class FormEditProduct extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    products: state.user.products,
-  };
-}
-
-export default connect(mapStateToProps, {updateProduct})(FormEditProduct);
+export default connect(null, { updateProduct })(FormEditProduct);
