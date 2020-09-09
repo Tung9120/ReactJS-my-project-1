@@ -12,6 +12,7 @@ import {
 } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
+import { updateProduct } from "../../actions/userActions";
 
 const { Option } = Select;
 
@@ -46,19 +47,29 @@ class FormEditProduct extends Component {
   };
 
   onFinish = (values) => {
-    console.log('values',values)
+    console.log("values", values);
     const { products, product } = this.props;
-    console.log('product', product);
-    // const newValues = {
-    //   ...values.product,
-    //   status: values.product.status.split(),
-    // };
-    // const newProduct = {
-    //   key: products.length,
-    //   avatar: "https://via.placeholder.com/64",
-    //   ...newValues,
-    // };
-    // this.props.addProduct(newProduct);
+    console.log("product", product);
+    
+    const newValues = {
+      ...values.product,
+      status: !Array.isArray(values.product.status) ? values.product.status.split() : values.product.status
+    };
+
+    console.log('newValues',newValues)
+
+    const productUpdated = {
+      key: product.key,
+      avatar: "https://via.placeholder.com/64",
+      ...newValues,
+    };
+
+    console.log('productUpdated',productUpdated)
+
+    this.props.updateProduct(productUpdated);
+    this.setState({
+      visible: false,
+    });
   };
 
   handleOk = (e) => {
@@ -97,7 +108,7 @@ class FormEditProduct extends Component {
             name="nest-messages"
             onFinish={this.onFinish}
             validateMessages={validateMessages}
-            ref={this.formRef} 
+            ref={this.formRef}
           >
             <Form.Item
               name={["product", "name"]}
@@ -165,4 +176,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(FormEditProduct);
+export default connect(mapStateToProps, {updateProduct})(FormEditProduct);

@@ -5,7 +5,8 @@ import {
   ADD_CAROUSEL,
   ADD_TOP_CARDS,
   ADD_TOP_SELLING,
-  ADD_TOP_NEW
+  ADD_TOP_NEW,
+  UPATE_PRODUCT
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -63,6 +64,15 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       return {
         ...state,
         topNew: [...action.topNewProducts]
+      }
+    }
+
+    case UPATE_PRODUCT: {
+      const { productUpdated } = action;
+      const index = productUpdated.key;
+      console.log(index)
+      return {
+        ...state,
       }
     }
 
