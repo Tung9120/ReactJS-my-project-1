@@ -69,7 +69,17 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
 
     case UPATE_PRODUCT: {
       const { productUpdated } = action;
-      const index = productUpdated.key;
+      const {products} = state;
+
+      let index;
+
+      for(let i = 0; i < products.length; i++){
+        if(products[i].key === productUpdated.key){
+          index = i;
+          break;
+        }
+      }
+
       return {
         ...state,
         products: [

@@ -38,7 +38,7 @@ class AddProduct extends Component {
       status: values.product.status.split(),
     };
     const newProduct = {
-      key: products.length,
+      key: products.length === 0 ? 0 : products[products.length - 1].key + 1,
       avatar: "https://via.placeholder.com/64",
       ...newValues,
     };
