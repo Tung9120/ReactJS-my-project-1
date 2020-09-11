@@ -4,6 +4,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 
 const FormEditProduct = React.lazy(() => import("./FormEditProduct"));
+const FormDeleteProduct = React.lazy(() => import("./FormDeleteProduct"));
 
 const columns = [
   {
@@ -66,11 +67,12 @@ const columns = [
       <Suspense fallback={<Spin />}>
         <Space size="middle">
           <FormEditProduct product={record} />
-          <Tooltip title="Delete">
+          {/* <Tooltip title="Delete">
             <Button type="danger">
               <DeleteOutlined />
             </Button>
-          </Tooltip>
+          </Tooltip> */}
+          <FormDeleteProduct product={record} />
         </Space>
       </Suspense>
     ),

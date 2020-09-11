@@ -72,6 +72,7 @@ class FormEditProduct extends Component {
     this.setState({
       visible: false,
     });
+    this.onReset();
   };
 
   handleCancel = (e) => {
@@ -91,6 +92,8 @@ class FormEditProduct extends Component {
           </Button>
         </Tooltip>
         <Modal
+          okText="Close"
+          okType="default"
           title="Edit product"
           visible={this.state.visible}
           onOk={this.handleOk}

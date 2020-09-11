@@ -7,6 +7,7 @@ import {
   ADD_TOP_SELLING,
   ADD_TOP_NEW,
   UPATE_PRODUCT,
+  DELETE_PRODUCT
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -85,6 +86,28 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
         products: [
           ...state.products.slice(0, index),
           productUpdated,
+          ...state.products.slice(index + 1),
+        ],
+      };
+    }
+
+    case DELETE_PRODUCT: {
+      const { productDeleted } = action;
+      const {products} = state;
+
+      let index;
+
+      for(let i = 0; i < products.length; i++){
+        if(products[i].key === productDeleted.key){
+          index = i;
+          break;
+        }
+      }
+
+      return {
+        ...state,
+        products: [
+          ...state.products.slice(0, index),
           ...state.products.slice(index + 1),
         ],
       };

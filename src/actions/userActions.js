@@ -8,6 +8,7 @@ import {
   ADD_TOP_SELLING,
   ADD_TOP_NEW,
   UPATE_PRODUCT,
+  DELETE_PRODUCT,
 } from "../constants/ActionsType";
 import jwtDecode from "jwt-decode";
 
@@ -49,3 +50,8 @@ export const addTopNew = (data) => (dispatch) => {
 export const updateProduct = (data) => (dispatch) => {
   dispatch({ type: UPATE_PRODUCT, productUpdated: data });
 };
+
+export const deleteProduct = (data) => (dispatch) => {
+  dispatch({type: DELETE_PRODUCT, productDeleted: data});
+  console.log(data)
+}
