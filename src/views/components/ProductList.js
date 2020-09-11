@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { Table, Tag, Space, Typography, Button, Tooltip, Spin } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { Table, Tag, Space, Typography, Spin } from "antd";
 import { connect } from "react-redux";
 
 const FormEditProduct = React.lazy(() => import("./FormEditProduct"));
@@ -67,11 +66,6 @@ const columns = [
       <Suspense fallback={<Spin />}>
         <Space size="middle">
           <FormEditProduct product={record} />
-          {/* <Tooltip title="Delete">
-            <Button type="danger">
-              <DeleteOutlined />
-            </Button>
-          </Tooltip> */}
           <FormDeleteProduct product={record} />
         </Space>
       </Suspense>
