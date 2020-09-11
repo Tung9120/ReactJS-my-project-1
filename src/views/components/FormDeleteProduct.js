@@ -48,7 +48,7 @@ class FormDeleteProduct extends Component {
     const { product } = this.props;
     return (
       <>
-        <Tooltip title="Edit">
+        <Tooltip title="Delete">
           <Button type="danger" onClick={this.showModal}>
             <DeleteOutlined />
           </Button>
