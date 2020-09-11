@@ -53,5 +53,4 @@ export const updateProduct = (data) => (dispatch) => {
 
 export const deleteProduct = (data) => (dispatch) => {
   dispatch({type: DELETE_PRODUCT, productDeleted: data});
-  console.log(data)
 }
