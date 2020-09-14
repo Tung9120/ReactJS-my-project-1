@@ -56,7 +56,6 @@ class FormDeleteProduct extends Component {
         <Modal
           title={`Delete product: ${product.name}`}
           visible={this.state.visible}
-          onOk={this.hideModal}
           onCancel={this.hideModal}
           okText="Delete"
           okType="danger"
