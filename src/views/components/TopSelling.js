@@ -27,7 +27,7 @@ class TopSelling extends Component {
 
   render() {
     const { topSellingData } = this.state;
-    console.log(topSellingData);
+
     return (
       <>
         <div className="my-2">

@@ -27,7 +27,6 @@ class TopNew extends Component {
 
   render() {
     const { topNewData } = this.state;
-    console.log(topNewData)
 
     return (
       <>

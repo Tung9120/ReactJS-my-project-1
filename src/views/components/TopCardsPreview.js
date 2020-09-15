@@ -59,8 +59,8 @@ class TopCardsPreview extends React.Component {
           ) : (
             <Row gutter={16} className="CardOnTop">
               {topCards.map((card, index) => (
-                <Col span={8} className="col mb-1">
-                  <Card key={index}>
+                <Col span={8} className="col mb-1" key={index}>
+                  <Card>
                     <div style={contentStyle}>
                       <Meta
                         title={
