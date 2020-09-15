@@ -46,6 +46,11 @@
   margin-left: auto !important;
 }
 
+.mx-1 {
+  margin-right: 1rem !important;
+  margin-left: 1rem !important;
+}
+
 .p-0 {
   padding: 0px !important;
 }

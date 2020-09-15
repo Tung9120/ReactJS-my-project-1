@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import {Col} from 'antd';
+import { Col } from "antd";
 import Search from "antd/lib/input/Search";
-
+import { connect } from "react-redux";
 class SearchProduct extends Component {
+  onSearch = (value) => {
+    console.log(value);
+  };
+
   render() {
     return (
-      <Col span={8} offset={16}>
+      <Col span={8} offset={16} className="my-2">
         <Search
           placeholder="Search over 100 products"
-          onSearch={(value) => console.log(value)}
+          onSearch={this.onSearch}
           enterButton
           style={{ verticalAlign: "middle" }}
         />
@@ -17,4 +21,6 @@ class SearchProduct extends Component {
   }
 }
 
-export default SearchProduct;
+function DispatchToProps() {}
+
+export default connect()(SearchProduct);
