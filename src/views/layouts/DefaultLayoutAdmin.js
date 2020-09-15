@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { Layout, Menu, Breadcrumb, Tag, Spin } from "antd";
+import { Layout, Menu, Tag, Spin } from "antd";
 import { FacebookOutlined } from "@ant-design/icons";
 import { Link, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
@@ -60,10 +60,6 @@ class DefaultLayoutAdmin extends Component {
               </Tag>
             </Header>
             <Content style={{ margin: "0 16px" }}>
-              <Breadcrumb style={{ margin: "16px 0" }}>
-                <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
-              </Breadcrumb>
               <Switch>
                 <Suspense fallback={<Spin />}>
                   {routes.map((route, index) =>

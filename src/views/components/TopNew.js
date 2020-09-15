@@ -53,7 +53,7 @@ class TopNew extends Component {
                       color: "#524dda",
                     }}
                   >
-                    {item.price}
+                    ${item.price}
                   </Title>
                   <Button className="d-block mx-auto mb-1" type="primary">
                     Add to Cart

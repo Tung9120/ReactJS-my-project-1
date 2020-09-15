@@ -12,13 +12,13 @@ const columns = [
     title: "Avatar",
     dataIndex: "avatar",
     key: "avatar",
-    render: (avatar) => <img src={avatar} />,
+    render: (avatar) => <img src={avatar} alt="?" />,
   },
   {
     title: "Name",
     dataIndex: "name",
     key: "name",
-    render: (text) => <a>{text}</a>,
+    render: (text) => <a href="#">{text}</a>,
   },
   {
     title: "Price",
