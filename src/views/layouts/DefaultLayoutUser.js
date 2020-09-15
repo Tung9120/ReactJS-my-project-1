@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { Layout, Menu, Breadcrumb, Spin } from "antd";
+import { Layout, Menu, Breadcrumb, Spin, Row } from "antd";
 import {
   HomeOutlined,
   ShoppingCartOutlined,
@@ -14,6 +14,7 @@ const PhotoCarousel = React.lazy(() => import("../components/PhotoCarousel"));
 const CardOnTop = React.lazy(() => import("../components/CardOnTop"));
 const TopSelling = React.lazy(() => import("../components/TopSelling.js"));
 const TopNew = React.lazy(() => import("../components/TopNew.js"));
+const SearchProduct = React.lazy(() => import("../components/SearchProduct"));
 
 const { Header, Content, Footer } = Layout;
 
@@ -61,9 +62,6 @@ class DefaultLayoutUser extends Component {
             <div className="site-layout-content">
               <Suspense fallback={<Spin />}>
                 <Switch>
-                  <Route path="/products/top-selling">
-                    <div>Top Selling</div>
-                  </Route>
                   <Route path="/products/new">
                     <Breadcrumb style={{ margin: "16px 0" }}>
                       <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -85,7 +83,10 @@ class DefaultLayoutUser extends Component {
                       <Breadcrumb.Item>Home</Breadcrumb.Item>
                       <Breadcrumb.Item>Products</Breadcrumb.Item>
                     </Breadcrumb>
-                    All Products
+                    <Row>
+                      <SearchProduct />
+                      All Products
+                    </Row>
                   </Route>
                   <Route path="/cart">
                     <Breadcrumb style={{ margin: "16px 0" }}>
