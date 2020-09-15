@@ -27,6 +27,8 @@ class TopNew extends Component {
 
   render() {
     const { topNewData } = this.state;
+    console.log(topNewData)
+
     return (
       <>
         <div className="my-2">
@@ -38,11 +40,11 @@ class TopNew extends Component {
           </Title>
         </div>
         <Row gutter={16} justify="center" className="TopNew">
-          {topNewData.length !== 3 ? (
+          {topNewData.length !== 4 ? (
             <Empty />
           ) : (
             topNewData.map((item, i) => (
-              <Col span={5} className="col mb-1">
+              <Col span={5} className="col mb-1" key={i}>
                 <Card hoverable>
                   <img src={item.avatar} alt="?" className="w-100" />
                   <p className="text-center bold mt-1">{item.name}</p>

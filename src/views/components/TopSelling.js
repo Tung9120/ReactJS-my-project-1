@@ -27,6 +27,7 @@ class TopSelling extends Component {
 
   render() {
     const { topSellingData } = this.state;
+    console.log(topSellingData);
     return (
       <>
         <div className="my-2">
@@ -38,11 +39,11 @@ class TopSelling extends Component {
           </Title>
         </div>
         <Row gutter={16} justify="center" className="TopSelling">
-          {topSellingData.length !== 3 ? (
+          {topSellingData.length !== 4 ? (
             <Empty />
           ) : (
             topSellingData.map((item, i) => (
-              <Col span={5} className="col mb-1">
+              <Col span={5} className="col mb-1" key={i}>
                 <Card hoverable>
                   <img src={item.avatar} alt="?" className="w-100" />
                   <p className="text-center bold mt-1">{item.name}</p>
