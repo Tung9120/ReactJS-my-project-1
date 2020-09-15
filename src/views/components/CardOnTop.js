@@ -28,7 +28,10 @@ class CardOnTop extends Component {
       <>
         <Row gutter={16} className="CardOnTop">
           {topCards.length !== 3 ? (
-            <div style={{margin: "0 auto"}}><Empty /></div>
+            <div style={{ margin: "0 auto" }}>
+              <h2 className="text-center">Top Cards</h2>
+              <Empty />
+            </div>
           ) : (
             topCards.map((item, i) => (
               <Col span={8} className="col mb-1" key={i}>

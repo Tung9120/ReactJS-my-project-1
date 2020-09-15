@@ -39,7 +39,10 @@ class PhotoCarousel extends Component {
       <>
         <Carousel autoplay className="mb-1">
           {carouselData.length !== 3 ? (
-            <Empty />
+            <div>
+              <h2 className="text-center">Carousel</h2>
+              <Empty />
+            </div>
           ) : (
             carouselData.map((item, i) => (
               <div key={i}>
