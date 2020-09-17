@@ -31,9 +31,9 @@ class TopSelling extends Component {
     return (
       <>
         <div className="my-2">
-          <Title level={3} align="center">
+          <h2 className="text-center">
             Top Selling
-          </Title>
+          </h2>
         </div>
         <Row gutter={16} justify="center" className="TopSelling">
           {topSellingData.length !== 4 ? (
