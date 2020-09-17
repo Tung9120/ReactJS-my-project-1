@@ -16,6 +16,7 @@ const TopSelling = React.lazy(() => import("../components/TopSelling.js"));
 const TopNew = React.lazy(() => import("../components/TopNew.js"));
 const SearchProduct = React.lazy(() => import("../components/SearchProduct"));
 const Products = React.lazy(() => import("../components/Products"));
+const Cart = React.lazy(() => import("../components/Cart"));
 
 const { Header, Content, Footer } = Layout;
 
@@ -94,7 +95,7 @@ class DefaultLayoutUser extends Component {
                       <Breadcrumb.Item>Home</Breadcrumb.Item>
                       <Breadcrumb.Item>Cart</Breadcrumb.Item>
                     </Breadcrumb>
-                    Cart
+                    <Cart />
                   </Route>
                   <Route path="/">
                     <Breadcrumb style={{ margin: "16px 0" }}>
