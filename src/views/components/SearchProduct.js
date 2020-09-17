@@ -12,7 +12,6 @@ class SearchProduct extends Component {
   };
 
   onSearch = (value) => {
-    const { products, productsSelect, searchProductText } = this.props;
     let newValue = value.trim();
     if (newValue === "" && this.props.products.length === 0) {
       this.props.searchProduct(null);
@@ -20,7 +19,12 @@ class SearchProduct extends Component {
     }
 
     this.props.searchProduct(newValue);
+  };
 
+  onAlert = (event) => {
+    const { products, productsSelect, searchProductText } = this.props;
+
+    if (event.keyCode === 13) {
       if (
         products.length > 0 &&
         productsSelect.length === 0 &&
@@ -38,10 +42,10 @@ class SearchProduct extends Component {
           `Found ${productsSelect.length} results`
         );
       }
+    }
   };
 
   render() {
-
     return (
       <Col span={8} offset={16} className="my-2">
         <Search
@@ -49,6 +53,7 @@ class SearchProduct extends Component {
           onSearch={this.onSearch}
           enterButton
           style={{ verticalAlign: "middle" }}
+          onKeyUp={this.onAlert}
         />
       </Col>
     );
