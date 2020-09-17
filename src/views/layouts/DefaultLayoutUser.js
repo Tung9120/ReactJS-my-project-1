@@ -45,7 +45,7 @@ class DefaultLayoutUser extends Component {
             >
               <Menu.Item
                 key="logo"
-                icon={<SettingFilled twoToneColor="#52c41a" spin />}
+                icon={<SettingFilled twoToneColor="#52c41a" />}
               >
                 <Link to="/">Shoe Store</Link>
               </Menu.Item>
