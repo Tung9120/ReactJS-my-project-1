@@ -24,6 +24,10 @@ class SearchProduct extends Component {
   onAlert = (event) => {
     const { products, productsSelect, searchProductText } = this.props;
 
+    if(event.keyCode === 13 && (searchProductText === "" || searchProductText === null) && products.length !== 0){
+      this.openNotificationWithIcon("success", "Get all products");
+    }
+
     if (event.keyCode === 13) {
       if (
         products.length > 0 &&
