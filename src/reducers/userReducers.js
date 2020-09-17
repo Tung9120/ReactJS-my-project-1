@@ -7,7 +7,8 @@ import {
   ADD_TOP_SELLING,
   ADD_TOP_NEW,
   UPATE_PRODUCT,
-  DELETE_PRODUCT
+  DELETE_PRODUCT,
+  SEARCH_PRODUCT,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -20,9 +21,14 @@ const initialStateUser = {
   topCards: [],
   topSelling: [],
   topNew: [],
+  productsSelect: [],
+  searchProductText: null,
 };
 
-function userReducer(state = initialStateUser, action = { payload: {} }) {
+function userReducer(
+  state = initialStateUser,
+  action = { payload: {} }
+) {
   switch (action.type) {
     case LOGIN:
       return {
@@ -70,12 +76,12 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
 
     case UPATE_PRODUCT: {
       const { productUpdated } = action;
-      const {products} = state;
+      const { products } = state;
 
       let index;
 
-      for(let i = 0; i < products.length; i++){
-        if(products[i].key === productUpdated.key){
+      for (let i = 0; i < products.length; i++) {
+        if (products[i].key === productUpdated.key) {
           index = i;
           break;
         }
@@ -93,12 +99,12 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
 
     case DELETE_PRODUCT: {
       const { productDeleted } = action;
-      const {products} = state;
+      const { products } = state;
 
       let index;
 
-      for(let i = 0; i < products.length; i++){
-        if(products[i].key === productDeleted.key){
+      for (let i = 0; i < products.length; i++) {
+        if (products[i].key === productDeleted.key) {
           index = i;
           break;
         }
@@ -111,6 +117,36 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
           ...state.products.slice(index + 1),
         ],
       };
+    }
+
+    case SEARCH_PRODUCT: {
+      const { products } = state;
+      state.searchProductText = action.searchProductText;
+      let matchedProducts;
+      if (products.length === 0 && state.searchProductText === "") return;
+      if(products.length > 0 && state.searchProductText === ""){
+        return {
+          ...state,
+        }
+      }
+      matchedProducts = products.filter((item) => {
+        return (
+          item.name
+            .toLowerCase()
+            .indexOf(state.searchProductText.toLowerCase()) !== -1
+        );
+      });
+      if (matchedProducts.length === 0) {
+        return {
+          ...state,
+          productsSelect: [],
+        };
+      } else {
+        return {
+          ...state,
+          productsSelect: [...matchedProducts],
+        };
+      }
     }
 
     default:
