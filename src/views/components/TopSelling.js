@@ -34,9 +34,6 @@ class TopSelling extends Component {
           <Title level={3} align="center">
             Top Selling
           </Title>
-          <Title level={4} align="center">
-            Cum doctus civibus efficiantur in imperdiet deterruisset
-          </Title>
         </div>
         <Row gutter={16} justify="center" className="TopSelling">
           {topSellingData.length !== 4 ? (

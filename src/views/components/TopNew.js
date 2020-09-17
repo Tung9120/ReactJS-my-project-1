@@ -34,9 +34,6 @@ class TopNew extends Component {
           <Title level={3} align="center">
             Top New
           </Title>
-          <Title level={4} align="center">
-            Cum doctus civibus efficiantur in imperdiet deterruisset
-          </Title>
         </div>
         <Row gutter={16} justify="center" className="TopNew">
           {topNewData.length !== 4 ? (
