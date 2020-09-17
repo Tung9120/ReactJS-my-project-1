@@ -1,33 +1,38 @@
-import React, { Component } from 'react'
-import { Table, Tag, Space, Typography } from 'antd';
+import React, { Component, Suspense } from "react";
+import { Table, Space, Typography, Spin, Button } from "antd";
+import {
+  DeleteOutlined
+} from '@ant-design/icons';
 
-const {Title, Text} = Typography;
+const { Title, Text } = Typography;
+const QuantityProduct = React.lazy(() => import("./QuantityProduct"));
 
 const columns = [
   {
-    title: 'Product name',
-    dataIndex: 'name',
-    key: 'name',
+    title: "Product name",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: 'Quantity',
-    dataIndex: 'quantity',
-    key: 'quantity',
+    title: "Quantity",
+    dataIndex: "quantity",
+    key: "quantity",
+    render: (text, record) => <QuantityProduct defaultValue={record.quantity} />,
   },
   {
-    title: 'Price',
-    dataIndex: 'price',
-    key: 'price',
-    render: (text) => (
-      "$" + text
-    )
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+    render: (text) => "$" + text,
   },
   {
-    title: 'Action',
-    key: 'action',
+    title: "Action",
+    key: "action",
     render: (text, record) => (
       <Space size="middle">
-        <a>Delete</a>
+        <Button type="danger">
+        <DeleteOutlined />
+        </Button>
       </Space>
     ),
   },
@@ -35,26 +40,29 @@ const columns = [
 
 const data = [
   {
-    name: 'A',
+    key: 1,
+    name: "A",
     quantity: 1,
     price: 3,
-  }
+  },
 ];
 
 class Cart extends Component {
   render() {
     return (
       <>
-        <Table columns={columns} dataSource={data} />
-        <Title level={3} type="mark" align="center"><Text underline>Total: </Text><Text type="danger">$300</Text></Title>
+        <Suspense fallback={<Spin />}>
+          <Table columns={columns} dataSource={data} />
+          <Title level={3} type="mark" align="center">
+            <Text underline>Total: </Text>
+            <Text type="danger">$300</Text>
+          </Title>
+          <Title align="center" style={{marginTop: "0"}}>
+          <Button type="primary">Order</Button></Title>
+        </Suspense>
       </>
-    )
+    );
   }
 }
 
 export default Cart;
-
-
-
-
-
