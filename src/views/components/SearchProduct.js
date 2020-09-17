@@ -53,7 +53,7 @@ class SearchProduct extends Component {
     return (
       <Col span={8} offset={16} className="my-2">
         <Search
-          placeholder="Search over 100 products"
+          placeholder="Search products"
           onSearch={this.onSearch}
           enterButton
           style={{ verticalAlign: "middle" }}

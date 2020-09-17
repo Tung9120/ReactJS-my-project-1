@@ -14,6 +14,12 @@ const columns = [
     key: "name",
   },
   {
+    title: "Avatar",
+    dataIndex: "avatar",
+    key: "avatar",
+    render: (text, record) => <img alt="?" src={record.avatar} />
+  },
+  {
     title: "Quantity",
     dataIndex: "quantity",
     key: "quantity",
@@ -42,6 +48,7 @@ const data = [
   {
     key: 1,
     name: "A",
+    avatar: "https://via.placeholder.com/64",
     quantity: 1,
     price: 3,
   },
