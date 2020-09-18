@@ -83,7 +83,7 @@ class DefaultLayoutUser extends Component {
                   <Route path="/products">
                     <Breadcrumb style={{ margin: "16px 0" }}>
                       <Breadcrumb.Item>Home</Breadcrumb.Item>
-                      <Breadcrumb.Item>Products</Breadcrumb.Item>
+                      <Breadcrumb.Item><Link to="/products">Products</Link></Breadcrumb.Item>
                     </Breadcrumb>
                     <Row gutter={16} justify="center" className="TopNew">
                       <SearchProduct />

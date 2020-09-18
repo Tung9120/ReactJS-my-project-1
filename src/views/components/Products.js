@@ -6,6 +6,12 @@ import "./TopNew.css";
 const { Title } = Typography;
 
 class Products extends Component {
+  addToCard = (item) => {
+    return (e) => {
+      console.log('e',e);
+      console.log('item',item);
+    };
+  };
 
   render() {
     const { products, productsSelect, searchProductText } = this.props;
@@ -28,7 +34,11 @@ class Products extends Component {
                 >
                   ${item.price}
                 </Title>
-                <Button className="d-block mx-auto mb-1" type="primary">
+                <Button
+                  className="d-block mx-auto mb-1"
+                  type="primary"
+                  onClick={this.addToCard(item)}
+                >
                   Add to Cart
                 </Button>
               </Card>
@@ -52,7 +62,11 @@ class Products extends Component {
                 >
                   ${item.price}
                 </Title>
-                <Button className="d-block mx-auto mb-1" type="primary">
+                <Button
+                  className="d-block mx-auto mb-1"
+                  type="primary"
+                  onClick={this.addToCard(item)}
+                >
                   Add to Cart
                 </Button>
               </Card>
@@ -85,7 +99,11 @@ class Products extends Component {
                 >
                   ${item.price}
                 </Title>
-                <Button className="d-block mx-auto mb-1" type="primary">
+                <Button
+                  className="d-block mx-auto mb-1"
+                  type="primary"
+                  onClick={this.addToCard(item)}
+                >
                   Add to Cart
                 </Button>
               </Card>
@@ -108,7 +126,11 @@ class Products extends Component {
                 >
                   ${item.price}
                 </Title>
-                <Button className="d-block mx-auto mb-1" type="primary">
+                <Button
+                  className="d-block mx-auto mb-1"
+                  type="primary"
+                  onClick={this.addToCard(item)}
+                >
                   Add to Cart
                 </Button>
               </Card>

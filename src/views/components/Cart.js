@@ -46,7 +46,7 @@ const columns = [
 
 const data = [
   {
-    key: 1,
+    id: 1,
     name: "A",
     avatar: "https://via.placeholder.com/64",
     quantity: 1,
