@@ -7,6 +7,7 @@ import {
   SettingFilled,
 } from "@ant-design/icons";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./DefautLayoutUser.css";
 
@@ -23,7 +24,6 @@ const { Header, Content, Footer } = Layout;
 class DefaultLayoutUser extends Component {
   state = {
     current: "home",
-    show: true,
   };
 
   handleClick = (e) => {
@@ -32,6 +32,7 @@ class DefaultLayoutUser extends Component {
 
   render() {
     const { current } = this.state;
+    const { cart } = this.props;
     return (
       <Router>
         <Layout className="layout">
@@ -48,7 +49,7 @@ class DefaultLayoutUser extends Component {
                 key="logo"
                 icon={<SettingFilled twoToneColor="#52c41a" />}
               >
-                <Link to="/">Shoe Store</Link>
+                <Link to="/">My Store</Link>
               </Menu.Item>
               <Menu.Item key="home" icon={<HomeOutlined />}>
                 <Link to="/">Home</Link>
@@ -58,11 +59,7 @@ class DefaultLayoutUser extends Component {
               </Menu.Item>
               <Menu.Item key="alipay" icon={<ShoppingCartOutlined />}>
                 <Link to="/cart">
-                  <Badge
-                    dot={this.state.show}
-                  >
-                    Cart
-                  </Badge>
+                  <Badge dot={cart.length ? true: false}>Cart</Badge>
                 </Link>
               </Menu.Item>
             </Menu>
@@ -128,4 +125,10 @@ class DefaultLayoutUser extends Component {
   }
 }
 
-export default DefaultLayoutUser;
+function mapStateToProps(state){
+  return{
+    cart: state.user.cart
+  }
+}
+
+export default connect(mapStateToProps)(DefaultLayoutUser);

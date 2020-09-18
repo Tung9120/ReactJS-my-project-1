@@ -9,6 +9,7 @@ import {
   UPATE_PRODUCT,
   DELETE_PRODUCT,
   SEARCH_PRODUCT,
+  ADD_TO_CART,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -27,10 +28,7 @@ const initialStateUser = {
   orders: [],
 };
 
-function userReducer(
-  state = initialStateUser,
-  action = { payload: {} }
-) {
+function userReducer(state = initialStateUser, action = { payload: {} }) {
   switch (action.type) {
     case LOGIN:
       return {
@@ -126,10 +124,10 @@ function userReducer(
       state.searchProductText = action.searchProductText;
       let matchedProducts;
       if (products.length === 0 && state.searchProductText === "") return;
-      if(products.length > 0 && state.searchProductText === ""){
+      if (products.length > 0 && state.searchProductText === "") {
         return {
           ...state,
-        }
+        };
       }
       matchedProducts = products.filter((item) => {
         return (
@@ -149,6 +147,29 @@ function userReducer(
           productsSelect: [...matchedProducts],
         };
       }
+    }
+
+    case ADD_TO_CART: {
+      const { cart } = state;
+      const { productInCart } = action;
+
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].product.key === productInCart.product.key) {
+          return {
+            ...state,
+            cart: [
+              ...cart.slice(0, i),
+              { ...cart[i], quantity: cart[i].quantity + 1 },
+              ...cart.slice(i + 1),
+            ],
+          };
+        }
+      }
+
+      return {
+        ...state,
+        cart: [...cart, productInCart],
+      };
     }
 
     default:

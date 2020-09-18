@@ -1,14 +1,22 @@
 import React, { Component } from "react";
 import { Col, Typography, Empty, Card, Button } from "antd";
 import { connect } from "react-redux";
+import { addToCart } from "../../actions/userActions";
 import "./TopNew.css";
 
 const { Title } = Typography;
 
 class Products extends Component {
-  addToCard = (item) => {
+  addToCart = (item) => {
+    const { cart, addToCart } = this.props;
     return (e) => {
-      console.log('item',item);
+      const productInCart = {
+        product: { ...item },
+        key: cart.length === 0 ? 0 : cart[cart.length - 1].key + 1,
+        quantity: 1,
+        price: item.price,
+      };
+      addToCart(productInCart);
     };
   };
 
@@ -36,7 +44,7 @@ class Products extends Component {
                 <Button
                   className="d-block mx-auto mb-1"
                   type="primary"
-                  onClick={this.addToCard(item)}
+                  onClick={this.addToCart(item)}
                 >
                   Add to Cart
                 </Button>
@@ -64,7 +72,7 @@ class Products extends Component {
                 <Button
                   className="d-block mx-auto mb-1"
                   type="primary"
-                  onClick={this.addToCard(item)}
+                  onClick={this.addToCart(item)}
                 >
                   Add to Cart
                 </Button>
@@ -101,7 +109,7 @@ class Products extends Component {
                 <Button
                   className="d-block mx-auto mb-1"
                   type="primary"
-                  onClick={this.addToCard(item)}
+                  onClick={this.addToCart(item)}
                 >
                   Add to Cart
                 </Button>
@@ -128,7 +136,7 @@ class Products extends Component {
                 <Button
                   className="d-block mx-auto mb-1"
                   type="primary"
-                  onClick={this.addToCard(item)}
+                  onClick={this.addToCart(item)}
                 >
                   Add to Cart
                 </Button>
@@ -150,7 +158,8 @@ function mapStateToProps(state) {
     products: state.user.products,
     productsSelect: state.user.productsSelect,
     searchProductText: state.user.searchProductText,
+    cart: state.user.cart,
   };
 }
 
-export default connect(mapStateToProps)(Products);
+export default connect(mapStateToProps, { addToCart })(Products);

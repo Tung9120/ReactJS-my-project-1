@@ -24,7 +24,11 @@ class SearchProduct extends Component {
   onAlert = (event) => {
     const { products, productsSelect, searchProductText } = this.props;
 
-    if(event.keyCode === 13 && (searchProductText === "" || searchProductText === null) && products.length !== 0){
+    if (
+      event.keyCode === 13 &&
+      (searchProductText === "" || searchProductText === null) &&
+      products.length !== 0
+    ) {
       this.openNotificationWithIcon("success", "Get all products");
     }
 
@@ -51,15 +55,21 @@ class SearchProduct extends Component {
 
   render() {
     return (
-      <Col span={8} offset={16} className="my-2">
-        <Search
-          placeholder="Search products"
-          onSearch={this.onSearch}
-          enterButton
-          style={{ verticalAlign: "middle" }}
-          onKeyUp={this.onAlert}
-        />
-      </Col>
+      <>
+        {this.props.products.length === 0 ? (
+          ""
+        ) : (
+          <Col span={8} offset={16} className="my-2">
+            <Search
+              placeholder="Search products"
+              onSearch={this.onSearch}
+              enterButton
+              style={{ verticalAlign: "middle" }}
+              onKeyUp={this.onAlert}
+            />
+          </Col>
+        )}
+      </>
     );
   }
 }
