@@ -8,7 +8,6 @@ const { Title } = Typography;
 class Products extends Component {
   addToCard = (item) => {
     return (e) => {
-      console.log('e',e);
       console.log('item',item);
     };
   };

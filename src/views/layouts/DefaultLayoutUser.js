@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { Layout, Menu, Breadcrumb, Spin, Row } from "antd";
+import { Layout, Menu, Breadcrumb, Spin, Row, Badge } from "antd";
 import {
   HomeOutlined,
   ShoppingCartOutlined,
@@ -23,6 +23,7 @@ const { Header, Content, Footer } = Layout;
 class DefaultLayoutUser extends Component {
   state = {
     current: "home",
+    show: true,
   };
 
   handleClick = (e) => {
@@ -56,7 +57,13 @@ class DefaultLayoutUser extends Component {
                 <Link to="/products">Products</Link>
               </Menu.Item>
               <Menu.Item key="alipay" icon={<ShoppingCartOutlined />}>
-                <Link to="/cart">Cart</Link>
+                <Link to="/cart">
+                  <Badge
+                    dot={this.state.show}
+                  >
+                    Cart
+                  </Badge>
+                </Link>
               </Menu.Item>
             </Menu>
           </Header>
@@ -83,7 +90,9 @@ class DefaultLayoutUser extends Component {
                   <Route path="/products">
                     <Breadcrumb style={{ margin: "16px 0" }}>
                       <Breadcrumb.Item>Home</Breadcrumb.Item>
-                      <Breadcrumb.Item><Link to="/products">Products</Link></Breadcrumb.Item>
+                      <Breadcrumb.Item>
+                        <Link to="/products">Products</Link>
+                      </Breadcrumb.Item>
                     </Breadcrumb>
                     <Row gutter={16} justify="center" className="TopNew">
                       <SearchProduct />

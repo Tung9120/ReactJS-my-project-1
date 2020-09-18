@@ -23,6 +23,8 @@ const initialStateUser = {
   topNew: [],
   productsSelect: [],
   searchProductText: null,
+  cart: [],
+  orders: [],
 };
 
 function userReducer(

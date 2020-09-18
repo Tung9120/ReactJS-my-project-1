@@ -2,8 +2,16 @@ import React, { Component } from "react";
 import { InputNumber } from "antd";
 
 class QuantityProduct extends Component {
+
+  componentDidMount(){
+    const { product } = this.props;
+    console.log('total', product.price * product.quantity);
+  }
+
   onChange = (value) => {
-    console.log("changed", value);
+    console.log(this.props);
+    const {product} = this.props;
+    console.log("total", value * product.price);
   };
 
   render() {
