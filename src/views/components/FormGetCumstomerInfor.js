@@ -25,10 +25,6 @@ class FormGetCumstomerInfor extends Component {
     });
   };
 
-  componentDidUpdate(){
-    console.log('a')
-  }
-
   onFinish = (values) => {
     const { cart, order, bills } = this.props;
     const { name, phone, adress } = values.user;
@@ -43,11 +39,6 @@ class FormGetCumstomerInfor extends Component {
     order(bill);
     this.openNotificationWithIcon("success");
   };
-
-  componentDidUpdate() {
-    console.log(1)
-    this.onReset();
-  }
 
   render() {
     return (
