@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 import { InputNumber } from "antd";
+import { connect } from "react-redux";
+import { changeQuantity } from "../../actions/userActions";
 
 class QuantityProduct extends Component {
-
-  // componentDidMount(){
-  //   const { product } = this.props;
-  //   console.log('total', product.price * product.quantity);
-  // }
-
   onChange = (value) => {
-    console.log(this.props);
-    const {product} = this.props;
-    console.log("total", value * product.price);
+    const { product, changeQuantity } = this.props;
+    product.quantity = value;
+    changeQuantity(product);
   };
 
   render() {
-    const {defaultValue} = this.props
+    const { defaultValue } = this.props;
     return (
       <>
-        <InputNumber min={1} defaultValue={defaultValue} onChange={this.onChange} />
+        <InputNumber
+          min={0}
+          defaultValue={defaultValue}
+          onChange={this.onChange}
+        />
       </>
     );
   }
 }
 
-export default QuantityProduct;
+export default connect(null, { changeQuantity })(QuantityProduct);

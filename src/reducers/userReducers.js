@@ -10,6 +10,7 @@ import {
   DELETE_PRODUCT,
   SEARCH_PRODUCT,
   ADD_TO_CART,
+  CHANGE_QUANTITY,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -91,7 +92,7 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
         ...state,
         products: [
           ...state.products.slice(0, index),
-          productUpdated,
+          { ...productUpdated },
           ...state.products.slice(index + 1),
         ],
       };
@@ -169,6 +170,34 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       return {
         ...state,
         cart: [...cart, productInCart],
+      };
+    }
+
+    case CHANGE_QUANTITY: {
+      const { cart } = state;
+      const { newProductInCart } = action;
+      let index;
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].key === newProductInCart.key) {
+          index = i;
+          break;
+        }
+      }
+
+      if (newProductInCart.quantity === 0) {
+        return {
+          ...state,
+          cart: [...cart.slice(0, index), ...cart.slice(index + 1)],
+        };
+      }
+
+      return {
+        ...state,
+        cart: [
+          ...cart.slice(0, index),
+          { ...newProductInCart },
+          ...cart.slice(index + 1),
+        ],
       };
     }
 

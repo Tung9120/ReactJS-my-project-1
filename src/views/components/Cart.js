@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from "react";
 import { Table, Space, Typography, Spin, Button, Empty } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 
 const { Title, Text } = Typography;

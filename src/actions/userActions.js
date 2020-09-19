@@ -11,6 +11,7 @@ import {
   DELETE_PRODUCT,
   SEARCH_PRODUCT,
   ADD_TO_CART,
+  CHANGE_QUANTITY
 } from "../constants/ActionsType";
 import jwtDecode from "jwt-decode";
 
@@ -64,3 +65,7 @@ export const searchProduct = (data) => (dispatch) => {
 export const addToCart = (data) => (dispatch) => {
   dispatch({ type: ADD_TO_CART, productInCart: data });
 };
+
+export const changeQuantity = (data) => (dispatch) => {
+  dispatch({type: CHANGE_QUANTITY, newProductInCart: data});
+}
