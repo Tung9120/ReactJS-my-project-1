@@ -62,6 +62,7 @@ class Cart extends Component {
 
     return (
       <>
+        <Title level={2} align="center">Cart</Title>
         <Suspense fallback={<Spin />}>
           <Table columns={columns} dataSource={data} />
           <Title level={3} type="mark" align="center">
