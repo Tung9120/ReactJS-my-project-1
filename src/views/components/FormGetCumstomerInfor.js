@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, notification } from "antd";
+import { connect } from "react-redux";
+import { order } from "../../actions/userActions";
 
 const layout = {
   labelCol: { span: 5 },
@@ -20,13 +22,24 @@ class FormGetCumstomerInfor extends Component {
   };
 
   onFinish = (values) => {
-    console.log(values);
+    const { cart, order, bills } = this.props;
+    const { name, phone, adress } = values.user;
+    const bill = {
+      billId: bills.length === 0 ? ("BILL" + 0) : ("BILL" + bills[bills.length - 1] + 1),
+      key: bills.length === 0 ? 0 : bills[bills.length - 1] + 1,
+      name,
+      phone,
+      adress,
+      cart: [...cart],
+    };
+    order(bill);
     this.props.closeModal();
     this.openNotificationWithIcon("success");
     this.formRef.current.resetFields();
   };
 
   componentDidUpdate() {
+    console.log(1)
     this.formRef.current.resetFields();
   }
 
@@ -72,4 +85,11 @@ class FormGetCumstomerInfor extends Component {
   }
 }
 
-export default FormGetCumstomerInfor;
+function mapStateToProps(state) {
+  return {
+    cart: state.user.cart,
+    bills: state.user.bills,
+  };
+}
+
+export default connect(mapStateToProps, { order })(FormGetCumstomerInfor);

@@ -77,7 +77,6 @@ export const removeProduct = (data) => (dispatch) => {
 };
 
 export const order = (data) => (dispatch) => {
-  dispatch({type: ORDER, order: data});
-  console.log(data)
+  dispatch({type: ORDER, bill: data});
 }
 

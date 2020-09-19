@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { Table, Space, Typography, Spin, Button, Empty } from "antd";
+import { Table, Space, Typography, Spin, Empty } from "antd";
 import { connect } from "react-redux";
 
 const { Title, Text } = Typography;

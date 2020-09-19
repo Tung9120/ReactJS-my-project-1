@@ -12,6 +12,7 @@ import {
   ADD_TO_CART,
   CHANGE_QUANTITY,
   REMOVE_PRODUCT,
+  ORDER,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -27,7 +28,7 @@ const initialStateUser = {
   productsSelect: [],
   searchProductText: null,
   cart: [],
-  orders: [],
+  bills: [],
 };
 
 function userReducer(state = initialStateUser, action = { payload: {} }) {
@@ -218,6 +219,13 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
         cart: [...cart.slice(0, index), ...cart.slice(index + 1)],
       };
     }
+
+    case ORDER:
+      return {
+        ...state,
+        bills: [...state.bills, action.bill],
+        cart: [],
+      };
 
     default:
       return state;
