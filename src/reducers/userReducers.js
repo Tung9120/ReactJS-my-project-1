@@ -215,11 +215,8 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
 
       return {
         ...state,
-        cart: [
-          ...cart.slice(0, index),
-          ...cart.slice( index + 1)
-        ]
-      }
+        cart: [...cart.slice(0, index), ...cart.slice(index + 1)],
+      };
     }
 
     default:
