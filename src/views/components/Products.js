@@ -13,6 +13,8 @@ class Products extends Component {
       const productInCart = {
         product: { ...item },
         key: cart.length === 0 ? 0 : cart[cart.length - 1].key + 1,
+        name: item.name,
+        avatar: item.avatar,
         quantity: 1,
         price: item.price,
       };
@@ -81,8 +83,8 @@ class Products extends Component {
           ))}
 
         {products.length === 0 && productsSelect.length === 0 && (
-          <div className="my-2">
-            <Title level={2} align="center">
+          <div>
+            <Title level={3} align="center">
               Products
             </Title>
             <Empty />

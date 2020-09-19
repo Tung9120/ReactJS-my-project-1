@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from "react";
-import { Table, Space, Typography, Spin, Button } from "antd";
+import { Table, Space, Typography, Spin, Button, Empty } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import { connect } from "react-redux";
 
 const { Title, Text } = Typography;
 const QuantityProduct = React.lazy(() => import("./QuantityProduct"));
@@ -44,38 +45,41 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: 1,
-    name: "A",
-    avatar: "https://via.placeholder.com/64",
-    quantity: 1,
-    price: 3,
-  },
-];
-
 class Cart extends Component {
   render() {
-    const total = data.reduce((a, b) => {
-      return a + b.price;
-    }, 0);    
+    const { cart } = this.props;
+    const total = cart.reduce((a, b) => a + b.price * b.quantity, 0);
 
     return (
       <>
-        <Title level={2} align="center">Cart</Title>
+        <Title level={3} align="center">
+          Cart
+        </Title>
         <Suspense fallback={<Spin />}>
-          <Table columns={columns} dataSource={data} />
-          <Title level={3} type="mark" align="center">
-            <Text underline>Total: </Text>
-            <Text type="danger">${total}</Text>
-          </Title>
-          <Title align="center" style={{ marginTop: "0" }}>
-            <Button type="primary">Order</Button>
-          </Title>
+          {cart.length === 0 ? <Empty /> : <Table columns={columns} dataSource={cart} />}
+          {cart.length === 0 ? (
+            ""
+          ) : (
+            <>
+              <Title level={3} type="mark" align="center">
+                <Text underline>Total: </Text>
+                <Text type="danger">${total}</Text>
+              </Title>
+              <Title align="center" style={{ marginTop: "0" }}>
+                <Button type="primary">Order</Button>
+              </Title>
+            </>
+          )}
         </Suspense>
       </>
     );
   }
 }
 
-export default Cart;
+function mapStateToProps(state) {
+  return {
+    cart: state.user.cart,
+  };
+}
+
+export default connect(mapStateToProps)(Cart);
