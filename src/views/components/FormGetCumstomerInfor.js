@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, notification } from "antd";
 
 const layout = {
   labelCol: { span: 5 },
@@ -11,16 +11,22 @@ const validateMessages = {
 };
 
 class FormGetCumstomerInfor extends Component {
-
   formRef = React.createRef();
+
+  openNotificationWithIcon = (type) => {
+    notification[type]({
+      message: "Order Success",
+    });
+  };
 
   onFinish = (values) => {
     console.log(values);
     this.props.closeModal();
+    this.openNotificationWithIcon("success");
     this.formRef.current.resetFields();
   };
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.formRef.current.resetFields();
   }
 
