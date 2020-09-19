@@ -33,6 +33,7 @@ class DefaultLayoutUser extends Component {
   render() {
     const { current } = this.state;
     const { cart } = this.props;
+    const count = cart.reduce((a, b) => a + b.quantity, 0);
     return (
       <Router>
         <Layout className="layout">
@@ -59,7 +60,7 @@ class DefaultLayoutUser extends Component {
               </Menu.Item>
               <Menu.Item key="alipay" icon={<ShoppingCartOutlined />}>
                 <Link to="/cart">
-                  <Badge dot={cart.length ? true: false}>Cart</Badge>
+                  <Badge count={count}>Cart</Badge>
                 </Link>
               </Menu.Item>
             </Menu>
@@ -125,10 +126,10 @@ class DefaultLayoutUser extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return{
-    cart: state.user.cart
-  }
+function mapStateToProps(state) {
+  return {
+    cart: state.user.cart,
+  };
 }
 
 export default connect(mapStateToProps)(DefaultLayoutUser);
