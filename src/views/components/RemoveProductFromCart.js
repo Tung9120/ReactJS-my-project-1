@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Tooltip, Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import { connect } from "react-redux";
+import { removeProduct } from "../../actions/userActions";
 
 class RemoveProductFromCart extends Component {
   onClick = (e) => {
-    const { product } = this.props;
-    console.log(product);
+    const { product, removeProduct } = this.props;
+    removeProduct(product);
   };
 
   render() {
@@ -21,4 +23,4 @@ class RemoveProductFromCart extends Component {
   }
 }
 
-export default RemoveProductFromCart;
+export default connect(null, { removeProduct })(RemoveProductFromCart);

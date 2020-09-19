@@ -11,6 +11,7 @@ import {
   SEARCH_PRODUCT,
   ADD_TO_CART,
   CHANGE_QUANTITY,
+  REMOVE_PRODUCT,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -199,6 +200,26 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
           ...cart.slice(index + 1),
         ],
       };
+    }
+
+    case REMOVE_PRODUCT: {
+      const { cart } = state;
+      const { productRemove } = action;
+      let index;
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].key === productRemove.key) {
+          index = i;
+          break;
+        }
+      }
+
+      return {
+        ...state,
+        cart: [
+          ...cart.slice(0, index),
+          ...cart.slice( index + 1)
+        ]
+      }
     }
 
     default:
