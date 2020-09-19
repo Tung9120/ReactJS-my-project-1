@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 
 const { Title, Text } = Typography;
 const QuantityProduct = React.lazy(() => import("./QuantityProduct"));
+const RemoveProductFromCart = React.lazy(() =>
+  import("./RemoveProductFromCart")
+);
 
 const columns = [
   {
@@ -37,9 +40,7 @@ const columns = [
     key: "action",
     render: (text, record) => (
       <Space size="middle">
-        <Button type="danger" onClick={() => console.log(record)}>
-          <DeleteOutlined />
-        </Button>
+        <RemoveProductFromCart product={record} />
       </Space>
     ),
   },
@@ -56,7 +57,11 @@ class Cart extends Component {
           Cart
         </Title>
         <Suspense fallback={<Spin />}>
-          {cart.length === 0 ? <Empty /> : <Table columns={columns} dataSource={cart} />}
+          {cart.length === 0 ? (
+            <Empty />
+          ) : (
+            <Table columns={columns} dataSource={cart} />
+          )}
           {cart.length === 0 ? (
             ""
           ) : (

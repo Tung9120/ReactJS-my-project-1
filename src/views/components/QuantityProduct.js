@@ -3,10 +3,10 @@ import { InputNumber } from "antd";
 
 class QuantityProduct extends Component {
 
-  componentDidMount(){
-    const { product } = this.props;
-    console.log('total', product.price * product.quantity);
-  }
+  // componentDidMount(){
+  //   const { product } = this.props;
+  //   console.log('total', product.price * product.quantity);
+  // }
 
   onChange = (value) => {
     console.log(this.props);
