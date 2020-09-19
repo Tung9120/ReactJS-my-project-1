@@ -30,7 +30,7 @@ class FormGetCumstomerInfor extends Component {
     const { name, phone, adress } = values.user;
     const bill = {
       billId: bills.length === 0 ? ("BILL" + 0) : ("BILL" + (bills[bills.length - 1].key + 1)),
-      key: bills.length === 0 ? 0 : bills[bills.length - 1] + 1,
+      key: bills.length === 0 ? 0 : bills[bills.length - 1].key + 1,
       name,
       phone,
       adress,
