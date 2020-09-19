@@ -71,7 +71,7 @@ class Cart extends Component {
                 <Text type="danger">${total}</Text>
               </Title>
               <Title align="center" style={{ marginTop: "0" }}>
-                <ModalGetCumstomerInfor />
+                  <ModalGetCumstomerInfor />
               </Title>
             </>
           )}

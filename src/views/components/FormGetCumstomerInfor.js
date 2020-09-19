@@ -15,11 +15,19 @@ const validateMessages = {
 class FormGetCumstomerInfor extends Component {
   formRef = React.createRef();
 
+  onReset = () => {
+    this.formRef.current.resetFields();
+  };
+
   openNotificationWithIcon = (type) => {
     notification[type]({
       message: "Order Success",
     });
   };
+
+  componentDidUpdate(){
+    console.log('a')
+  }
 
   onFinish = (values) => {
     const { cart, order, bills } = this.props;
@@ -33,14 +41,12 @@ class FormGetCumstomerInfor extends Component {
       cart: [...cart],
     };
     order(bill);
-    this.props.closeModal();
     this.openNotificationWithIcon("success");
-    this.formRef.current.resetFields();
   };
 
   componentDidUpdate() {
     console.log(1)
-    this.formRef.current.resetFields();
+    this.onReset();
   }
 
   render() {
@@ -78,6 +84,9 @@ class FormGetCumstomerInfor extends Component {
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
+            <Button htmlType="button" onClick={this.onReset} className="mx-1">
+            Reset
+          </Button>
           </Form.Item>
         </Form>
       </>
