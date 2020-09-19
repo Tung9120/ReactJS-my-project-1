@@ -11,3 +11,4 @@ export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+export const ORDER = "ORDER";

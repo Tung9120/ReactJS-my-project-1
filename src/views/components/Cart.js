@@ -7,6 +7,7 @@ const QuantityProduct = React.lazy(() => import("./QuantityProduct"));
 const RemoveProductFromCart = React.lazy(() =>
   import("./RemoveProductFromCart")
 );
+const ModalGetCumstomerInfor = React.lazy(() => import("./ModalGetCustomerInfor"))
 
 const columns = [
   {
@@ -70,7 +71,7 @@ class Cart extends Component {
                 <Text type="danger">${total}</Text>
               </Title>
               <Title align="center" style={{ marginTop: "0" }}>
-                <Button type="primary">Order</Button>
+                <ModalGetCumstomerInfor />
               </Title>
             </>
           )}
