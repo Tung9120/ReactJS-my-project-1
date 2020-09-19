@@ -59,7 +59,14 @@ class SearchProduct extends Component {
         {this.props.products.length === 0 ? (
           ""
         ) : (
-          <Col span={8} offset={16} lg={{span: 8, offset: 16}} xs={{span: 24, offset: 0}} className="my-2">
+          <Col
+            span={8}
+            offset={16}
+            lg={{ span: 8, offset: 16 }}
+            sm={{ span: 10, offset: 14 }}
+            xs={{ span: 24, offset: 0 }}
+            className="my-2"
+          >
             <Search
               placeholder="Search products"
               onSearch={this.onSearch}
