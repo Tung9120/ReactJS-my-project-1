@@ -10,6 +10,8 @@ import {
   CreditCardOutlined,
   DollarCircleOutlined,
   BellOutlined,
+  SnippetsOutlined,
+  FileTextOutlined,
 } from "@ant-design/icons";
 import { Redirect } from "react-router";
 
@@ -18,8 +20,12 @@ const AdminList = React.lazy(() => import("./views/components/AdminList"));
 const AddProduct = React.lazy(() => import("./views/components/AddProduct"));
 const ProductList = React.lazy(() => import("./views/components/ProductList"));
 const CarouselMng = React.lazy(() => import("./views/components/CarouselMng"));
-const CardsTopMng = React.lazy(() => import('./views/components/CardsTopMng.js'));
-const TopSellingMng = React.lazy(() => import("./views/components/TopSellingMng"));
+const CardsTopMng = React.lazy(() =>
+  import("./views/components/CardsTopMng.js")
+);
+const TopSellingMng = React.lazy(() =>
+  import("./views/components/TopSellingMng")
+);
 const TopNewMng = React.lazy(() => import("./views/components/TopNewMng.js"));
 
 const routes = [
@@ -95,6 +101,19 @@ const routes = [
         path: "/admin/home-page/top-new",
         component: <TopNewMng />,
         childIcon: <BellOutlined />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    name: "Order",
+    parIcon: <SnippetsOutlined />,
+    children: [
+      {
+        name: "Bill",
+        path: "/admin/manage-order/bills",
+        component: <div>bills</div>,
+        childIcon: <FileTextOutlined />,
       },
     ],
   },
