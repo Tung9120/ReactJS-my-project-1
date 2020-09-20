@@ -40,7 +40,7 @@ class PhotoCarousel extends Component {
         <Carousel autoplay className="mb-1">
           {carouselData.length !== 3 ? (
             <div>
-              <h2 className="text-center">Carousel</h2>
+              <Title level={3} align="center">Carousel</Title>
               <Empty />
             </div>
           ) : (

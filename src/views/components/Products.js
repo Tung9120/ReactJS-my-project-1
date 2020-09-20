@@ -28,59 +28,75 @@ class Products extends Component {
       <>
         {products.length > 0 &&
           productsSelect.length > 0 &&
-          searchProductText === "" &&
-          products.map((item, i) => (
-            <Col span={5} className="col mb-1" key={i}>
-              <Card hoverable>
-                <img src={item.avatar} alt="?" className="w-100" />
-                <p className="text-center bold mt-1">{item.name}</p>
-                <Title
-                  level={4}
-                  className="text-center bold mt-1"
-                  style={{
-                    color: "#524dda",
-                  }}
-                >
-                  ${item.price}
+          searchProductText === "" && (
+            <>
+              <Col span={24}>
+                <Title level={3} align="center">
+                  Products
                 </Title>
-                <Button
-                  className="d-block mx-auto mb-1"
-                  type="primary"
-                  onClick={this.addToCart(item)}
-                >
-                  Add to Cart
-                </Button>
-              </Card>
-            </Col>
-          ))}
+              </Col>
+              {products.map((item, i) => (
+                <Col span={5} className="col mb-1" key={i}>
+                  <Card hoverable>
+                    <img src={item.avatar} alt="?" className="w-100" />
+                    <p className="text-center bold mt-1">{item.name}</p>
+                    <Title
+                      level={4}
+                      className="text-center bold mt-1"
+                      style={{
+                        color: "#524dda",
+                      }}
+                    >
+                      ${item.price}
+                    </Title>
+                    <Button
+                      className="d-block mx-auto mb-1"
+                      type="primary"
+                      onClick={this.addToCart(item)}
+                    >
+                      Add to Cart
+                    </Button>
+                  </Card>
+                </Col>
+              ))}
+            </>
+          )}
 
         {products.length > 0 &&
           productsSelect.length === 0 &&
-          searchProductText !== "" &&
-          products.map((item, i) => (
-            <Col span={5} className="col mb-1" key={i}>
-              <Card hoverable>
-                <img src={item.avatar} alt="?" className="w-100" />
-                <p className="text-center bold mt-1">{item.name}</p>
-                <Title
-                  level={4}
-                  className="text-center bold mt-1"
-                  style={{
-                    color: "#524dda",
-                  }}
-                >
-                  ${item.price}
+          searchProductText !== "" && (
+            <>
+              <Col span={24}>
+                <Title level={3} align="center">
+                  Products
                 </Title>
-                <Button
-                  className="d-block mx-auto mb-1"
-                  type="primary"
-                  onClick={this.addToCart(item)}
-                >
-                  Add to Cart
-                </Button>
-              </Card>
-            </Col>
-          ))}
+              </Col>
+              {products.map((item, i) => (
+                <Col span={5} className="col mb-1" key={i}>
+                  <Card hoverable>
+                    <img src={item.avatar} alt="?" className="w-100" />
+                    <p className="text-center bold mt-1">{item.name}</p>
+                    <Title
+                      level={4}
+                      className="text-center bold mt-1"
+                      style={{
+                        color: "#524dda",
+                      }}
+                    >
+                      ${item.price}
+                    </Title>
+                    <Button
+                      className="d-block mx-auto mb-1"
+                      type="primary"
+                      onClick={this.addToCart(item)}
+                    >
+                      Add to Cart
+                    </Button>
+                  </Card>
+                </Col>
+              ))}
+            </>
+          )}
 
         {products.length === 0 && productsSelect.length === 0 && (
           <div>
@@ -93,58 +109,73 @@ class Products extends Component {
 
         {products.length > 0 &&
           productsSelect.length === 0 &&
-          searchProductText === "" &&
-          products.map((item, i) => (
-            <Col span={5} className="col mb-1" key={i}>
-              <Card hoverable>
-                <img src={item.avatar} alt="?" className="w-100" />
-                <p className="text-center bold mt-1">{item.name}</p>
-                <Title
-                  level={4}
-                  className="text-center bold mt-1"
-                  style={{
-                    color: "#524dda",
-                  }}
-                >
-                  ${item.price}
+          searchProductText === "" && (
+            <>
+              <Col span={24}>
+                <Title level={3} align="center">
+                  Products
                 </Title>
-                <Button
-                  className="d-block mx-auto mb-1"
-                  type="primary"
-                  onClick={this.addToCart(item)}
-                >
-                  Add to Cart
-                </Button>
-              </Card>
-            </Col>
-          ))}
+              </Col>
+              {products.map((item, i) => (
+                <Col span={5} className="col mb-1" key={i}>
+                  <Card hoverable>
+                    <img src={item.avatar} alt="?" className="w-100" />
+                    <p className="text-center bold mt-1">{item.name}</p>
+                    <Title
+                      level={4}
+                      className="text-center bold mt-1"
+                      style={{
+                        color: "#524dda",
+                      }}
+                    >
+                      ${item.price}
+                    </Title>
+                    <Button
+                      className="d-block mx-auto mb-1"
+                      type="primary"
+                      onClick={this.addToCart(item)}
+                    >
+                      Add to Cart
+                    </Button>
+                  </Card>
+                </Col>
+              ))}
+            </>
+          )}
 
-        {productsSelect.length > 0 &&
-          searchProductText !== "" &&
-          productsSelect.map((item, i) => (
-            <Col span={5} className="col mb-1" key={i}>
-              <Card hoverable>
-                <img src={item.avatar} alt="?" className="w-100" />
-                <p className="text-center bold mt-1">{item.name}</p>
-                <Title
-                  level={4}
-                  className="text-center bold mt-1"
-                  style={{
-                    color: "#524dda",
-                  }}
-                >
-                  ${item.price}
-                </Title>
-                <Button
-                  className="d-block mx-auto mb-1"
-                  type="primary"
-                  onClick={this.addToCart(item)}
-                >
-                  Add to Cart
-                </Button>
-              </Card>
+        {productsSelect.length > 0 && searchProductText !== "" && (
+          <>
+            <Col span={24}>
+              <Title level={3} align="center">
+                Products
+              </Title>
             </Col>
-          ))}
+            {productsSelect.map((item, i) => (
+              <Col span={5} className="col mb-1" key={i}>
+                <Card hoverable>
+                  <img src={item.avatar} alt="?" className="w-100" />
+                  <p className="text-center bold mt-1">{item.name}</p>
+                  <Title
+                    level={4}
+                    className="text-center bold mt-1"
+                    style={{
+                      color: "#524dda",
+                    }}
+                  >
+                    ${item.price}
+                  </Title>
+                  <Button
+                    className="d-block mx-auto mb-1"
+                    type="primary"
+                    onClick={this.addToCart(item)}
+                  >
+                    Add to Cart
+                  </Button>
+                </Card>
+              </Col>
+            ))}
+          </>
+        )}
 
         {products.length > 0 &&
           productsSelect.length === 0 &&

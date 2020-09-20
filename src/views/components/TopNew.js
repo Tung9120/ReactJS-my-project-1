@@ -31,9 +31,9 @@ class TopNew extends Component {
     return (
       <>
         <div className="my-2">
-          <h2 className="text-center">
+          <Title level={3} align="center">
             Top New
-          </h2>
+          </Title>
         </div>
         <Row gutter={16} justify="center" className="TopNew">
           {topNewData.length !== 4 ? (

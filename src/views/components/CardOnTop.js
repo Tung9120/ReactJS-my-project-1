@@ -29,7 +29,7 @@ class CardOnTop extends Component {
         <Row gutter={16} className="CardOnTop">
           {topCards.length !== 3 ? (
             <div style={{ margin: "0 auto" }}>
-              <h2 className="text-center">Top Cards</h2>
+              <Title level={3} align="center">Top Cards</Title>
               <Empty />
             </div>
           ) : (
