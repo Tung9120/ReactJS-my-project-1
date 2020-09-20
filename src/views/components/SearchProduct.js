@@ -11,9 +11,9 @@ class SearchProduct extends Component {
     });
   };
 
-  onSearch = (value) => {
+  onSearch = (value, event) => {
     let newValue = value.trim();
-    if (newValue === "" && this.props.products.length === 0) {
+    if ((newValue === "" || newValue === null ) && this.props.products.length === 0) {
       this.props.searchProduct(null);
       return;
     }
@@ -68,6 +68,7 @@ class SearchProduct extends Component {
             className="my-2"
           >
             <Search
+              allowClear={true}
               placeholder="Search products"
               onSearch={this.onSearch}
               enterButton
