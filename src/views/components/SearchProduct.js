@@ -13,44 +13,56 @@ class SearchProduct extends Component {
 
   onSearch = (value, event) => {
     let newValue = value.trim();
-    if ((newValue === "" || newValue === null ) && this.props.products.length === 0) {
+    if (
+      (newValue === "" || newValue === null) &&
+      this.props.products.length === 0
+    ) {
+      this.props.searchProduct(null);
+      return;
+    }
+
+    const { products, productsSelect, searchProductText } = this.props;
+
+    if (
+      (searchProductText === "" || searchProductText === null) &&
+      products.length !== 0 &&
+      productsSelect.length === 0
+    ) {
+      this.openNotificationWithIcon("success", "Get all products");
+      return;
+    }
+
+    if (
+      products.length !== 0 &&
+      productsSelect.length === 0 &&
+      (searchProductText !== "" || searchProductText !== null)
+    ) {
+      this.openNotificationWithIcon("error", "Product not found");
+    }
+
+    if (
+      products.length > 0 &&
+      productsSelect.length > 0 &&
+      (searchProductText !== "" || searchProductText !== null)
+    ) {
+      this.openNotificationWithIcon(
+        "success",
+        `Found ${productsSelect.length} results`
+      );
+    }
+  };
+
+  onChange = (e) => {
+    let newValue = e.target.value.trim();
+    if (
+      (newValue === "" || newValue === null) &&
+      this.props.products.length === 0
+    ) {
       this.props.searchProduct(null);
       return;
     }
 
     this.props.searchProduct(newValue);
-  };
-
-  onAlert = (event) => {
-    const { products, productsSelect, searchProductText } = this.props;
-
-    if (
-      event.keyCode === 13 &&
-      (searchProductText === "" || searchProductText === null) &&
-      products.length !== 0
-    ) {
-      this.openNotificationWithIcon("success", "Get all products");
-    }
-
-    if (event.keyCode === 13) {
-      if (
-        products.length > 0 &&
-        productsSelect.length === 0 &&
-        (searchProductText !== "" || searchProductText === null)
-      ) {
-        this.openNotificationWithIcon("error", "Product not found");
-      }
-      if (
-        products.length > 0 &&
-        productsSelect.length > 0 &&
-        (searchProductText !== "" || searchProductText === null)
-      ) {
-        this.openNotificationWithIcon(
-          "success",
-          `Found ${productsSelect.length} results`
-        );
-      }
-    }
   };
 
   render() {
@@ -68,12 +80,11 @@ class SearchProduct extends Component {
             className="my-2"
           >
             <Search
-              allowClear={true}
               placeholder="Search products"
               onSearch={this.onSearch}
+              onChange={this.onChange}
               enterButton
               style={{ verticalAlign: "middle" }}
-              onKeyUp={this.onAlert}
             />
           </Col>
         )}

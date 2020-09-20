@@ -127,9 +127,10 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       state.searchProductText = action.searchProductText;
       let matchedProducts;
       if (products.length === 0 && state.searchProductText === "") return;
-      if (products.length > 0 && state.searchProductText === "") {
+      if (products.length > 0 && (state.searchProductText === "" || state.searchProductText === null)) {
         return {
           ...state,
+          productsSelect: [] 
         };
       }
       matchedProducts = products.filter((item) => {
