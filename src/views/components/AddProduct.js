@@ -49,7 +49,7 @@ class AddProduct extends Component {
   render() {
     return (
       <>
-        <Typography.Title level={4} align="center">
+        <Typography.Title level={3} align="center">
           Add product
         </Typography.Title>
         <Form

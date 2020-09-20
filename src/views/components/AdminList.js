@@ -51,7 +51,7 @@ class AdminList extends Component {
     const { admins } = this.props;
     return (
       <>
-        <Typography.Title level={4} align="center">
+        <Typography.Title level={3} align="center">
           Admin List
         </Typography.Title>
         <Table pagination={{defaultPageSize: 4}} columns={columns} dataSource={admins} />

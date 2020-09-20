@@ -25,7 +25,7 @@ class CardsTopMng extends Component {
     const { topCards } = this.props;
     return (
       <>
-        <Title level={3}>Manage cards on top</Title>
+        <Title level={3} align="center">Manage cards on top</Title>
         <Suspense fallback={<Spin />}>
           <TopCardsPreview />
         </Suspense>

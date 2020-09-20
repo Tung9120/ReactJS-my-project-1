@@ -59,7 +59,7 @@ class DefaultLayoutAdmin extends Component {
                 {this.props.name}
               </Tag>
             </Header>
-            <Content style={{ margin: "0 16px" }}>
+            <Content style={{ margin: "1rem 16px" }}>
               <Switch>
                 <Suspense fallback={<Spin />}>
                   {routes.map((route, index) =>

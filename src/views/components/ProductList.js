@@ -78,7 +78,7 @@ class ProductList extends Component {
     const { products } = this.props;
     return (
       <>
-        <Typography.Title level={4} align="center">
+        <Typography.Title level={3} align="center">
           Product List
         </Typography.Title>
         <Table
