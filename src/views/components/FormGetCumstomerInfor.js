@@ -29,12 +29,16 @@ class FormGetCumstomerInfor extends Component {
     const { cart, order, bills } = this.props;
     const { name, phone, adress } = values.user;
     const bill = {
-      billId: bills.length === 0 ? ("BILL" + 0) : ("BILL" + (bills[bills.length - 1].key + 1)),
+      billId:
+        bills.length === 0
+          ? "BILL" + 0
+          : "BILL" + (bills[bills.length - 1].key + 1),
       key: bills.length === 0 ? 0 : bills[bills.length - 1].key + 1,
       name,
       phone,
       adress,
       cart: [...cart],
+      total: cart.reduce((a, b) => a + b.price * b.quantity, 0),
     };
     order(bill);
     this.openNotificationWithIcon("success");
@@ -76,8 +80,8 @@ class FormGetCumstomerInfor extends Component {
               Submit
             </Button>
             <Button htmlType="button" onClick={this.onReset} className="mx-1">
-            Reset
-          </Button>
+              Reset
+            </Button>
           </Form.Item>
         </Form>
       </>
