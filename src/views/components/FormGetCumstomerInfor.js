@@ -39,6 +39,7 @@ class FormGetCumstomerInfor extends Component {
       adress,
       cart: [...cart],
       total: cart.reduce((a, b) => a + b.price * b.quantity, 0),
+      status: ["pending"],
     };
     order(bill);
     this.openNotificationWithIcon("success");
