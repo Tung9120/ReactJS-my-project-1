@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Table, Tag, Space, Typography, Button } from "antd";
+import React, { Component, Suspense } from "react";
+import { Table, Tag, Space, Typography, Button, Spin } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
+import AcceptBillBtn from "./AcceptBillBtn";
 
 const { Title } = Typography;
 
@@ -70,14 +71,16 @@ const columns = [
     title: "Handling",
     key: "handling",
     render: (text, record) => (
-      <Space size="middle">
-        <Button type="primary">
-          <CheckOutlined />
-        </Button>
-        <Button type="danger">
-          <CloseOutlined />
-        </Button>
-      </Space>
+      <Suspense fallback={<Spin />}>
+        <Space size="middle">
+          <AcceptBillBtn bill={record} type="primary">
+            <CheckOutlined />
+          </AcceptBillBtn>
+          <Button type="danger">
+            <CloseOutlined />
+          </Button>
+        </Space>
+      </Suspense>
     ),
   },
 ];
