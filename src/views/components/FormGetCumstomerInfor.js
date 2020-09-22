@@ -27,7 +27,7 @@ class FormGetCumstomerInfor extends Component {
 
   onFinish = (values) => {
     const { cart, order, bills } = this.props;
-    const { name, phone, adress } = values.user;
+    const { name, phone, address } = values.user;
     const bill = {
       billId:
         bills.length === 0
@@ -36,7 +36,7 @@ class FormGetCumstomerInfor extends Component {
       key: bills.length === 0 ? 0 : bills[bills.length - 1].key + 1,
       name,
       phone,
-      adress,
+      address,
       cart: [...cart],
       total: cart.reduce((a, b) => a + b.price * b.quantity, 0),
       status: ["pending"],
@@ -70,8 +70,8 @@ class FormGetCumstomerInfor extends Component {
             <Input type="tel" />
           </Form.Item>
           <Form.Item
-            name={["user", "adress"]}
-            label="Adress"
+            name={["user", "address"]}
+            label="Address"
             rules={[{ required: true }]}
           >
             <Input.TextArea />

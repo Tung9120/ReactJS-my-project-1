@@ -27,6 +27,7 @@ const TopSellingMng = React.lazy(() =>
   import("./views/components/TopSellingMng")
 );
 const TopNewMng = React.lazy(() => import("./views/components/TopNewMng.js"));
+const BillMng = React.lazy(() => import("./views/components/BillMng"));
 
 const routes = [
   {
@@ -112,7 +113,7 @@ const routes = [
       {
         name: "Bill",
         path: "/admin/manage-order/bills",
-        component: <div>bills</div>,
+        component: <BillMng />,
         childIcon: <FileTextOutlined />,
       },
     ],
