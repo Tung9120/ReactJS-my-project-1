@@ -8,13 +8,15 @@ const { Title } = Typography;
 class TopSellingPreview extends React.Component {
   render() {
     const { topSelling, products } = this.props;
+    const topSellingData = JSON.parse(topSelling);
+    const productData = JSON.parse(products);
 
     let productsInTopSelling = [];
 
-    for (let i = 0; i < products.length; i++) {
-      for (let j = 0; j < topSelling.length; j++) {
-        if (products[i].key === topSelling[j]) {
-          productsInTopSelling.push(products[i]);
+    for (let i = 0; i < productData.length; i++) {
+      for (let j = 0; j < topSellingData.length; j++) {
+        if (productData[i].key === topSellingData[j]) {
+          productsInTopSelling = [productData[j], ...productsInTopSelling];
         }
       }
     }
@@ -36,11 +38,7 @@ class TopSellingPreview extends React.Component {
             {productsInTopSelling.map((product, index) => (
               <Col span={6} className="col mb-1" key={index}>
                 <Card hoverable>
-                  <img
-                    src={product.avatar}
-                    alt="?"
-                    className="w-100"
-                  />
+                  <img src={product.avatar} alt="?" className="w-100" />
                   <p className="text-center bold mt-1">{product.name}</p>
                   <Title
                     level={4}

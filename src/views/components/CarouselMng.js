@@ -72,16 +72,6 @@ class CarouselMng extends Component {
     };
   }
 
-  componentDidMount() {
-    const { carousel } = this.props;
-    const carouselData = JSON.parse(carousel);
-    this.setState({
-      selectedRowKeys: [
-        ...carouselData
-      ],
-    });
-  }
-
   showModal = () => {
     this.setState({
       visible: true,

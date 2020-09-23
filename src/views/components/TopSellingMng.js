@@ -67,7 +67,7 @@ class TopSellingMng extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRowKeys: this.props.topSelling,
+      selectedRowKeys: JSON.parse(this.props.topSelling),
       visible: false,
     };
   }
@@ -93,10 +93,10 @@ class TopSellingMng extends Component {
   onSelectChange = (selectedRowKeys) => {
     if (selectedRowKeys.length > 4) {
       selectedRowKeys = [
-        selectedRowKeys[selectedRowKeys.length - 4],
-        selectedRowKeys[selectedRowKeys.length - 3],
-        selectedRowKeys[selectedRowKeys.length - 2],
         selectedRowKeys[selectedRowKeys.length - 1],
+        selectedRowKeys[selectedRowKeys.length - 2],
+        selectedRowKeys[selectedRowKeys.length - 3],
+        selectedRowKeys[selectedRowKeys.length - 4],
       ];
       this.props.addTopSelling(selectedRowKeys);
       this.setState({ selectedRowKeys });
@@ -109,6 +109,8 @@ class TopSellingMng extends Component {
   render() {
     const { selectedRowKeys } = this.state;
     const { products, topSelling } = this.props;
+    const productData = JSON.parse(products);
+    const topSellingData = JSON.parse(topSelling);
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -123,7 +125,7 @@ class TopSellingMng extends Component {
             className="my-1"
             type="primary"
             onClick={this.showModal}
-            disabled={topSelling.length < 4}
+            disabled={topSellingData === null || topSellingData.length < 4}
           >
             Top Selling Preview
           </Button>
@@ -137,20 +139,20 @@ class TopSellingMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {topSelling.length === 4 ? (
-          ""
-        ) : (
+        {topSellingData === null || topSellingData.length < 4 ? (
           <Space direction="vertical">
             <Text mark>Warning: The top selling not enough items</Text>
             <Text mark>Note: The top selling contains up to 4 items</Text>
           </Space>
+        ) : (
+          ""
         )}
         <Title level={4}>Product list</Title>
         <Table
           pagination={{ defaultPageSize: 4 }}
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={products}
+          dataSource={productData}
         />
       </>
     );
