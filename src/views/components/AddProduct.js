@@ -11,6 +11,7 @@ import {
 import { connect } from "react-redux";
 import { addProduct } from "../../actions/userActions";
 import { withRouter } from "react-router";
+import { v4 as uuidv4 } from "uuid";
 
 const { Option } = Select;
 
@@ -33,15 +34,17 @@ const validateMessages = {
 class AddProduct extends Component {
   onFinish = (values) => {
     const { products } = this.props;
+
     const newValues = {
       ...values.product,
       status: values.product.status.split(),
     };
     const newProduct = {
-      key: products.length === 0 ? 0 : products[products.length - 1].key + 1,
+      key: uuidv4(),
       avatar: "https://via.placeholder.com/64",
       ...newValues,
     };
+
     this.props.addProduct(newProduct);
     this.props.history.push("/admin/product/product-list");
   };

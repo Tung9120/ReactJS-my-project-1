@@ -19,7 +19,7 @@ const initialStateUser = {
   isLoggedIn: false,
   name: "",
   admins: [],
-  products: [],
+  products: localStorage.getItem("products"),
   newProducts: [],
   carousel: [],
   topCards: [],
@@ -46,11 +46,23 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
         admins: [...state.admins, action.newAdmin],
       };
 
-    case ADD_PRODUCT:
+    case ADD_PRODUCT: {
+      let { products } = state;
+      const { newProduct } = action;
+      if (products === null) {
+        products = [];
+        products.push(newProduct);
+        localStorage.setItem("products", JSON.stringify(products));
+      } else {
+        products = JSON.parse(localStorage.getItem("products"));
+        products = [newProduct, ...products];
+        localStorage.setItem("products", JSON.stringify(products));
+      }
       return {
         ...state,
-        products: [...state.products, action.newProduct],
+        products: localStorage.getItem("products"),
       };
+    }
 
     case ADD_CAROUSEL:
       return {
@@ -127,10 +139,13 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       state.searchProductText = action.searchProductText;
       let matchedProducts;
       if (products.length === 0 && state.searchProductText === "") return;
-      if (products.length > 0 && (state.searchProductText === "" || state.searchProductText === null)) {
+      if (
+        products.length > 0 &&
+        (state.searchProductText === "" || state.searchProductText === null)
+      ) {
         return {
           ...state,
-          productsSelect: [] 
+          productsSelect: [],
         };
       }
       matchedProducts = products.filter((item) => {

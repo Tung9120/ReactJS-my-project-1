@@ -76,6 +76,7 @@ const columns = [
 class ProductList extends Component {
   render() {
     const { products } = this.props;
+    const productData = JSON.parse(products);
     return (
       <>
         <Typography.Title level={3} align="center">
@@ -84,7 +85,7 @@ class ProductList extends Component {
         <Table
           pagination={{ defaultPageSize: 4 }}
           columns={columns}
-          dataSource={products}
+          dataSource={productData}
         />
       </>
     );
