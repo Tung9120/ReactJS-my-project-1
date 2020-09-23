@@ -67,7 +67,7 @@ class TopNewMng extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRowKeys: this.props.topNew,
+      selectedRowKeys: JSON.parse(this.props.topNew),
       visible: false,
     };
   }
@@ -93,10 +93,10 @@ class TopNewMng extends Component {
   onSelectChange = (selectedRowKeys) => {
     if (selectedRowKeys.length > 4) {
       selectedRowKeys = [
-        selectedRowKeys[selectedRowKeys.length - 4],
-        selectedRowKeys[selectedRowKeys.length - 3],
-        selectedRowKeys[selectedRowKeys.length - 2],
         selectedRowKeys[selectedRowKeys.length - 1],
+        selectedRowKeys[selectedRowKeys.length - 2],
+        selectedRowKeys[selectedRowKeys.length - 3],
+        selectedRowKeys[selectedRowKeys.length - 4],
       ];
       this.props.addTopNew(selectedRowKeys);
       this.setState({ selectedRowKeys });
@@ -109,6 +109,8 @@ class TopNewMng extends Component {
   render() {
     const { selectedRowKeys } = this.state;
     const { products, topNew } = this.props;
+    const productData = JSON.parse(products);
+    const topNewData = JSON.parse(topNew);
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -123,7 +125,7 @@ class TopNewMng extends Component {
             className="my-1"
             type="primary"
             onClick={this.showModal}
-            disabled={topNew.length < 4}
+            disabled={topNewData === null || topNewData.length < 4}
           >
             Top New Preview
           </Button>
@@ -137,20 +139,20 @@ class TopNewMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {topNew.length === 4 ? (
-          ""
-        ) : (
+        {topNewData === null || topNew.length < 4 ? (
           <Space direction="vertical">
             <Text mark>Warning: The top new not enough items</Text>
             <Text mark>Note: The top new contains up to 4 items</Text>
           </Space>
+        ) : (
+          ""
         )}
         <Title level={4}>Product list</Title>
         <Table
           pagination={{ defaultPageSize: 4 }}
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={products}
+          dataSource={productData}
         />
       </>
     );
@@ -164,4 +166,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addTopNew})(TopNewMng);
+export default connect(mapStateToProps, { addTopNew })(TopNewMng);

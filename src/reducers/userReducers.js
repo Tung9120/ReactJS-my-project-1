@@ -24,7 +24,7 @@ const initialStateUser = {
   carousel: localStorage.getItem("carousel"),
   topCards: localStorage.getItem("topCards"),
   topSelling: localStorage.getItem("topSelling"),
-  topNew: [],
+  topNew: localStorage.getItem("topNew"),
   productsSelect: [],
   searchProductText: null,
   cart: [],
@@ -126,9 +126,20 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     }
 
     case ADD_TOP_NEW: {
+      let { topNew } = state;
+      const { topNewProducts } = action;
+      if (topNew === null) {
+        topNew = [];
+        topNew = [...topNewProducts];
+        localStorage.setItem("topNew", JSON.stringify(topNew));
+      } else {
+        topNew = JSON.parse(localStorage.getItem("topNew"));
+        topNew = [...topNewProducts];
+        localStorage.setItem("topNew", JSON.stringify(topNew));
+      }
       return {
         ...state,
-        topNew: [...action.topNewProducts],
+        topNew: localStorage.getItem("topNew"),
       };
     }
 

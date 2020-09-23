@@ -8,13 +8,15 @@ const { Title } = Typography;
 class TopNew extends React.Component {
   render() {
     const { topNew, products } = this.props;
+    const topNewData = JSON.parse(topNew);
+    const productData = JSON.parse(products);
 
     let productsInTopNew = [];
 
-    for (let i = 0; i < products.length; i++) {
-      for (let j = 0; j < topNew.length; j++) {
-        if (products[i].key === topNew[j]) {
-          productsInTopNew.push(products[i]);
+    for (let i = 0; i < productData.length; i++) {
+      for (let j = 0; j < topNewData.length; j++) {
+        if (productData[i].key === topNewData[j]) {
+          productsInTopNew = [productData[i], ...productsInTopNew];
         }
       }
     }

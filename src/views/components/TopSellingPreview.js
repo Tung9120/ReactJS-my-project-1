@@ -16,7 +16,7 @@ class TopSellingPreview extends React.Component {
     for (let i = 0; i < productData.length; i++) {
       for (let j = 0; j < topSellingData.length; j++) {
         if (productData[i].key === topSellingData[j]) {
-          productsInTopSelling = [productData[j], ...productsInTopSelling];
+          productsInTopSelling = [productData[i], ...productsInTopSelling];
         }
       }
     }
