@@ -22,7 +22,7 @@ const initialStateUser = {
   products: localStorage.getItem("products"),
   newProducts: [],
   carousel: localStorage.getItem("carousel"),
-  topCards: [],
+  topCards: localStorage.getItem("topCards"),
   topSelling: [],
   topNew: [],
   productsSelect: [],
@@ -85,11 +85,25 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       };
     }
 
-    case ADD_TOP_CARDS:
+    case ADD_TOP_CARDS: {
+      let { topCards } = state;
+      const { newCard } = action;
+
+      if (topCards === null) {
+        topCards = [];
+        topCards = [...newCard];
+        localStorage.setItem("topCards", JSON.stringify(topCards));
+      } else {
+        topCards = JSON.parse(localStorage.getItem("topCards"));
+        topCards = [...newCard];
+        localStorage.setItem("topCards", JSON.stringify(topCards));
+      }
+
       return {
         ...state,
-        topCards: [...action.newCard],
+        topCards: localStorage.getItem("topCards"),
       };
+    }
 
     case ADD_TOP_SELLING:
       return {

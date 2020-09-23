@@ -38,13 +38,14 @@ class TopCardsPreview extends React.Component {
 
   render() {
     const { topCards } = this.props;
+    let topCardData = JSON.parse(topCards);
     return (
       <>
         <Button
           className="my-2"
           type="primary"
           onClick={this.showModal}
-          disabled={topCards.length < 3}
+          disabled={topCardData === null || topCardData.length < 3}
         >
           Top cards preview
         </Button>
@@ -54,11 +55,11 @@ class TopCardsPreview extends React.Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          {topCards.length < 3 ? (
+          {topCardData === null || topCardData.length < 3 ? (
             <Empty />
           ) : (
             <Row gutter={16} className="CardOnTop">
-              {topCards.map((card, index) => (
+              {topCardData.map((card, index) => (
                 <Col span={8} className="col mb-1" key={index}>
                   <Card>
                     <div style={contentStyle}>

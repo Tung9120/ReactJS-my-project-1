@@ -23,6 +23,8 @@ class CardsTopMng extends Component {
 
   render() {
     const { topCards } = this.props;
+    let topCardData = JSON.parse(topCards);
+
     return (
       <>
         <Title level={3} align="center">Manage cards on top</Title>
@@ -39,7 +41,7 @@ class CardsTopMng extends Component {
             name={["cards", "card1"]}
             label="Name card 1"
             rules={[{ required: true }]}
-            initialValue={topCards[0] ? topCards[0] : ""}
+            initialValue={topCardData !== null && topCardData[0] ? topCardData !== null && topCardData[0] : ""}
           >
             <Input />
           </Form.Item>
@@ -47,7 +49,7 @@ class CardsTopMng extends Component {
             name={["cards", "card2"]}
             label="Name card 2"
             rules={[{ required: true }]}
-            initialValue={topCards[1] ? topCards[1] : ""}
+            initialValue={topCardData !== null && topCardData[1] ? topCardData !== null && topCardData[1] : ""}
           >
             <Input />
           </Form.Item>
@@ -55,7 +57,7 @@ class CardsTopMng extends Component {
             name={["cards", "card3"]}
             label="Name card 3"
             rules={[{ required: true }]}
-            initialValue={topCards[2] ? topCards[2] : ""}
+            initialValue={topCardData !== null && topCardData[2] ? topCardData !== null && topCardData[2] : ""}
           >
             <Input />
           </Form.Item>

@@ -73,11 +73,11 @@ class CarouselMng extends Component {
   }
 
   componentDidMount() {
-    const { products } = this.props;
-    const productData = JSON.parse(products);
+    const { carousel } = this.props;
+    const carouselData = JSON.parse(carousel);
     this.setState({
       selectedRowKeys: [
-        productData[0].key,
+        ...carouselData
       ],
     });
   }
