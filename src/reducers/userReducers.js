@@ -21,7 +21,7 @@ const initialStateUser = {
   admins: [],
   products: localStorage.getItem("products"),
   newProducts: [],
-  carousel: [],
+  carousel: localStorage.getItem("carousel"),
   topCards: [],
   topSelling: [],
   topNew: [],
@@ -64,11 +64,26 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       };
     }
 
-    case ADD_CAROUSEL:
+    case ADD_CAROUSEL: {
+      let { carousel } = state;
+      const { newElement } = action;
+      let keysInCarousel = newElement.reverse();
+
+      if (carousel === null) {
+        carousel = [];
+        carousel = [...keysInCarousel];
+        localStorage.setItem("carousel", JSON.stringify(carousel));
+      } else {
+        carousel = JSON.parse(localStorage.getItem("carousel"));
+        carousel = [...keysInCarousel];
+        localStorage.setItem("carousel", JSON.stringify(carousel));
+      }
+
       return {
         ...state,
-        carousel: [...action.newElement],
+        carousel: localStorage.getItem("carousel"),
       };
+    }
 
     case ADD_TOP_CARDS:
       return {

@@ -67,9 +67,19 @@ class CarouselMng extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRowKeys: this.props.carousel,
+      selectedRowKeys: JSON.parse(this.props.carousel),
       visible: false,
     };
+  }
+
+  componentDidMount() {
+    const { products } = this.props;
+    const productData = JSON.parse(products);
+    this.setState({
+      selectedRowKeys: [
+        productData[0].key,
+      ],
+    });
   }
 
   showModal = () => {
@@ -93,9 +103,9 @@ class CarouselMng extends Component {
   onSelectChange = (selectedRowKeys) => {
     if (selectedRowKeys.length > 3) {
       selectedRowKeys = [
-        selectedRowKeys[selectedRowKeys.length - 3],
-        selectedRowKeys[selectedRowKeys.length - 2],
         selectedRowKeys[selectedRowKeys.length - 1],
+        selectedRowKeys[selectedRowKeys.length - 2],
+        selectedRowKeys[selectedRowKeys.length - 3],
       ];
       this.props.addCarousel(selectedRowKeys);
       this.setState({ selectedRowKeys });
@@ -108,6 +118,8 @@ class CarouselMng extends Component {
   render() {
     const { selectedRowKeys } = this.state;
     const { products, carousel } = this.props;
+    const productData = JSON.parse(products);
+    const carouselData = JSON.parse(carousel);
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -122,7 +134,7 @@ class CarouselMng extends Component {
             className="my-1"
             type="primary"
             onClick={this.showModal}
-            disabled={carousel.length < 3}
+            disabled={carouselData === null || carouselData.length < 3}
           >
             Carousel Preview
           </Button>
@@ -136,7 +148,7 @@ class CarouselMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {carousel.length === 3 ? (
+        {carousel !== null && carouselData.length === 3 ? (
           ""
         ) : (
           <Space direction="vertical">
@@ -149,7 +161,7 @@ class CarouselMng extends Component {
           pagination={{ defaultPageSize: 3 }}
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={products}
+          dataSource={productData}
         />
       </>
     );

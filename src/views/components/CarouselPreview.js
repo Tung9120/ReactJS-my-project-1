@@ -13,13 +13,15 @@ const contentStyle = {
 class CarouselPreview extends Component {
   render() {
     const { carousel, products } = this.props;
+    const productData = JSON.parse(products);
+    const carouselData = JSON.parse(carousel);
 
     let productsInCarousel = [];
 
-    for (let i = 0; i < products.length; i++) {
-      for (let j = 0; j < carousel.length; j++) {
-        if (products[i].key === carousel[j]) {
-          productsInCarousel.push(products[i]);
+    for (let i = 0; i < productData.length; i++) {
+      for (let j = 0; j < carouselData.length; j++) {
+        if (productData[i].key === carouselData[j]) {
+          productsInCarousel.push(productData[i]);
         }
       }
     }
@@ -38,8 +40,12 @@ class CarouselPreview extends Component {
                     backgroundImage: `url(${product.avatar})`,
                   }}
                 >
-                  <h3 className="text-white" level={3}>{product.name}</h3>
-                  <h4 className="text-white" level={4}>{product.description}</h4>
+                  <h3 className="text-white" level={3}>
+                    {product.name}
+                  </h3>
+                  <h4 className="text-white" level={4}>
+                    {product.description}
+                  </h4>
                   <Button type="primary">Shop now</Button>
                 </div>
               </div>
