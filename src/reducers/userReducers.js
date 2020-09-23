@@ -20,7 +20,7 @@ const initialStateUser = {
   name: "",
   admins: [],
   products: localStorage.getItem("products"),
-  newProducts: [],
+  // newProducts: [],
   carousel: localStorage.getItem("carousel"),
   topCards: localStorage.getItem("topCards"),
   topSelling: localStorage.getItem("topSelling"),
@@ -146,24 +146,34 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     case UPATE_PRODUCT: {
       const { productUpdated } = action;
       const { products } = state;
+      if (products === null) {
+        return {
+          ...state,
+        };
+      } else {
+        let productData = JSON.parse(products);
+        let index;
 
-      let index;
-
-      for (let i = 0; i < products.length; i++) {
-        if (products[i].key === productUpdated.key) {
-          index = i;
-          break;
+        for (let i = 0; i < productData.length; i++) {
+          if (productData[i].key === productUpdated.key) {
+            index = i;
+            break;
+          }
         }
-      }
 
-      return {
-        ...state,
-        products: [
-          ...state.products.slice(0, index),
+        productData = [
+          ...productData.slice(0, index),
           { ...productUpdated },
-          ...state.products.slice(index + 1),
-        ],
-      };
+          ...productData.slice(index + 1),
+        ];
+
+        localStorage.setItem("products", JSON.stringify(productData));
+
+        return {
+          ...state,
+          products: localStorage.getItem("products"),
+        };
+      }
     }
 
     case DELETE_PRODUCT: {

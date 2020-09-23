@@ -125,7 +125,10 @@ class TopNewMng extends Component {
             className="my-1"
             type="primary"
             onClick={this.showModal}
-            disabled={topNewData === null || topNewData.length < 4}
+            disabled={
+              (topNewData === null || topNewData.length < 4) ||
+              (productData === null || productData.length < 4) 
+            }
           >
             Top New Preview
           </Button>
@@ -139,7 +142,7 @@ class TopNewMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {topNewData === null || topNew.length < 4 ? (
+        {topNewData === null || topNewData.length < 4 ? (
           <Space direction="vertical">
             <Text mark>Warning: The top new not enough items</Text>
             <Text mark>Note: The top new contains up to 4 items</Text>

@@ -125,7 +125,10 @@ class TopSellingMng extends Component {
             className="my-1"
             type="primary"
             onClick={this.showModal}
-            disabled={topSellingData === null || topSellingData.length < 4}
+            disabled={
+              (topSellingData === null || topSellingData.length < 4) ||
+              (productData === null || productData.length < 4) 
+            }
           >
             Top Selling Preview
           </Button>
