@@ -23,6 +23,10 @@ class PhotoCarousel extends Component {
     const productData = JSON.parse(products);
     const carouselStorage = JSON.parse(carousel);
 
+    if(carouselStorage === null || productData === null){
+      return;
+    }
+
     let carouselData = [];
     for (let i = 0; i < carouselStorage.length; i++) {
       for (let j = 0; j < productData.length; j++) {

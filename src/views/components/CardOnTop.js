@@ -21,20 +21,29 @@ class CardOnTop extends Component {
     topCards: [],
   };
 
-  render() {
+  componentDidMount(){
     const { topCards } = this.props;
     const topCardsData = JSON.parse(topCards);
+    if(topCardsData === null) return;
+    this.setState({
+      topCards: topCardsData
+    })
+  }
+
+  render() {
+    const { topCards } = this.state;
+    // const topCardsData = JSON.parse(topCards);
 
     return (
       <>
         <Row gutter={16} className="CardOnTop">
-          {topCardsData.length !== 3 ? (
+          {topCards.length !== 3 ? (
             <div style={{ margin: "0 auto" }}>
               <Title level={3} align="center">Top Cards</Title>
               <Empty />
             </div>
           ) : (
-            topCardsData.map((item, i) => (
+            topCards.map((item, i) => (
               <Col span={8} className="col mb-1" key={i}>
                 <Card>
                   <div style={contentStyle}>

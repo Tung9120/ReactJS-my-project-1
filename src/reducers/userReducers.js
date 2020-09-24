@@ -177,29 +177,59 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     }
 
     case DELETE_PRODUCT: {
-      const { productDeleted } = action;
+      // const { productDeleted } = action;
+      // const { products } = state;
+
+      // let index;
+
+      // for (let i = 0; i < products.length; i++) {
+      //   if (products[i].key === productDeleted.key) {
+      //     index = i;
+      //     break;
+      //   }
+      // }
+
+      // return {
+      //   ...state,
+      //   products: [
+      //     ...state.products.slice(0, index),
+      //     ...state.products.slice(index + 1),
+      //   ],
+      // };
+
+      const { productUpdated } = action;
       const { products } = state;
+      if (products === null) {
+        return {
+          ...state,
+        };
+      } else {
+        let productData = JSON.parse(products);
+        let index;
 
-      let index;
-
-      for (let i = 0; i < products.length; i++) {
-        if (products[i].key === productDeleted.key) {
-          index = i;
-          break;
+        for (let i = 0; i < productData.length; i++) {
+          if (productData[i].key === productUpdated.key) {
+            index = i;
+            break;
+          }
         }
-      }
 
-      return {
-        ...state,
-        products: [
-          ...state.products.slice(0, index),
-          ...state.products.slice(index + 1),
-        ],
-      };
+        productData = [
+          ...productData.slice(0, index),
+          ...productData.slice(index + 1),
+        ];
+
+        localStorage.setItem("products", JSON.stringify(productData));
+
+        return {
+          ...state,
+          products: localStorage.getItem("products"),
+        };
+      }
     }
 
     case SEARCH_PRODUCT: {
-      const { products, productsSelect } = state;
+      const { products } = state;
       const productData = JSON.parse(products);
       state.searchProductText = action.searchProductText;
       let matchedProducts;

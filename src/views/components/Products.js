@@ -26,165 +26,176 @@ class Products extends Component {
     const { products, productsSelect, searchProductText } = this.props;
     const productData = JSON.parse(products);
 
-    return (
-      <>
-        {productData.length > 0 &&
-          productsSelect.length > 0 &&
-          searchProductText === "" && (
-            <>
-              <Col span={24}>
-                <Title level={3} align="center">
-                  Products
-                </Title>
-              </Col>
-              {productData.map((item, i) => (
-                <Col span={5} className="col mb-1" key={i}>
-                  <Card hoverable>
-                    <img src={item.avatar} alt="?" className="w-100" />
-                    <p className="text-center bold mt-1">{item.name}</p>
-                    <Title
-                      level={4}
-                      className="text-center bold mt-1"
-                      style={{
-                        color: "#524dda",
-                      }}
-                    >
-                      ${item.price}
-                    </Title>
-                    <Button
-                      className="d-block mx-auto mb-1"
-                      type="primary"
-                      onClick={this.addToCart(item)}
-                    >
-                      Add to Cart
-                    </Button>
-                  </Card>
+    if (productData === null) {
+      return (
+        <div>
+          <Title level={3} align="center">
+            Products
+          </Title>
+          <Empty />
+        </div>
+      );
+    } else {
+      return (
+        <>
+          {productData.length > 0 &&
+            productsSelect.length > 0 &&
+            searchProductText === "" && (
+              <>
+                <Col span={24}>
+                  <Title level={3} align="center">
+                    Products
+                  </Title>
                 </Col>
-              ))}
-            </>
-          )}
+                {productData.map((item, i) => (
+                  <Col span={5} className="col mb-1" key={i}>
+                    <Card hoverable>
+                      <img src={item.avatar} alt="?" className="w-100" />
+                      <p className="text-center bold mt-1">{item.name}</p>
+                      <Title
+                        level={4}
+                        className="text-center bold mt-1"
+                        style={{
+                          color: "#524dda",
+                        }}
+                      >
+                        ${item.price}
+                      </Title>
+                      <Button
+                        className="d-block mx-auto mb-1"
+                        type="primary"
+                        onClick={this.addToCart(item)}
+                      >
+                        Add to Cart
+                      </Button>
+                    </Card>
+                  </Col>
+                ))}
+              </>
+            )}
 
-        {productData.length > 0 &&
-          productsSelect.length === 0 &&
-          searchProductText !== "" && (
-            <>
-              <Col span={24}>
-                <Title level={3} align="center">
-                  Products
-                </Title>
-              </Col>
-              {productData.map((item, i) => (
-                <Col span={5} className="col mb-1" key={i}>
-                  <Card hoverable>
-                    <img src={item.avatar} alt="?" className="w-100" />
-                    <p className="text-center bold mt-1">{item.name}</p>
-                    <Title
-                      level={4}
-                      className="text-center bold mt-1"
-                      style={{
-                        color: "#524dda",
-                      }}
-                    >
-                      ${item.price}
-                    </Title>
-                    <Button
-                      className="d-block mx-auto mb-1"
-                      type="primary"
-                      onClick={this.addToCart(item)}
-                    >
-                      Add to Cart
-                    </Button>
-                  </Card>
+          {productData.length > 0 &&
+            productsSelect.length === 0 &&
+            searchProductText !== "" && (
+              <>
+                <Col span={24}>
+                  <Title level={3} align="center">
+                    Products
+                  </Title>
                 </Col>
-              ))}
-            </>
-          )}
+                {productData.map((item, i) => (
+                  <Col span={5} className="col mb-1" key={i}>
+                    <Card hoverable>
+                      <img src={item.avatar} alt="?" className="w-100" />
+                      <p className="text-center bold mt-1">{item.name}</p>
+                      <Title
+                        level={4}
+                        className="text-center bold mt-1"
+                        style={{
+                          color: "#524dda",
+                        }}
+                      >
+                        ${item.price}
+                      </Title>
+                      <Button
+                        className="d-block mx-auto mb-1"
+                        type="primary"
+                        onClick={this.addToCart(item)}
+                      >
+                        Add to Cart
+                      </Button>
+                    </Card>
+                  </Col>
+                ))}
+              </>
+            )}
 
-        {productData.length === 0 && productsSelect.length === 0 && (
-          <div>
-            <Title level={3} align="center">
-              Products
-            </Title>
-            <Empty />
-          </div>
-        )}
-
-        {productData.length > 0 &&
-          productsSelect.length === 0 &&
-          searchProductText === "" && (
-            <>
-              <Col span={24}>
-                <Title level={3} align="center">
-                  Products
-                </Title>
-              </Col>
-              {productData.map((item, i) => (
-                <Col span={5} className="col mb-1" key={i}>
-                  <Card hoverable>
-                    <img src={item.avatar} alt="?" className="w-100" />
-                    <p className="text-center bold mt-1">{item.name}</p>
-                    <Title
-                      level={4}
-                      className="text-center bold mt-1"
-                      style={{
-                        color: "#524dda",
-                      }}
-                    >
-                      ${item.price}
-                    </Title>
-                    <Button
-                      className="d-block mx-auto mb-1"
-                      type="primary"
-                      onClick={this.addToCart(item)}
-                    >
-                      Add to Cart
-                    </Button>
-                  </Card>
-                </Col>
-              ))}
-            </>
-          )}
-
-        {productsSelect.length > 0 && searchProductText !== "" && (
-          <>
-            <Col span={24}>
+          {productData.length === 0 && productsSelect.length === 0 && (
+            <div>
               <Title level={3} align="center">
                 Products
               </Title>
-            </Col>
-            {productsSelect.map((item, i) => (
-              <Col span={5} className="col mb-1" key={i}>
-                <Card hoverable>
-                  <img src={item.avatar} alt="?" className="w-100" />
-                  <p className="text-center bold mt-1">{item.name}</p>
-                  <Title
-                    level={4}
-                    className="text-center bold mt-1"
-                    style={{
-                      color: "#524dda",
-                    }}
-                  >
-                    ${item.price}
-                  </Title>
-                  <Button
-                    className="d-block mx-auto mb-1"
-                    type="primary"
-                    onClick={this.addToCart(item)}
-                  >
-                    Add to Cart
-                  </Button>
-                </Card>
-              </Col>
-            ))}
-          </>
-        )}
+              <Empty />
+            </div>
+          )}
 
-        {productData.length > 0 &&
-          productsSelect.length === 0 &&
-          searchProductText !== "" &&
-          ""}
-      </>
-    );
+          {productData.length > 0 &&
+            productsSelect.length === 0 &&
+            searchProductText === "" && (
+              <>
+                <Col span={24}>
+                  <Title level={3} align="center">
+                    Products
+                  </Title>
+                </Col>
+                {productData.map((item, i) => (
+                  <Col span={5} className="col mb-1" key={i}>
+                    <Card hoverable>
+                      <img src={item.avatar} alt="?" className="w-100" />
+                      <p className="text-center bold mt-1">{item.name}</p>
+                      <Title
+                        level={4}
+                        className="text-center bold mt-1"
+                        style={{
+                          color: "#524dda",
+                        }}
+                      >
+                        ${item.price}
+                      </Title>
+                      <Button
+                        className="d-block mx-auto mb-1"
+                        type="primary"
+                        onClick={this.addToCart(item)}
+                      >
+                        Add to Cart
+                      </Button>
+                    </Card>
+                  </Col>
+                ))}
+              </>
+            )}
+
+          {productsSelect.length > 0 && searchProductText !== "" && (
+            <>
+              <Col span={24}>
+                <Title level={3} align="center">
+                  Products
+                </Title>
+              </Col>
+              {productsSelect.map((item, i) => (
+                <Col span={5} className="col mb-1" key={i}>
+                  <Card hoverable>
+                    <img src={item.avatar} alt="?" className="w-100" />
+                    <p className="text-center bold mt-1">{item.name}</p>
+                    <Title
+                      level={4}
+                      className="text-center bold mt-1"
+                      style={{
+                        color: "#524dda",
+                      }}
+                    >
+                      ${item.price}
+                    </Title>
+                    <Button
+                      className="d-block mx-auto mb-1"
+                      type="primary"
+                      onClick={this.addToCart(item)}
+                    >
+                      Add to Cart
+                    </Button>
+                  </Card>
+                </Col>
+              ))}
+            </>
+          )}
+
+          {productData.length > 0 &&
+            productsSelect.length === 0 &&
+            searchProductText !== "" &&
+            ""}
+        </>
+      );
+    }
   }
 }
 

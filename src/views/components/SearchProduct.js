@@ -22,7 +22,7 @@ class SearchProduct extends Component {
 
     if (
       (searchProductText === "" || searchProductText === null) &&
-      products.length !== 0 &&
+      productData.length !== 0 &&
       productsSelect.length === 0
     ) {
       this.openNotificationWithIcon("success", "Get all products");
@@ -30,7 +30,7 @@ class SearchProduct extends Component {
     }
 
     if (
-      products.length !== 0 &&
+      productData.length !== 0 &&
       productsSelect.length === 0 &&
       (searchProductText !== "" || searchProductText !== null)
     ) {
@@ -38,7 +38,7 @@ class SearchProduct extends Component {
     }
 
     if (
-      products.length > 0 &&
+      productData.length > 0 &&
       productsSelect.length > 0 &&
       (searchProductText !== "" || searchProductText !== null)
     ) {
@@ -50,11 +50,10 @@ class SearchProduct extends Component {
   };
 
   onChange = (e) => {
+    const { products } = this.props;
+    const productData = JSON.parse(products);
     let newValue = e.target.value.trim();
-    if (
-      (newValue === "" || newValue === null) &&
-      this.props.products.length === 0
-    ) {
+    if ((newValue === "" || newValue === null) && productData.length === 0) {
       this.props.searchProduct(null);
       return;
     }
@@ -63,9 +62,12 @@ class SearchProduct extends Component {
   };
 
   render() {
+    const { products } = this.props;
+    const productData = JSON.parse(products);
+
     return (
       <>
-        {this.props.products.length === 0 ? (
+        {productData === null || productData.length === 0 ? (
           ""
         ) : (
           <Col

@@ -15,6 +15,8 @@ class TopSelling extends Component {
     const productData = JSON.parse(products);
     const topSellingStorage = JSON.parse(topSelling);
 
+    if (productData === null || topSellingStorage === null) return;
+
     let topSellingData = [];
     for (let i = 0; i < topSellingStorage.length; i++) {
       for (let j = 0; j < productData.length; j++) {
