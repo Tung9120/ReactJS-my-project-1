@@ -20,14 +20,18 @@ class PhotoCarousel extends Component {
 
   componentDidMount() {
     const { products, carousel } = this.props;
+    const productData = JSON.parse(products);
+    const carouselStorage = JSON.parse(carousel);
+
     let carouselData = [];
-    for (let i = 0; i < carousel.length; i++) {
-      for (let j = 0; j < products.length; j++) {
-        if (carousel[i] === products[j].key) {
-          carouselData.push(products[j]);
+    for (let i = 0; i < carouselStorage.length; i++) {
+      for (let j = 0; j < productData.length; j++) {
+        if (carouselStorage[i] === productData[j].key) {
+          carouselData.push(productData[j]);
         }
       }
     }
+
     this.setState({
       carouselData: carouselData,
     });
