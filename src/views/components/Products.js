@@ -9,6 +9,7 @@ const { Title } = Typography;
 class Products extends Component {
   addToCart = (item) => {
     const { cart, addToCart } = this.props;
+
     return (e) => {
       const productInCart = {
         product: { ...item },
@@ -18,6 +19,7 @@ class Products extends Component {
         quantity: 1,
         price: item.price,
       };
+
       addToCart(productInCart);
     };
   };

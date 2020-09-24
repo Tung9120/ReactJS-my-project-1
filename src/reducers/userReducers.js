@@ -268,7 +268,7 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
 
       return {
         ...state,
-        cart: [productInCart, ...cart],
+        cart: [...cart, productInCart],
       };
     }
 
