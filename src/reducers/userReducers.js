@@ -177,28 +177,9 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     }
 
     case DELETE_PRODUCT: {
-      // const { productDeleted } = action;
-      // const { products } = state;
-
-      // let index;
-
-      // for (let i = 0; i < products.length; i++) {
-      //   if (products[i].key === productDeleted.key) {
-      //     index = i;
-      //     break;
-      //   }
-      // }
-
-      // return {
-      //   ...state,
-      //   products: [
-      //     ...state.products.slice(0, index),
-      //     ...state.products.slice(index + 1),
-      //   ],
-      // };
-
-      const { productUpdated } = action;
+      const { productDeleted } = action;
       const { products } = state;
+
       if (products === null) {
         return {
           ...state,
@@ -208,7 +189,7 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
         let index;
 
         for (let i = 0; i < productData.length; i++) {
-          if (productData[i].key === productUpdated.key) {
+          if (productData[i].key === productDeleted.key) {
             index = i;
             break;
           }

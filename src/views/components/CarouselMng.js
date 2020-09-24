@@ -143,9 +143,10 @@ class CarouselMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {(carouselData === null || carouselData.length < 3) ||
-        (productData === null ||
-        productData.length < 3) ? (
+        {carouselData === null ||
+        carouselData.length < 3 ||
+        productData === null ||
+        productData.length < 3 ? (
           <Space direction="vertical">
             <Text mark>Warning: The carousel not enough items</Text>
             <Text mark>Note: The carousel contains up to 3 items</Text>
