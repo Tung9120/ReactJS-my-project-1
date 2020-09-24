@@ -46,11 +46,11 @@ const columns = [
             color = "#fadb14";
           }
 
-          if (status === "fail") {
+          if (item === "fail") {
             color = "volcano";
           }
 
-          if (status === "success") {
+          if (item === "success") {
             color = "green";
           }
 
@@ -58,7 +58,7 @@ const columns = [
             <Tag
               color={color}
               key={item}
-              style={{ color: item === "pending" ? "#444" : "#fff" }}
+              style={{ color: item === "pending" ? "#444" : "" }}
             >
               {item.toUpperCase()}
             </Tag>
@@ -87,6 +87,7 @@ class BillMng extends Component {
   render() {
     const { bills } = this.props;
     const billData = JSON.parse(bills);
+
     return (
       <>
         <Title level={3} align="center">

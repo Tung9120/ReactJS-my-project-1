@@ -13,6 +13,8 @@ import {
   CHANGE_QUANTITY,
   REMOVE_PRODUCT,
   ORDER,
+  UPDATEBILL,
+  REJECTBILL,
 } from "../constants/ActionsType";
 
 const initialStateUser = {
@@ -320,13 +322,12 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     case ORDER: {
       let { bills } = state;
       const { bill } = action;
-      console.log(bill)
 
-      if(bills === null){
+      if (bills === null) {
         bills = [];
         bills.push(bill);
         localStorage.setItem("bills", JSON.stringify(bills));
-      }else{
+      } else {
         bills = JSON.parse(localStorage.getItem("bills"));
         bills = [bill, ...bills];
         localStorage.setItem("bills", JSON.stringify(bills));
@@ -337,6 +338,40 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
         bills: localStorage.getItem("bills"),
         cart: [],
       };
+    }
+
+    case UPDATEBILL: {
+      let { bills } = state;
+      const { billUpdate } = action;
+
+      if (bills === null) {
+        return {
+          ...state,
+        };
+      } else {
+        let billData = JSON.parse(bills);
+        let index;
+
+        for (let i = 0; i < billData.length; i++) {
+          if (billData[i].key === billUpdate.key) {
+            index = i;
+            break;
+          }
+        }
+
+        billData = [
+          ...billData.slice(0, index),
+          { ...billUpdate, status: ["success"] },
+          ...billData.slice(index + 1),
+        ];
+
+        localStorage.setItem("bills", JSON.stringify(billData));
+
+        return {
+          ...state,
+          bills: localStorage.getItem("bills"),
+        };
+      }
     }
 
     default:

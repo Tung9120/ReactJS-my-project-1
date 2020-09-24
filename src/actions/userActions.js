@@ -14,6 +14,8 @@ import {
   CHANGE_QUANTITY,
   REMOVE_PRODUCT,
   ORDER,
+  UPDATEBILL,
+  REJECTBILL,
 } from "../constants/ActionsType";
 import jwtDecode from "jwt-decode";
 
@@ -78,4 +80,12 @@ export const removeProduct = (data) => (dispatch) => {
 
 export const order = (data) => (dispatch) => {
   dispatch({ type: ORDER, bill: data });
+};
+
+export const updateBill = (data) => (dispatch) => {
+  dispatch({ type: UPDATEBILL, billUpdate: data });
+};
+
+export const rejectBill = (data) => (dispatch) => {
+  dispatch({ type: REJECTBILL, billReject: data });
 };
