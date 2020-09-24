@@ -12,14 +12,18 @@ class TopSelling extends Component {
 
   componentDidMount() {
     const { products, topSelling } = this.props;
+    const productData = JSON.parse(products);
+    const topSellingStorage = JSON.parse(topSelling);
+
     let topSellingData = [];
-    for (let i = 0; i < topSelling.length; i++) {
-      for (let j = 0; j < products.length; j++) {
-        if (topSelling[i] === products[j].key) {
-          topSellingData.push(products[j]);
+    for (let i = 0; i < topSellingStorage.length; i++) {
+      for (let j = 0; j < productData.length; j++) {
+        if (topSellingStorage[i] === productData[j].key) {
+          topSellingData.push(productData[j]);
         }
       }
     }
+
     this.setState({
       topSellingData,
     });
