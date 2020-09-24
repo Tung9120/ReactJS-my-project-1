@@ -28,12 +28,13 @@ class FormGetCumstomerInfor extends Component {
   onFinish = (values) => {
     const { cart, order, bills } = this.props;
     const { name, phone, address } = values.user;
+    const billData = JSON.parse(bills);
     const bill = {
       billId:
-        bills.length === 0
+        (billData === null || billData.length === 0)
           ? "BILL" + 0
-          : "BILL" + (bills[bills.length - 1].key + 1),
-      key: bills.length === 0 ? 0 : bills[bills.length - 1].key + 1,
+          : "BILL" + (billData[0].key + 1),
+      key: (billData === null || billData.length === 0) ? 0 : billData[0].key + 1,
       name,
       phone,
       address,
@@ -41,6 +42,7 @@ class FormGetCumstomerInfor extends Component {
       total: cart.reduce((a, b) => a + b.price * b.quantity, 0),
       status: ["pending"],
     };
+    
     order(bill);
     this.openNotificationWithIcon("success");
   };

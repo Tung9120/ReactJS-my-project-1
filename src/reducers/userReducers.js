@@ -27,7 +27,7 @@ const initialStateUser = {
   productsSelect: [],
   searchProductText: null,
   cart: [],
-  bills: [],
+  bills: localStorage.getItem("bills"),
 };
 
 function userReducer(state = initialStateUser, action = { payload: {} }) {
@@ -317,12 +317,27 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       };
     }
 
-    case ORDER:
+    case ORDER: {
+      let { bills } = state;
+      const { bill } = action;
+      console.log(bill)
+
+      if(bills === null){
+        bills = [];
+        bills.push(bill);
+        localStorage.setItem("bills", JSON.stringify(bills));
+      }else{
+        bills = JSON.parse(localStorage.getItem("bills"));
+        bills = [bill, ...bills];
+        localStorage.setItem("bills", JSON.stringify(bills));
+      }
+
       return {
         ...state,
-        bills: [...state.bills, action.bill],
+        bills: localStorage.getItem("bills"),
         cart: [],
       };
+    }
 
     default:
       return state;
