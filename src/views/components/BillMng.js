@@ -1,8 +1,9 @@
 import React, { Component, Suspense } from "react";
-import { Table, Tag, Space, Typography, Button, Spin } from "antd";
-import {  StopOutlined } from "@ant-design/icons";
+import { Table, Tag, Space, Typography, Spin } from "antd";
 import { connect } from "react-redux";
-import AcceptBillBtn from "./AcceptBillBtn";
+
+const AcceptBillBtn = React.lazy(() => import("./AcceptBillBtn"));
+const RejectBillBtn = React.lazy(() => import("./RejectBillBtn"));
 
 const { Title } = Typography;
 
@@ -74,9 +75,7 @@ const columns = [
       <Suspense fallback={<Spin />}>
         <Space size="middle">
           <AcceptBillBtn bill={record} />
-          <Button type="danger">
-          <StopOutlined />
-          </Button>
+          <RejectBillBtn bill={record} />
         </Space>
       </Suspense>
     ),

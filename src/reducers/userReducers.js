@@ -374,6 +374,40 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       }
     }
 
+    case REJECTBILL: {
+      let { bills } = state;
+      const { billReject } = action;
+
+      if (bills === null) {
+        return {
+          ...state,
+        };
+      } else {
+        let billData = JSON.parse(bills);
+        let index;
+
+        for (let i = 0; i < billData.length; i++) {
+          if (billData[i].key === billReject.key) {
+            index = i;
+            break;
+          }
+        }
+
+        billData = [
+          ...billData.slice(0, index),
+          { ...billReject, status: ["fail"] },
+          ...billData.slice(index + 1),
+        ];
+
+        localStorage.setItem("bills", JSON.stringify(billData));
+
+        return {
+          ...state,
+          bills: localStorage.getItem("bills"),
+        };
+      }
+    }
+
     default:
       return state;
   }
