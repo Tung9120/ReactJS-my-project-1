@@ -88,12 +88,13 @@ const columns = [
 class BillMng extends Component {
   render() {
     const { bills } = this.props;
+    const billData = JSON.parse(bills);
     return (
       <>
         <Title level={3} align="center">
           Bills
         </Title>
-        <Table columns={columns} dataSource={bills} />
+        <Table columns={columns} dataSource={billData} />
       </>
     );
   }
