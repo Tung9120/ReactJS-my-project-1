@@ -126,8 +126,10 @@ class TopSellingMng extends Component {
             type="primary"
             onClick={this.showModal}
             disabled={
-              (topSellingData === null || topSellingData.length < 4) ||
-              (productData === null || productData.length < 4) 
+              topSellingData === null ||
+              topSellingData.length < 4 ||
+              productData === null ||
+              productData.length < 4
             }
           >
             Top Selling Preview
@@ -142,7 +144,10 @@ class TopSellingMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {topSellingData === null || topSellingData.length < 4 ? (
+        {topSellingData === null ||
+        topSellingData.length < 4 ||
+        productData === null ||
+        productData.length < 4 ? (
           <Space direction="vertical">
             <Text mark>Warning: The top selling not enough items</Text>
             <Text mark>Note: The top selling contains up to 4 items</Text>
