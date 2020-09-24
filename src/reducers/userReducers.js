@@ -20,7 +20,6 @@ const initialStateUser = {
   name: "",
   admins: [],
   products: localStorage.getItem("products"),
-  // newProducts: [],
   carousel: localStorage.getItem("carousel"),
   topCards: localStorage.getItem("topCards"),
   topSelling: localStorage.getItem("topSelling"),
@@ -269,7 +268,7 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
 
       return {
         ...state,
-        cart: [...cart, productInCart],
+        cart: [productInCart, ...cart],
       };
     }
 
