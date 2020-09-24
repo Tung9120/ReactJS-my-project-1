@@ -60,7 +60,7 @@ class DefaultLayoutUser extends Component {
               </Menu.Item>
               <Menu.Item key="alipay" icon={<ShoppingCartOutlined />}>
                 <Link to="/cart">
-                  <Badge offset={[10, 0]} size="small" count={count}>
+                  <Badge offset={[5, 0]} size="small" count={count}>
                     Cart
                   </Badge>
                 </Link>
