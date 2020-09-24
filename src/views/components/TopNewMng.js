@@ -67,7 +67,7 @@ class TopNewMng extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRowKeys: JSON.parse(this.props.topNew),
+      selectedRowKeys: [],
       visible: false,
     };
   }
@@ -106,15 +106,42 @@ class TopNewMng extends Component {
     this.setState({ selectedRowKeys });
   };
 
-  render() {
-    const { selectedRowKeys } = this.state;
+  componentDidMount = (e) => {
     const { products, topNew } = this.props;
     const productData = JSON.parse(products);
     const topNewData = JSON.parse(topNew);
+
+    if (
+      productData === null ||
+      productData.length < 4 ||
+      topNewData === null ||
+      topNewData.length < 4
+    ) {
+      this.setState({ selectedRowKeys: [] });
+      return;
+    }
+
+    let itemsSelected = [];
+
+    for (let i = 0; i < productData.length; i++) {
+      for (let j = 0; j < topNewData.length; j++) {
+        if (productData[i].key === topNewData[j]) {
+          itemsSelected.push(topNewData[j]);
+        }
+      }
+    }
+    this.setState({ selectedRowKeys: itemsSelected });
+  };
+
+  render() {
+    const { selectedRowKeys } = this.state;
+    const { products } = this.props;
+    const productData = JSON.parse(products);
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
     };
+
     return (
       <>
         <Suspense fallback={<Spin />}>
@@ -126,16 +153,15 @@ class TopNewMng extends Component {
             type="primary"
             onClick={this.showModal}
             disabled={
-              topNewData === null ||
-              topNewData.length < 4 ||
-              productData === null ||
-              productData.length < 4
+              selectedRowKeys === undefined ||
+              selectedRowKeys === null ||
+              selectedRowKeys.length < 4
             }
           >
             Top New Preview
           </Button>
           <Modal
-            title="Carousel preview"
+            title="topNew preview"
             visible={this.state.visible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
@@ -144,10 +170,9 @@ class TopNewMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {topNewData === null ||
-        topNewData.length < 4 ||
-        productData === null ||
-        productData.length < 4 ? (
+        {selectedRowKeys === undefined ||
+        selectedRowKeys === null ||
+        selectedRowKeys.length < 4 ? (
           <Space direction="vertical">
             <Text mark>Warning: The top new not enough items</Text>
             <Text mark>Note: The top new contains up to 4 items</Text>

@@ -67,7 +67,7 @@ class CarouselMng extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRowKeys: JSON.parse(this.props.carousel),
+      selectedRowKeys: [],
       visible: false,
     };
   }
@@ -105,15 +105,42 @@ class CarouselMng extends Component {
     this.setState({ selectedRowKeys });
   };
 
-  render() {
-    const { selectedRowKeys } = this.state;
+  componentDidMount = (e) => {
     const { products, carousel } = this.props;
     const productData = JSON.parse(products);
     const carouselData = JSON.parse(carousel);
+
+    if (
+      productData === null ||
+      productData.length < 3 ||
+      carouselData === null ||
+      carouselData.length < 3
+    ) {
+      this.setState({ selectedRowKeys: [] });
+      return;
+    }
+
+    let itemsSelected = [];
+
+    for (let i = 0; i < productData.length; i++) {
+      for (let j = 0; j < carouselData.length; j++) {
+        if (productData[i].key === carouselData[j]) {
+          itemsSelected.push(carouselData[j]);
+        }
+      }
+    }
+    this.setState({ selectedRowKeys: itemsSelected });
+  };
+
+  render() {
+    const { selectedRowKeys } = this.state;
+    const { products } = this.props;
+    const productData = JSON.parse(products);
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
     };
+
     return (
       <>
         <Suspense fallback={<Spin />}>
@@ -125,10 +152,9 @@ class CarouselMng extends Component {
             type="primary"
             onClick={this.showModal}
             disabled={
-              carouselData === null ||
-              carouselData.length < 3 ||
-              productData == null ||
-              productData.length < 3
+              selectedRowKeys === undefined ||
+              selectedRowKeys === null ||
+              selectedRowKeys.length < 3
             }
           >
             Carousel Preview
@@ -143,10 +169,9 @@ class CarouselMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {carouselData === null ||
-        carouselData.length < 3 ||
-        productData === null ||
-        productData.length < 3 ? (
+        {selectedRowKeys === undefined ||
+        selectedRowKeys === null ||
+        selectedRowKeys.length < 3 ? (
           <Space direction="vertical">
             <Text mark>Warning: The carousel not enough items</Text>
             <Text mark>Note: The carousel contains up to 3 items</Text>

@@ -67,7 +67,7 @@ class TopSellingMng extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRowKeys: JSON.parse(this.props.topSelling),
+      selectedRowKeys: [],
       visible: false,
     };
   }
@@ -106,15 +106,42 @@ class TopSellingMng extends Component {
     this.setState({ selectedRowKeys });
   };
 
-  render() {
-    const { selectedRowKeys } = this.state;
+  componentDidMount = (e) => {
     const { products, topSelling } = this.props;
     const productData = JSON.parse(products);
     const topSellingData = JSON.parse(topSelling);
+
+    if (
+      productData === null ||
+      productData.length < 4 ||
+      topSellingData === null ||
+      topSellingData.length < 4
+    ) {
+      this.setState({ selectedRowKeys: [] });
+      return;
+    }
+
+    let itemsSelected = [];
+
+    for (let i = 0; i < productData.length; i++) {
+      for (let j = 0; j < topSellingData.length; j++) {
+        if (productData[i].key === topSellingData[j]) {
+          itemsSelected.push(topSellingData[j]);
+        }
+      }
+    }
+    this.setState({ selectedRowKeys: itemsSelected });
+  };
+
+  render() {
+    const { selectedRowKeys } = this.state;
+    const { products } = this.props;
+    const productData = JSON.parse(products);
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
     };
+
     return (
       <>
         <Suspense fallback={<Spin />}>
@@ -126,10 +153,9 @@ class TopSellingMng extends Component {
             type="primary"
             onClick={this.showModal}
             disabled={
-              topSellingData === null ||
-              topSellingData.length < 4 ||
-              productData === null ||
-              productData.length < 4
+              selectedRowKeys === undefined ||
+              selectedRowKeys === null ||
+              selectedRowKeys.length < 4
             }
           >
             Top Selling Preview
@@ -144,10 +170,9 @@ class TopSellingMng extends Component {
           </Modal>
         </Suspense>
         <br />
-        {topSellingData === null ||
-        topSellingData.length < 4 ||
-        productData === null ||
-        productData.length < 4 ? (
+        {selectedRowKeys === undefined ||
+        selectedRowKeys === null ||
+        selectedRowKeys.length < 4 ? (
           <Space direction="vertical">
             <Text mark>Warning: The top selling not enough items</Text>
             <Text mark>Note: The top selling contains up to 4 items</Text>
