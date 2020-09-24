@@ -199,12 +199,17 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     }
 
     case SEARCH_PRODUCT: {
-      const { products } = state;
+      const { products, productsSelect } = state;
+      const productData = JSON.parse(products);
       state.searchProductText = action.searchProductText;
       let matchedProducts;
-      if (products.length === 0 && state.searchProductText === "") return;
+
+      if (products.length === 0 && state.searchProductText === "") {
+        return { ...state };
+      }
+
       if (
-        products.length > 0 &&
+        productData.length > 0 &&
         (state.searchProductText === "" || state.searchProductText === null)
       ) {
         return {
@@ -212,13 +217,15 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
           productsSelect: [],
         };
       }
-      matchedProducts = products.filter((item) => {
+
+      matchedProducts = productData.filter((item) => {
         return (
           item.name
             .toLowerCase()
             .indexOf(state.searchProductText.toLowerCase()) !== -1
         );
       });
+
       if (matchedProducts.length === 0) {
         return {
           ...state,

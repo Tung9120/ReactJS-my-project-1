@@ -12,16 +12,13 @@ class SearchProduct extends Component {
   };
 
   onSearch = (value, event) => {
+    const { products, productsSelect, searchProductText } = this.props;
+    const productData = JSON.parse(products);
     let newValue = value.trim();
-    if (
-      (newValue === "" || newValue === null) &&
-      this.props.products.length === 0
-    ) {
+    if ((newValue === "" || newValue === null) && productData.length === 0) {
       this.props.searchProduct(null);
       return;
     }
-
-    const { products, productsSelect, searchProductText } = this.props;
 
     if (
       (searchProductText === "" || searchProductText === null) &&

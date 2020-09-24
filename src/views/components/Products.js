@@ -24,9 +24,11 @@ class Products extends Component {
 
   render() {
     const { products, productsSelect, searchProductText } = this.props;
+    const productData = JSON.parse(products);
+
     return (
       <>
-        {products.length > 0 &&
+        {productData.length > 0 &&
           productsSelect.length > 0 &&
           searchProductText === "" && (
             <>
@@ -35,7 +37,7 @@ class Products extends Component {
                   Products
                 </Title>
               </Col>
-              {products.map((item, i) => (
+              {productData.map((item, i) => (
                 <Col span={5} className="col mb-1" key={i}>
                   <Card hoverable>
                     <img src={item.avatar} alt="?" className="w-100" />
@@ -62,7 +64,7 @@ class Products extends Component {
             </>
           )}
 
-        {products.length > 0 &&
+        {productData.length > 0 &&
           productsSelect.length === 0 &&
           searchProductText !== "" && (
             <>
@@ -71,7 +73,7 @@ class Products extends Component {
                   Products
                 </Title>
               </Col>
-              {products.map((item, i) => (
+              {productData.map((item, i) => (
                 <Col span={5} className="col mb-1" key={i}>
                   <Card hoverable>
                     <img src={item.avatar} alt="?" className="w-100" />
@@ -98,7 +100,7 @@ class Products extends Component {
             </>
           )}
 
-        {products.length === 0 && productsSelect.length === 0 && (
+        {productData.length === 0 && productsSelect.length === 0 && (
           <div>
             <Title level={3} align="center">
               Products
@@ -107,7 +109,7 @@ class Products extends Component {
           </div>
         )}
 
-        {products.length > 0 &&
+        {productData.length > 0 &&
           productsSelect.length === 0 &&
           searchProductText === "" && (
             <>
@@ -116,7 +118,7 @@ class Products extends Component {
                   Products
                 </Title>
               </Col>
-              {products.map((item, i) => (
+              {productData.map((item, i) => (
                 <Col span={5} className="col mb-1" key={i}>
                   <Card hoverable>
                     <img src={item.avatar} alt="?" className="w-100" />
@@ -177,7 +179,7 @@ class Products extends Component {
           </>
         )}
 
-        {products.length > 0 &&
+        {productData.length > 0 &&
           productsSelect.length === 0 &&
           searchProductText !== "" &&
           ""}
