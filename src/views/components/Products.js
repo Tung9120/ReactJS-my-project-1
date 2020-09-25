@@ -1,12 +1,25 @@
 import React, { Component } from "react";
-import { Col, Typography, Empty, Card, Button } from "antd";
+import { Col, Typography, Empty, Card, Button, Pagination } from "antd";
 import { connect } from "react-redux";
 import { addToCart } from "../../actions/userActions";
+import { withRouter } from "react-router";
 import "./TopNew.css";
 
 const { Title } = Typography;
 
 class Products extends Component {
+  state = {
+    current: 1,
+  };
+
+  onChange = (page) => {
+    console.log(page);
+    this.setState({
+      current: page,
+    });
+    this.props.history.push("/products/page/" + page);
+  };
+
   addToCart = (item) => {
     const { cart, addToCart } = this.props;
 
@@ -27,6 +40,14 @@ class Products extends Component {
   render() {
     const { products, productsSelect, searchProductText } = this.props;
     const productData = JSON.parse(products);
+    const perPage = 4;
+    const totalPage = Math.ceil(productData.length / perPage);
+    const indexOfLastProducts = this.state.current * perPage;
+    const indexOfFirstProducts = indexOfLastProducts - perPage;
+    const currentProducts = productData.slice(
+      indexOfFirstProducts,
+      indexOfLastProducts
+    );
 
     if (productData === null) {
       return (
@@ -42,7 +63,8 @@ class Products extends Component {
         <>
           {productData.length > 0 &&
             productsSelect.length > 0 &&
-            searchProductText === "" && (
+            searchProductText === "" &&
+            searchProductText === null && (
               <>
                 <Col span={24}>
                   <Title level={3} align="center">
@@ -73,6 +95,15 @@ class Products extends Component {
                     </Card>
                   </Col>
                 ))}
+                <Col span={24} className="d-flex justify-content-center mt-2">
+                  <Pagination
+                    current={this.state.current}
+                    onChange={this.onChange}
+                    defaultPageSize={perPage}
+                    total={productData.length}
+                    showTotal={(total) => `Total ${totalPage} pages`}
+                  />
+                </Col>
               </>
             )}
 
@@ -85,7 +116,7 @@ class Products extends Component {
                     Products
                   </Title>
                 </Col>
-                {productData.map((item, i) => (
+                {currentProducts.map((item, i) => (
                   <Col span={5} className="col mb-1" key={i}>
                     <Card hoverable>
                       <img src={item.avatar} alt="?" className="w-100" />
@@ -109,6 +140,15 @@ class Products extends Component {
                     </Card>
                   </Col>
                 ))}
+                <Col span={24} className="d-flex justify-content-center mt-2">
+                  <Pagination
+                    current={this.state.current}
+                    onChange={this.onChange}
+                    defaultPageSize={perPage}
+                    total={productData.length}
+                    showTotal={(total) => `Total ${totalPage} pages`}
+                  />
+                </Col>
               </>
             )}
 
@@ -210,4 +250,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addToCart })(Products);
+export default withRouter(connect(mapStateToProps, { addToCart })(Products));

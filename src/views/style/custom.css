@@ -10,6 +10,14 @@
   display: block !important;
 }
 
+.d-flex {
+  display: flex !important;
+}
+
+.justify-content-center{
+  justify-content: center !important;
+}
+
 .m-1{
   margin: 1rem !important;
 }
@@ -20,6 +28,18 @@
 
 .mt-1 {
   margin-top: 1rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.mt-3 {
+  margin-top: 3rem !important;
+}
+
+.mt-5 {
+  margin-top: 5rem !important;
 }
 
 .mb-1 {
