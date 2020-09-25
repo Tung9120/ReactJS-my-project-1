@@ -49,6 +49,11 @@ class Products extends Component {
       indexOfLastProducts
     );
 
+    const currentProductsFilter = productsSelect.slice(
+      indexOfFirstProducts,
+      indexOfLastProducts
+    );
+
     if (productData === null) {
       return (
         <div>
@@ -71,7 +76,7 @@ class Products extends Component {
                     Products
                   </Title>
                 </Col>
-                {productData.map((item, i) => (
+                {currentProducts.map((item, i) => (
                   <Col span={5} className="col mb-1" key={i}>
                     <Card hoverable>
                       <img src={item.avatar} alt="?" className="w-100" />
@@ -170,7 +175,7 @@ class Products extends Component {
                     Products
                   </Title>
                 </Col>
-                {productData.map((item, i) => (
+                {currentProducts.map((item, i) => (
                   <Col span={5} className="col mb-1" key={i}>
                     <Card hoverable>
                       <img src={item.avatar} alt="?" className="w-100" />
@@ -194,6 +199,15 @@ class Products extends Component {
                     </Card>
                   </Col>
                 ))}
+                <Col span={24} className="d-flex justify-content-center mt-2">
+                  <Pagination
+                    current={this.state.current}
+                    onChange={this.onChange}
+                    defaultPageSize={perPage}
+                    total={productData.length}
+                    showTotal={(total) => `Total ${totalPage} pages`}
+                  />
+                </Col>
               </>
             )}
 
@@ -204,7 +218,7 @@ class Products extends Component {
                   Products
                 </Title>
               </Col>
-              {productsSelect.map((item, i) => (
+              {currentProductsFilter.map((item, i) => (
                 <Col span={5} className="col mb-1" key={i}>
                   <Card hoverable>
                     <img src={item.avatar} alt="?" className="w-100" />
@@ -228,6 +242,15 @@ class Products extends Component {
                   </Card>
                 </Col>
               ))}
+              <Col span={24} className="d-flex justify-content-center mt-2">
+                <Pagination
+                  current={this.state.current}
+                  onChange={this.onChange}
+                  defaultPageSize={perPage}
+                  total={productsSelect.length}
+                  showTotal={(total) => `Total ${totalPage} pages`}
+                />
+              </Col>
             </>
           )}
 
