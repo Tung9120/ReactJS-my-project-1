@@ -7,7 +7,9 @@ const QuantityProduct = React.lazy(() => import("./QuantityProduct"));
 const RemoveProductFromCart = React.lazy(() =>
   import("./RemoveProductFromCart")
 );
-const ModalGetCumstomerInfor = React.lazy(() => import("./ModalGetCustomerInfor"))
+const ModalGetCumstomerInfor = React.lazy(() =>
+  import("./ModalGetCustomerInfor")
+);
 
 const columns = [
   {
@@ -60,7 +62,11 @@ class Cart extends Component {
           {cart.length === 0 ? (
             <Empty />
           ) : (
-            <Table columns={columns} dataSource={cart} />
+            <Table
+              columns={columns}
+              dataSource={cart}
+              pagination={{ defaultPageSize: 4 }}
+            />
           )}
           {cart.length === 0 ? (
             ""
@@ -71,7 +77,7 @@ class Cart extends Component {
                 <Text type="danger">${total}</Text>
               </Title>
               <Title align="center" style={{ marginTop: "0" }}>
-                  <ModalGetCumstomerInfor />
+                <ModalGetCumstomerInfor />
               </Title>
             </>
           )}
