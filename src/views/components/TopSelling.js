@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Typography, Row, Col, Card, Button, Empty } from "antd";
 import { connect } from "react-redux";
+import { addToCart } from "../../actions/userActions";
+
 import "./TopSelling.css";
 
 const { Title } = Typography;
@@ -31,6 +33,23 @@ class TopSelling extends Component {
     });
   }
 
+  addToCart = (item) => {
+    const { cart, addToCart } = this.props;
+
+    return (e) => {
+      const productInCart = {
+        product: { ...item },
+        key: cart.length === 0 ? 0 : cart[cart.length - 1].key + 1,
+        name: item.name,
+        avatar: item.avatar,
+        quantity: 1,
+        price: item.price,
+      };
+
+      addToCart(productInCart);
+    };
+  };
+
   render() {
     const { topSellingData } = this.state;
 
@@ -59,7 +78,11 @@ class TopSelling extends Component {
                   >
                     ${item.price}
                   </Title>
-                  <Button className="d-block mx-auto mb-1" type="primary">
+                  <Button
+                    className="d-block mx-auto mb-1"
+                    type="primary"
+                    onClick={this.addToCart(item)}
+                  >
                     Add to Cart
                   </Button>
                 </Card>
@@ -76,7 +99,8 @@ function mapStateToProps(state) {
   return {
     products: state.user.products,
     topSelling: state.user.topSelling,
+    cart: state.user.cart,
   };
 }
 
-export default connect(mapStateToProps)(TopSelling);
+export default connect(mapStateToProps, { addToCart })(TopSelling);
