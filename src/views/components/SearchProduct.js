@@ -62,7 +62,7 @@ class SearchProduct extends Component {
   };
 
   render() {
-    const { products } = this.props;
+    const { products, searchProductText } = this.props;
     const productData = JSON.parse(products);
 
     return (
@@ -83,6 +83,7 @@ class SearchProduct extends Component {
               onSearch={this.onSearch}
               onChange={this.onChange}
               enterButton
+              defaultValue={searchProductText}
               style={{ verticalAlign: "middle" }}
             />
           </Col>
