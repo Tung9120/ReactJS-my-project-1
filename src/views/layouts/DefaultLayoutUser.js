@@ -5,6 +5,7 @@ import {
   ShoppingCartOutlined,
   SketchOutlined,
   SettingFilled,
+  UserOutlined,
 } from "@ant-design/icons";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -34,6 +35,15 @@ class DefaultLayoutUser extends Component {
     const { current } = this.state;
     const { cart } = this.props;
     const count = cart.reduce((a, b) => a + b.quantity, 0);
+    const token = localStorage.getItem("token");
+
+    const originPath = window.location.origin;
+    const currentPath = window.location.href;
+
+    if (token !== null && currentPath === `${originPath}/admin`) {
+      window.location.href = "/admin";
+    }
+
     return (
       <Router>
         <Layout className="layout">
@@ -52,9 +62,16 @@ class DefaultLayoutUser extends Component {
               >
                 <Link to="/">My Store</Link>
               </Menu.Item>
-              <Menu.Item key="home" icon={<HomeOutlined />}>
+              <Menu.Item key="home" icon={<HomeOutlined />} style={{justifyContent: "end"}}>
                 <Link to="/">Home</Link>
               </Menu.Item>
+              {token !== null ? (
+                <Menu.Item key="admin" icon={<UserOutlined />}>
+                  <Link to="/admin">Admin</Link>
+                </Menu.Item>
+              ) : (
+                ""
+              )}
               <Menu.Item key="products" icon={<SketchOutlined />}>
                 <Link to="/products">Products</Link>
               </Menu.Item>
