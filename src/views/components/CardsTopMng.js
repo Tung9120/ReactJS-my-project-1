@@ -27,7 +27,7 @@ class CardsTopMng extends Component {
 
     return (
       <>
-        <Title level={3} align="center">Manage cards on top</Title>
+        <Title level={3} align="center">Manage services</Title>
         <Suspense fallback={<Spin />}>
           <TopCardsPreview />
         </Suspense>
@@ -43,7 +43,7 @@ class CardsTopMng extends Component {
             rules={[{ required: true }]}
             initialValue={topCardData !== null && topCardData[0] ? topCardData !== null && topCardData[0] : ""}
           >
-            <Input />
+            <Input placeholder="Ex: Free shipping"/>
           </Form.Item>
           <Form.Item
             name={["cards", "card2"]}
@@ -51,7 +51,7 @@ class CardsTopMng extends Component {
             rules={[{ required: true }]}
             initialValue={topCardData !== null && topCardData[1] ? topCardData !== null && topCardData[1] : ""}
           >
-            <Input />
+            <Input placeholder="Ex: Easy payment with bank card" />
           </Form.Item>
           <Form.Item
             name={["cards", "card3"]}
@@ -59,7 +59,7 @@ class CardsTopMng extends Component {
             rules={[{ required: true }]}
             initialValue={topCardData !== null && topCardData[2] ? topCardData !== null && topCardData[2] : ""}
           >
-            <Input />
+            <Input placeholder="Ex: Open in all day" />
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
             <Button type="primary" htmlType="submit">
