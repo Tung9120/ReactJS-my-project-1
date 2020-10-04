@@ -79,7 +79,7 @@ class DefaultLayoutAdmin extends Component {
               </Switch>
             </Content>
             <Footer style={{ textAlign: "center" }}>
-              Ant Design ©2018 Created by Ant UED
+              Tung ©2020 Created by me
             </Footer>
           </Layout>
         </Layout>
