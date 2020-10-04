@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { LOGIN } from "./constants/ActionsType";
 import jwtDecode from 'jwt-decode';
+require("dotenv").config();
 
 let token = localStorage.getItem("token");
 if (token) {
