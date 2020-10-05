@@ -77,6 +77,14 @@ class AddProduct extends Component {
             <InputNumber min="1" />
           </Form.Item>
           <Form.Item
+            name={["product", "inventory"]}
+            label="Inventory"
+            rules={[{ type: "number", min: 1, required: true }]}
+            min="1"
+          >
+            <InputNumber min="1" />
+          </Form.Item>
+          <Form.Item
             name={["product", "status"]}
             label="Status"
             rules={[{ required: true }]}

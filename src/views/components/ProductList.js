@@ -25,9 +25,9 @@ const columns = [
     render: (price) => `$${price}`,
   },
   {
-    title: "Description",
-    dataIndex: "description",
-    key: "description",
+    title: "Inventory",
+    dataIndex: "inventory",
+    key: "inventory",
   },
   {
     title: "Status",
