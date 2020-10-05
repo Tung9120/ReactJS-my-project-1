@@ -34,7 +34,8 @@ class LoginPage extends Component {
         }
       })
       .catch((err) => {
-        this.setState({ err: err.response.data.err, loading: false });
+        // this.setState({ err: err.response.data.err, loading: false });
+        this.setState({ err: err.data.err, loading: false });
       });
   };
 

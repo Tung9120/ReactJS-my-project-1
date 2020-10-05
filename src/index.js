@@ -12,8 +12,9 @@ require("dotenv").config();
 
 let token = localStorage.getItem("token");
 if (token) {
-  const userData = jwtDecode(token);
-  store.dispatch({type: LOGIN, payload: {name:userData.username } });
+  // const userData = jwtDecode(token);
+  // store.dispatch({type: LOGIN, payload: {name:userData.username } });
+  store.dispatch({type: LOGIN, payload: {name: 'admin' } });
 }
 
 ReactDOM.render(
