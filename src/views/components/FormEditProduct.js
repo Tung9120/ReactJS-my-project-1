@@ -127,6 +127,15 @@ class FormEditProduct extends Component {
               <InputNumber min="1" />
             </Form.Item>
             <Form.Item
+              name={["product", "inventory"]}
+              label="Inventory"
+              rules={[{ type: "number", min: 0, max: 9999, required: true }]}
+              initialValue={product.inventory}
+              min="1"
+            >
+              <InputNumber min="0" />
+            </Form.Item>
+            <Form.Item
               name={["product", "status"]}
               label="Status"
               rules={[{ required: true }]}

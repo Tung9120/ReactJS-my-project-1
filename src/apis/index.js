@@ -24,7 +24,8 @@ const apis = {
     // });
 
     return axios
-      .post(process.env.REACT_APP_URL, data) 
+    .post("https://medical-be.herokuapp.com/api/doctor/login", data)
+      // .post(process.env.REACT_APP_URL, data) 
       // set name for environment variable in React needs to containt "REACT_APP_" leading string 
       // đặt tên biến môi trường trong reactjs cần có chuỗi "REACT_APP_" ở đầu. VD: REACT_APP_TEST = abc123
       .then((res) => {
