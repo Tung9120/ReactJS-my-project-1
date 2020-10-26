@@ -27,9 +27,10 @@ const initialStateUser = {
   topSelling: localStorage.getItem("topSelling"),
   topNew: localStorage.getItem("topNew"),
   productsSelect: [],
-  searchProductText: null,
+  searchProductText: "",
   cart: [],
   bills: localStorage.getItem("bills"),
+  tempProducts: [],
 };
 
 function userReducer(state = initialStateUser, action = { payload: {} }) {
@@ -252,17 +253,46 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
     }
 
     case ADD_TO_CART: {
-      const { cart } = state;
+      const { cart, products } = state;
+      let { tempProducts, productsSelect } = state;
       const { productInCart } = action;
 
+      const productData = JSON.parse(products);
+      if (tempProducts.length === 0) {
+        tempProducts = [...productData];
+      }
+
+      let tempProductIndex = tempProducts.findIndex((item) => {
+        return item.key === productInCart.key;
+      });
+
+      let productSelectIndex;
+      if (productsSelect.length > 0) {
+        productSelectIndex = productsSelect.findIndex((item) => {
+          return item.key === productInCart.key;
+        });
+      }
+
+      console.log("productSelectIndex", productSelectIndex);
+      console.log("productsSelect", productsSelect);
+      console.log("tempProductIndex", tempProductIndex);
+
       for (let i = 0; i < cart.length; i++) {
-        if (cart[i].product.key === productInCart.product.key) {
+        if (cart[i].key === productInCart.key) {
           return {
             ...state,
             cart: [
               ...cart.slice(0, i),
               { ...cart[i], quantity: cart[i].quantity + 1 },
               ...cart.slice(i + 1),
+            ],
+            tempProducts: [
+              ...tempProducts.slice(0, tempProductIndex),
+              {
+                ...tempProducts[tempProductIndex],
+                inventory: tempProducts[tempProductIndex].inventory - 1,
+              },
+              ...tempProducts.slice(tempProductIndex + 1),
             ],
           };
         }
@@ -271,6 +301,14 @@ function userReducer(state = initialStateUser, action = { payload: {} }) {
       return {
         ...state,
         cart: [...cart, productInCart],
+        tempProducts: [
+          ...tempProducts.slice(0, tempProductIndex),
+          {
+            ...tempProducts[tempProductIndex],
+            inventory: tempProducts[tempProductIndex].inventory - 1,
+          },
+          ...tempProducts.slice(tempProductIndex + 1),
+        ],
       };
     }
 

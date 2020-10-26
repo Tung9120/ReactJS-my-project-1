@@ -19,26 +19,33 @@ class Products extends Component {
     this.props.history.push("/products/page/" + page);
   };
 
-  addToCart = (item) => {
-    const { cart, addToCart } = this.props;
-
+  addToCart = (item, i) => {
+    const { addToCart, productsSelect } = this.props;
     return (e) => {
+      // console.log("item", item);
+      // console.log("productData[i]", productsSelect[i]);
+      // console.log("i", i);
       const productInCart = {
-        product: { ...item },
-        key: cart.length === 0 ? 0 : cart[cart.length - 1].key + 1,
-        name: item.name,
+        key: item.key,
         avatar: item.avatar,
-        quantity: 1,
+        name: item.name,
         price: item.price,
+        quantity: 1,
+        // product: { ...item },
       };
-
+      console.log("productInCart", productInCart);
       addToCart(productInCart);
     };
   };
 
   render() {
-    const { products, productsSelect, searchProductText } = this.props;
-    const productData = JSON.parse(products);
+    const {
+      products,
+      productsSelect,
+      searchProductText,
+      tempProducts,
+    } = this.props;
+    const productData = JSON.parse(products) || [];
     const perPage = 4;
     const totalPage = Math.ceil(productData.length / perPage);
     const indexOfLastProducts = this.state.current * perPage;
@@ -65,97 +72,6 @@ class Products extends Component {
     } else {
       return (
         <>
-          {productData.length > 0 &&
-            productsSelect.length > 0 &&
-            searchProductText === "" &&
-            searchProductText === null && (
-              <>
-                <Col span={24}>
-                  <Title level={3} align="center">
-                    Products
-                  </Title>
-                </Col>
-                {currentProducts.map((item, i) => (
-                  <Col span={5} className="col mb-1" key={i}>
-                    <Card hoverable>
-                      <img src={item.avatar} alt="?" className="w-100" />
-                      <p className="text-center bold mt-1">{item.name}</p>
-                      <Title
-                        level={4}
-                        className="text-center bold mt-1"
-                        style={{
-                          color: "#524dda",
-                        }}
-                      >
-                        ${item.price}
-                      </Title>
-                      <Button
-                        className="d-block mx-auto mb-1"
-                        type="primary"
-                        onClick={this.addToCart(item)}
-                      >
-                        Add to Cart
-                      </Button>
-                    </Card>
-                  </Col>
-                ))}
-                <Col span={24} className="d-flex justify-content-center mt-2">
-                  <Pagination
-                    current={this.state.current}
-                    onChange={this.onChange}
-                    defaultPageSize={perPage}
-                    total={productData.length}
-                    showTotal={(total) => `Total ${totalPage} pages`}
-                  />
-                </Col>
-              </>
-            )}
-
-          {productData.length > 0 &&
-            productsSelect.length === 0 &&
-            searchProductText !== "" && (
-              <>
-                <Col span={24}>
-                  <Title level={3} align="center">
-                    Products
-                  </Title>
-                </Col>
-                {currentProducts.map((item, i) => (
-                  <Col span={5} className="col mb-1" key={i}>
-                    <Card hoverable>
-                      <img src={item.avatar} alt="?" className="w-100" />
-                      <p className="text-center bold mt-1">{item.name}</p>
-                      <Title
-                        level={4}
-                        className="text-center bold mt-1"
-                        style={{
-                          color: "#524dda",
-                        }}
-                      >
-                        ${item.price}
-                      </Title>
-                      <Button
-                        className="d-block mx-auto mb-1"
-                        type="primary"
-                        onClick={this.addToCart(item)}
-                      >
-                        Add to Cart
-                      </Button>
-                    </Card>
-                  </Col>
-                ))}
-                <Col span={24} className="d-flex justify-content-center mt-2">
-                  <Pagination
-                    current={this.state.current}
-                    onChange={this.onChange}
-                    defaultPageSize={perPage}
-                    total={productData.length}
-                    showTotal={(total) => `Total ${totalPage} pages`}
-                  />
-                </Col>
-              </>
-            )}
-
           {productData.length === 0 && productsSelect.length === 0 && (
             <div>
               <Title level={3} align="center">
@@ -167,7 +83,7 @@ class Products extends Component {
 
           {productData.length > 0 &&
             productsSelect.length === 0 &&
-            searchProductText === "" && (
+            (searchProductText === "" || searchProductText === null) && (
               <>
                 <Col span={24}>
                   <Title level={3} align="center">
@@ -191,7 +107,11 @@ class Products extends Component {
                       <Button
                         className="d-block mx-auto mb-1"
                         type="primary"
-                        onClick={this.addToCart(item)}
+                        disabled={
+                          tempProducts.length > 0 &&
+                          tempProducts[i].inventory === 0
+                        }
+                        onClick={this.addToCart(item, i)}
                       >
                         Add to Cart
                       </Button>
@@ -234,7 +154,8 @@ class Products extends Component {
                     <Button
                       className="d-block mx-auto mb-1"
                       type="primary"
-                      onClick={this.addToCart(item)}
+                      disabled={item.inventory === 0}
+                      onClick={this.addToCart(item, i)}
                     >
                       Add to Cart
                     </Button>
@@ -255,8 +176,14 @@ class Products extends Component {
 
           {productData.length > 0 &&
             productsSelect.length === 0 &&
-            searchProductText !== "" &&
-            ""}
+            searchProductText !== "" && (
+              <div>
+                <Title level={3} align="center">
+                  Products
+                </Title>
+                <Empty />
+              </div>
+            )}
         </>
       );
     }
@@ -269,6 +196,7 @@ function mapStateToProps(state) {
     productsSelect: state.user.productsSelect,
     searchProductText: state.user.searchProductText,
     cart: state.user.cart,
+    tempProducts: state.user.tempProducts,
   };
 }
 
